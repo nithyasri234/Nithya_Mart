@@ -1,24 +1,29 @@
-# NithyaMart — Multi-Seller E-Commerce Marketplace
-### Anna University R2025 Regulations — Semester 3 Project Milestone Manual
-**Builder:** Solo Student Development  
-**Execution Window:** July 27 – October 10, 2026  
-**Tech Stack:** Java Servlets, JSP/JSTL, HikariCP, H2 Embedded Database Engine, Maven
+# 🛒 NithyaMart — Multi-Seller E-Commerce Marketplace
+
+[![Java Version](https://shields.io)](https://oracle.com)
+[![Servlet Container](https://shields.io)](https://apache.org)
+[![Database](https://shields.io)](https://h2database.com)
+[![Build Management](https://shields.io)](https://apache.org)  
 
 ---
 
-## 1. Problem Statement & Scope Definition
-YourNameMart is an industrial, multi-seller marketplace architecture engineered without bloated high-level frameworks to demonstrate mastery over primitive web container lifecycles. 
-* **Sellers** can securely authenticate, maintain inventory catalogs, track costs, and evaluate product margins.
-* **Buyers** can search catalog nodes dynamically, build active shopping cart buffers, and place orders through simulated checkout channels.
-* **Admins** oversee global platform operations via structured seed account parameters, retaining master control to audit user accounts or moderate illegal product listings.
+## 📝 Project Overview
 
-### Architecture Scope Boundaries
-* **No Real-Time Hooks:** WebSockets or third-party mapping APIs are excluded.
-* **Isolated Checkout Framework:** Third-party payment gateway endpoints are bypassed; the application features a mock transaction confirmation ledger processing pipeline.
+**NithyaMart** is an industrial-grade, multi-seller marketplace architecture engineered completely from scratch without high-level enterprise frameworks (like Spring or Hibernate). The core objective of this project is to demonstrate exhaustive mastery over primitive web container lifecycles, low-level HTTP transaction states, and native relational database mappings.
+
+### 👥 System Role Capabilities
+* 💼 **Sellers:** Authenticate securely, manage real-time inventory catalogs, track wholesale costs, and accurately evaluate product margins.
+* 🛍️ **Buyers:** Dynamically browse catalog nodes, build active shopping cart buffers, and place orders through simulated checkout channels.
+* 🔑 **Admins:** Oversee global system health via structured master seed parameters, retaining root permissions to audit user accounts or moderate platform product listings.
+
+### 🚫 Architectural Boundaries
+To ensure strict alignment with course guidelines, the project explicitly enforces the following constraints:
+* **No Real-Time Hooks:** WebSockets, external messaging streams, or third-party mapping APIs are excluded.
+* **Isolated Checkout Framework:** Third-party payment gateway endpoints are bypassed in favor of a fast, local mock transaction confirmation ledger processing pipeline.
 
 ---
 
-## 2. Technical Stack Specifications
+## 🛠️ Technical Stack Specifications
 
 | Component Layer | Technology Specification | Abstraction Framework |
 | :--- | :--- | :--- |
@@ -26,68 +31,74 @@ YourNameMart is an industrial, multi-seller marketplace architecture engineered 
 | **Servlet Container** | Apache Tomcat 9.0.x | `javax.servlet.*` Native Library API |
 | **Build Dependency** | Apache Maven Management Suite | Automated `pom.xml` Build Pipeline |
 | **Database Engine** | H2 Database (Server/Local Embedded) | Relational SQL Architecture |
-| **Connection Pooling** | HikariCP Vector Pool | Shared Context Lifecycle Lifecycle Listener |
+| **Connection Pooling** | HikariCP Vector Pool | Shared Context Lifecycle Listener |
 | **View Architecture** | JavaServer Pages (JSP) + JSTL | Server-Side Rendering Framework |
 | **Cryptography** | jBCrypt Security Engine | Adaptive Salt Password Hashing |
 
 ---
 
-## 3. Mandatory Engineering Security Compliance Checklist
-1. **Parameterized Query Enforcements:** Every data interaction utilizes `PreparedStatement` layers exclusively. String-concatenated queries are strictly banned to eliminate SQL Injection (SQLi) vectors.
-2. **One-Way Cryptographic Hashing:** Raw plain passwords never touch the database ledger. Fields are transformed via `jBCrypt` with an explicit work factor allocation pool of `12`.
-3. **Automated Resource Management:** All database statements are enclosed inside Java `try-with-resources` statements to guarantee the cleanup of connections and eliminate memory leaks.
-4. **Session Fixation Defenses:** Call routines call `.invalidate()` explicitly upon valid login authentication before provisioning fresh `HttpSession` tokens.
-5. **Cross-Site Scripting (XSS) Mitigation:** User outputs rendered within the presentation layout view layer are tightly processed using JSTL `<c:out>` expression handlers to sanitize raw text elements.
+## 🛡️ Mandatory Engineering Security Compliance
+
+To pass academic rigorous auditing, the system implements a zero-trust compliance baseline directly at the low-level data and presentation layer:
+
+- **Parameterized Query Enforcements:** Every single database interaction utilizes `PreparedStatement` layers exclusively. String-concatenated query formats are strictly banned to completely eliminate SQL Injection (SQLi) vectors.
+- **One-Way Cryptographic Hashing:** Raw plain passwords never touch the database ledger. Values are securely transformed via `jBCrypt` utilizing an explicit work factor allocation pool of `12`.
+- **Automated Resource Management:** All database statements, result sets, and pool connections are tightly enclosed inside Java `try-with-resources` statements to guarantee complete resource cleanup and eliminate memory leaks.
+- **Session Fixation Defenses:** Authentication routines call `.invalidate()` explicitly upon valid login validation before provisioning completely fresh `HttpSession` tokens to the client.
+- **Cross-Site Scripting (XSS) Mitigation:** User outputs rendered within the presentation layout view layer are tightly processed using JSTL `<c:out>` expression handlers to escape and sanitize raw text elements.
 
 ---
 
-## 4. Setup, Build, and Execution Protocols
+## 📐 System Design Architecture Blueprint
 
-### Prerequisites
-* Java Development Kit (JDK 17) configured in system environment variables.
-* VS Code with **Extension Pack for Java** and **Community Server Connectors** extensions installed.
+The application follows a clean, decoupled **Layered Model-View-Controller (MVC)** architectural design flow:
+
+```text
+  [ Browser View Layer ]
+         │ (Uses Native HTML/CSS forms & JSP Server Side Rendering)
+         ▼ 
+  [ Filter Security Gate ]
+         │ (AuthFilter blocks unauthenticated resource traffic)
+         ▼ 
+  [ Controller Servlets ]
+         │ (Captures request parameters; dispatches tasks to Service)
+         ▼ 
+  [ Service Layer Core ]
+         │ (Evaluates validation business rules; no SQL permitted here)
+         ▼ 
+  [ Data Access Objects ]
+         │ (Executes query tasks via Parametric PreparedStatements)
+         ▼ 
+  [ HikariCP Data Pool ] ──► [ H2 Embedded Database Engine ]
+```
+
+---
+
+## 🚀 Setup, Build, and Execution Protocols
+
+### 📋 Prerequisites
+* **Java Development Kit (JDK 17)** configured cleanly in system environment variables.
+* **VS Code** with both the **Extension Pack for Java** and **Community Server Connectors** extensions active.
 
 ### Step 1: Clone and Clean Compile Lifecycle
-Navigate to the root directory where your `pom.xml` file is located and compile the web package cleanly using Maven:
+Navigate directly to the root directory where your `pom.xml` file is located and compile the web package cleanly using the Maven suite:
 ```bash
 mvn clean package
 ```
-This triggers Maven to download all required dependencies, verify class compilation paths, and build a deployable `studentmart.war` distribution file inside the target folder structure.
+*This triggers Maven to download all required dependencies, verify class compilation paths, and build a deployable `studentmart.war` distribution file inside the target folder structure.*
 
 ### Step 2: Establish the Local Server Target inside VS Code
 1. Open the **Servers** tab on your VS Code sidebar panel.
-2. Select **Create New Server** -> **Apache Tomcat** and point the target path directly to the root installation folder directory of your local Tomcat installation.
+2. Select **Create New Server** ──► **Apache Tomcat** and point the target path directly to the root installation folder directory of your local Tomcat installation.
 3. Right-click the newly mapped server instance and select **Start Server**.
-4. Right-click the active running server instance, choose **Add Deployment**, and select the project's compiled `webapp/` or `target/studentmart/` folder.
+4. Right-click the active running server instance, choose **Add Deployment**, and select the project's compiled `webapp/` or `target/NithyaMart/` folder.
 
 ### Step 3: Run the Application
 Open your web browser and navigate to the local deployment endpoint:
 ```text
-http://localhost:8080/studentmart/
+http://localhost:8080/NithyaMart/
 ```
-* **Default Admin Credentials for System Audits:** 
-  * **Email Username:** `admin@mart.com`
-  * **Plain Password:** `Admin@123`
 
----
-
-## 5. System Design Architecture Blueprint
-The application follows a clean **Layered Model-View-Controller (MVC)** architectural design layout:
-```text
-[ Browser View Layer ] ◄── Uses Native HTML/CSS forms & JSP Server Rendering
-         │
-         ▼ (HTTP POST/GET Requests processed down)
-[ Filter Security Gate ] ◄── AuthFilter blocks unauthenticated resource traffic
-         │
-         ▼ (Thin Orchestration Layer)
-[ Controller Servlets ] ◄── Captures request parameters; dispatches tasks to Service
-         │
-         ▼ (Isolated Business Rules Engine)
-[ Service Layer Core ] ◄── Evaluates validation constraints (No SQL allowed here)
-         │
-         ▼ (Data Access Level Abstraction)
-[ Data Access Objects ] ◄── Executes query tasks via Parametric PreparedStatements
-         │
-         ▼ (Borrowed Pool Token Mapping)
-[ HikariCP Data Pool ] ◄── Manages data connection arrays securely over H2 Database
-```
+#### 🔐 Default Admin Credentials for System Audits:
+* **Email Username:** `admin@mart.com`
+* **Plain Password:** `Admin@123`
