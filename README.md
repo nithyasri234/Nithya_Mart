@@ -1,4 +1,4 @@
-# YourNameMart — Multi-Seller E-Commerce Marketplace
+# NithyaMart — Multi-Seller E-Commerce Marketplace
 ### Anna University R2025 Regulations — Semester 3 Project Milestone Manual
 **Builder:** Solo Student Development  
 **Execution Window:** July 27 – October 10, 2026  
