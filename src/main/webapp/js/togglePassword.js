@@ -1,33 +1,22 @@
-function myFunction() {
-  var x = document.getElementById("myInput");
-  if (x.type == "password") {
-    x.type = "text";
-  } else {
-    x.type = "password";
-  }
+const passwordInput = document.getElementById('password');
+const confirmPasswordInput = document.getElementById('confirmPassword');
+const showPasswordCheckbox = document.getElementById('showPassword');
+const showConfirmPasswordCheckbox = document.getElementById('showConfirmPassword');
+const errorMsg = document.getElementById('errorMsg');
+showPasswordCheckbox.addEventListener('change', function() {
+    passwordInput.type = this.checked ? 'text' : 'password';
+});
+showConfirmPasswordCheckbox.addEventListener('change', function() {
+    confirmPasswordInput.type = this.checked ? 'text' : 'password';
+});
+function validateForm() {
+    if (passwordInput.value !== confirmPasswordInput.value) {
+      errorMsg.style.display = 'block';
+      return false; // Blocks form transmission
+    }
+    errorMsg.style.display = 'none';
+    return true; 
 }
-
-function myfunctionconfirm()
-{
-  var x =document.getElementById("myInputuser");
-  if(x.type == "password")
-  {
-    x.type ="text";
-  }
-  else{
-    x.type ="password";
-  }
-}
-function exception(){
-  var pass = document.getElementById("myInput").value;
-  var confirm = document.getElementById("myInputuser").value;
-  var confirmpass=document.getElementById("myInputuser");
-  var error = document.getElementById("errormessage");
-  if(confirm.length >0)
-  {
-      if(pass!=confirm)
-      {
-         confirmpass.style.border
-      }
-  }
+function hideError() {
+    errorMsg.style.display = 'none';
 }
