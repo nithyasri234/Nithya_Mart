@@ -4,13 +4,16 @@
     padding: 0;
     font-family: Arial, sans-serif;
 }
+
 body {
     background-color: #d5f0f9;
     display: flex;
     flex-direction: column;
     align-items: center;
     min-height: 100vh;
+    padding-top: 40px;
 }
+
 .header-bar {
     width: 100%;
     background-color: #005082;
@@ -22,6 +25,71 @@ body {
     letter-spacing: 1px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
+
+.status-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+}
+
+/* MODIFIED: Consolidated requirements box setup with clean calculations */
+.requirements-box {
+    position: absolute;
+    /* Traps calculation relative to label column width (35%) + your new input width (335px) + 20px spacer gutter gap */
+    left: calc(100% + 15px); 
+    top: 50px;
+    transform: translateY(-50%); /* Centers the panel vertically against the field */
+    background-color: #111c2e;
+    border: 1px solid #2d3748;
+    border-radius: 8px;
+    padding: 16px;
+    width: 280px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    display: none; 
+    flex-direction: column;
+    gap: 8px;
+    z-index: 999
+}
+
+/* Adjusted responsive layout media breakpoints for smaller viewports */
+@media (max-width: 950px) {
+    .requirements-box {
+        position: static;
+        width: 100%;
+        margin-top: 10px;
+        max-width: 480px;
+    }
+    .password-wrapper {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+.requirement-item {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    color: #718096;
+    transition: color 0.2s;
+}
+
+.requirement-item::before {
+    content: "○";
+    display: inline-block;
+    width: 20px;
+    font-size: 14px;
+}
+
+.requirement-item.valid {
+    color: #48bb78;
+}
+
+.requirement-item.valid::before {
+    content: "✓";
+    font-weight: bold;
+}
+
 .login-container {
     background-color: rgb(245, 248, 251);
     border: 2px solid #005082;
@@ -32,24 +100,29 @@ body {
     padding: 40px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.05);
 }
-.login-container h2{
+
+.login-container h2 {
     text-align: center;
     font-size: 36px;
     margin-bottom: 40px;
-    color:#000;
+    color: #000;
 }
+
+/* Consolidated layout anchor context rule row */
 .form-row {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
+
 .form-row label {
     width: 35%;
     font-size: 16px;
-    color: #000;
+    color: #f9f6f6;
 }
+
 .form-row .input-field {
-     width: 65%;
+     width: 65%; /* Restored default standard row sizing column */
 }
 
 .form-row input[type="text"],
@@ -61,9 +134,16 @@ body {
     border: 1px solid #767676;
     font-size: 14px;
 }
+
+/* MODIFIED: Fixed styling properties for password element input cell size to match your layout width */
+#password {
+    width: 335px !important; /* Locks down size width specifications securely */
+}
+
 .form-row input::placeholder {
     color: #a9a9a9;
 }
+
 .action-row {
     display: flex;
     flex-direction: column;
@@ -75,7 +155,7 @@ body {
     color: red;
     font-size: 14px;
     margin-bottom: 8px;
-    display: none; /* Hidden by default, managed by JS */
+    display: none; 
 }
 
 .checkbox-container {
@@ -88,6 +168,7 @@ body {
 .checkbox-container input {
     cursor: pointer;
 }
+
 .button-row {
     display: flex;
     justify-content: space-between;
@@ -116,4 +197,10 @@ body {
     font-size: 14px;
     color: #000;
     margin-top: 10px;
+}
+.password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 65%;
 }

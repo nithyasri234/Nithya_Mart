@@ -25,33 +25,38 @@
                 </div>
             </div>
 
-            <div class="form-row">
-                <label for="password">Password:</label>
-                <div class="input-field">
-                    <input type="password" id="password" name="password" required>
-                </div>
-            </div>
-            <div class="action-row">
-            <div class="checkbox-container">
-                    <input type="checkbox" id="showPassword">
-                    <label for="showPassword">Show Password</label>
-            </div>
-        </div>
+            <!-- Password Field Container Row -->
+<div class="form-row">
+    <label for="password">Password:</label>
+    <div class="input-field password-wrapper">
+        <input type="password" id="password">
+
+    <!-- This MUST be inside the form-row div to stay docked near the input -->
+    <div class="requirements-box">
+        <div class="requirement-item" id="req-length">Must be between 6-12 characters</div>
+        <div class="requirement-item" id="req-case-upper">Use upper case letters</div>
+        <div class="requirement-item" id="req-case-lower">Use lower case letters</div>
+        <div class="requirement-item" id="req-number">use a numbers 0-9</div>
+        <div class="requirement-item" id="req-symbol">use a symbol</div>
+    </div>
+    </div>
+</div>
+
+            
             <div class="form-row">
                 <label for="confirmPassword">Confirm Password:</label>
                 <div class="input-field">
-                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                    <input type="password" id="confirmPassword" autocomplete="new-password">
                 </div>
             </div>
-             <div class="action-row">
-                <!-- JavaScript handles when to show this error element -->
-                <div id="errorMsg" class="error-message">Passwords do not match!</div>
-                
-                <div class="checkbox-container">
-                    <input type="checkbox" id="showConfirmPassword">
-                    <label for="showConfirmPassword">Show Confirm Password</label>
-                </div>
+
+            <div class="status-container">
+                <label class="checkbox-label">
+                    <input type="checkbox" id="showPassword"> Show password
+                </label>
+                <div class="match-indicator" id="matchIndicator">Match</div>
             </div>
+
 
             <div class="form-row">
                 <label for="role">Role:</label>
