@@ -1,84 +1,296 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  <title>Login</title>
-  <link rel="stylesheet" href="css/style.css">
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>NithyaMart - Sign Up</title>
+
+    <link rel="stylesheet"
+          href="css/style.css">
+
 </head>
+
 <body>
-  <div class="header-bar">
+
+    <div class="header-bar">
         NITHYA MART
     </div>
 
+
     <div class="login-container">
-        <h2>Login</h2>
-        <form id="registrationForm" action="register" method="POST" onsubmit="return validateForm()">
-             <div class="form-row">
-                <label for="username">UserName:</label>
-                <div class="input-field">
-                    <input type="text" id="username" name="username" placeholder="Enter your Name" required>
-                </div>
-            </div>
+
+        <h2>Create Account</h2>
+
+
+        <form id="registrationForm"
+              action="register"
+              method="POST"
+              onsubmit="return validateForm()">
+
+
+            <!-- NAME -->
+
             <div class="form-row">
-                <label for="email">Email:</label>
+
+                <label for="username">
+                    Name:
+                </label>
+
                 <div class="input-field">
-                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+                    <input
+                        type="text"
+                        id="username"
+                        name="name"
+                        placeholder="Enter your name"
+                        required>
+
                 </div>
+
             </div>
 
-            <!-- Password Field Container Row -->
-<div class="form-row">
-    <label for="password">Password:</label>
-    <div class="input-field password-wrapper">
-        <input type="password" id="password">
 
-    <!-- This MUST be inside the form-row div to stay docked near the input -->
-    <div class="requirements-box">
-        <div class="requirement-item" id="req-length">Must be between 6-12 characters</div>
-        <div class="requirement-item" id="req-case-upper">Use upper case letters</div>
-        <div class="requirement-item" id="req-case-lower">Use lower case letters</div>
-        <div class="requirement-item" id="req-number">use a numbers 0-9</div>
-        <div class="requirement-item" id="req-symbol">use a symbol</div>
-    </div>
-    </div>
-</div>
+            <!-- EMAIL -->
 
-            
             <div class="form-row">
-                <label for="confirmPassword">Confirm Password:</label>
+
+                <label for="email">
+                    Email:
+                </label>
+
                 <div class="input-field">
-                    <input type="password" id="confirmPassword" autocomplete="new-password">
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Enter your email"
+                        required>
+
                 </div>
+
             </div>
+
+
+            <!-- PASSWORD -->
+
+            <div class="form-row">
+
+                <label for="password">
+                    Password:
+                </label>
+
+                <div class="input-field password-wrapper">
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        autocomplete="new-password"
+                        required>
+
+
+                    <div class="requirements-box">
+
+                        <div
+                            class="requirement-item"
+                            id="req-length">
+                            Must be between 6-12 characters
+                        </div>
+
+                        <div
+                            class="requirement-item"
+                            id="req-case-upper">
+                            Use upper case letters
+                        </div>
+
+                        <div
+                            class="requirement-item"
+                            id="req-case-lower">
+                            Use lower case letters
+                        </div>
+
+                        <div
+                            class="requirement-item"
+                            id="req-number">
+                            Use a number 0-9
+                        </div>
+
+                        <div
+                            class="requirement-item"
+                            id="req-symbol">
+                            Use a symbol
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CONFIRM PASSWORD -->
+
+            <div class="form-row">
+
+                <label for="confirmPassword">
+                    Confirm Password:
+                </label>
+
+                <div class="input-field">
+
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        name="confirmPassword"
+                        autocomplete="new-password"
+                        required>
+
+                </div>
+
+            </div>
+
+
+            <!-- SHOW PASSWORD / MATCH -->
 
             <div class="status-container">
+
                 <label class="checkbox-label">
-                    <input type="checkbox" id="showPassword"> Show password
+
+                    <input
+                        type="checkbox"
+                        id="showPassword">
+
+                    Show password
+
                 </label>
-                <div class="match-indicator" id="matchIndicator">Match</div>
+
+
+                <div
+                    class="match-indicator"
+                    id="matchIndicator">
+                </div>
+
             </div>
 
+
+            <!-- ROLE -->
 
             <div class="form-row">
-                <label for="role">Role:</label>
+
+                <label for="role">
+                    Role:
+                </label>
+
                 <div class="input-field">
-                    <select id="role" name="role">
-                        <option value="Buyer">Buyer</option>
-                        <option value="Seller">Seller</option>
+
+                    <select
+                        id="role"
+                        name="role"
+                        required>
+
+                        <option value="BUYER">
+                            Buyer
+                        </option>
+
+                        <option value="SELLER">
+                            Seller
+                        </option>
+
                     </select>
+
                 </div>
+
             </div>
+
+
+            <!-- ERROR MESSAGE -->
+
+            <div
+                id="signupError"
+                class="error-message"
+                style="display: none;">
+            </div>
+
+
+            <!-- BUTTONS -->
 
             <div class="button-row">
-                <button type="submit" class="btn btn-submit">Submit</button>
-                <button type="reset" class="btn btn-reset" onclick="hideError()">Reset</button>
+
+                <button
+                    type="submit"
+                    class="btn btn-submit">
+                    Create Account
+                </button>
+
+
+                <button
+                    type="reset"
+                    class="btn btn-reset"
+                    onclick="hideError()">
+                    Reset
+                </button>
+
             </div>
 
+
+            <!-- LOGIN LINK -->
+
             <div class="footer-text">
+
                 Already have an account?
+
+                <a href="login.html">
+                    Login here
+                </a>
+
             </div>
-            </form>
+
+        </form>
+
     </div>
-<script src="js/app.js"></script>
-<script src="js/togglePassword.js"></script>
+
+
+    <script src="js/app.js"></script>
+
+    <script src="js/togglePassword.js"></script>
 </body>
- 
+</html>
+
+
+
+.requirements-box {
+    position: absolute;
+    left: 105%;            
+    top: 50%;              
+    transform: translateY(-50%); 
+    width: 250px;     
+    box-sizing: border-box;
+    display: flex !important; 
+    flex-direction: column !important; 
+    align-items: flex-start;           
+
+    background-color: #1a233a; 
+    color: #a5b4fc;        
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+    z-index: 100;          
+}
+.requirement-item {
+    font-size: 13px;
+    margin-bottom: 10px;   
+    padding-left: 15px;
+    position: relative;
+    text-align: left;      
+    white-space: normal;    
+}
+
+.requirement-item:last-child {
+    margin-bottom: 0;
+}

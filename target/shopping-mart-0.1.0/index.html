@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NithyaMart - Online Shopping</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="home-page">
+
+    <header class="navbar">
+
+        <div class="logo">
+            <a href="index.html">NithyaMart</a>
+        </div>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="#products">Products</a>
+            <a href="cart.html">Cart</a>
+            <a href="login.html" id="loginLink">Login</a>
+            <a href="signup.html" id="signupLink">Sign Up</a>
+            <a href="#" id="logoutLink" style="display: none;">Logout</a>
+        </nav>
+
+    </header>
+
+
+    <main>
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <h1>Welcome to NithyaMart</h1>
+
+                <p>
+                    Shop products from multiple sellers
+                    in one place.
+                </p>
+
+                <a href="#products" class="btn">
+                    Shop Now
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <section class="products-section" id="products">
+
+            <div class="section-header">
+
+                <h2>Products</h2>
+
+                <div class="search-area">
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search products..."
+                    >
+
+                    <select id="categoryFilter">
+
+                        <option value="">
+                            All Categories
+                        </option>
+
+                        <option value="Electronics">
+                            Electronics
+                        </option>
+
+                        <option value="Fashion">
+                            Fashion
+                        </option>
+
+                        <option value="Home">
+                            Home
+                        </option>
+
+                        <option value="Books">
+                            Books
+                        </option>
+
+                        <option value="Beauty">
+                            Beauty
+                        </option>
+
+                        <option value="Grocery">
+                            Grocery
+                        </option>
+
+                    </select>
+
+                    <button
+                        type="button"
+                        id="searchButton"
+                        class="btn"
+                    >
+                        Search
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div id="loadingMessage" class="message">
+                Loading products...
+            </div>
+
+
+            <div id="errorMessage"
+                 class="message error"
+                 style="display: none;">
+            </div>
+
+
+            <div
+                id="productList"
+                class="product-grid">
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <p>
+            &copy; 2026 NithyaMart. All rights reserved.
+        </p>
+
+    </footer>
+
+
+    <script src="js/session.js"></script>
+    <script src="js/catalog.js"></script>
+
+</body>
+</html>
