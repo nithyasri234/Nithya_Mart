@@ -172,17 +172,43 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
 
+   if (searchInput) {
     searchInput.addEventListener(
         "keydown",
         event => {
-
             if (event.key === "Enter") {
                 loadProducts();
             }
+        }
+    );
+}
 
+if (categoryFilter) {
+    categoryFilter.addEventListener(
+        "change",
+        loadProducts
+    );
+}
+
+loadProducts();
+if (searchInput && categoryFilter) {
+
+    searchInput.addEventListener(
+        "keydown",
+        event => {
+            if (event.key === "Enter") {
+                loadProducts();
+            }
         }
     );
 
+    categoryFilter.addEventListener(
+        "change",
+        loadProducts
+    );
+
+    loadProducts();
+}
 
     categoryFilter.addEventListener(
         "change",
