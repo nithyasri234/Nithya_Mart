@@ -23,5 +23,6 @@ F:\NithyaMart\Nithya_Mart\src\main\java\com\nithyamart\model\User.java
 F:\NithyaMart\Nithya_Mart\src\main\java\com\nithyamart\service\ProductService.java
 F:\NithyaMart\Nithya_Mart\src\main\java\com\nithyamart\service\UserService.java
 F:\NithyaMart\Nithya_Mart\src\main\java\com\nithyamart\util\ChatProvider.java
+F:\NithyaMart\Nithya_Mart\src\main\java\com\nithyamart\util\DatabaseMigrationUtil.java
 F:\NithyaMart\Nithya_Mart\src\main\java\com\nithyamart\util\MockChatProvider.java
 F:\NithyaMart\Nithya_Mart\src\main\java\com\nithyamart\util\PasswordUtil.java

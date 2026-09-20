@@ -8,6 +8,7 @@ com\nithyamart\dao\UserDAO.class
 com\nithyamart\controller\AdminServlet.class
 com\nithyamart\controller\CartServlet.class
 com\nithyamart\controller\ProductServlet$ErrorResponse.class
+com\nithyamart\util\DatabaseMigrationUtil.class
 com\nithyamart\controller\AdminServlet$MessageResponse.class
 com\nithyamart\dao\ReviewDAO.class
 com\nithyamart\controller\CheckoutServlet$ErrorResponse.class
