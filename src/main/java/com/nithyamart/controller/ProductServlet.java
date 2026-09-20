@@ -195,10 +195,16 @@ public class ProductServlet extends HttpServlet {
                     e
             );
 
-            sendError(
-                    response,
-                    HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
-                    "Unable to create product."
+            response.setStatus(
+                    HttpServletResponse.SC_INTERNAL_SERVER_ERROR
+            );
+
+            response.setContentType(
+                    "text/plain;charset=UTF-8"
+            );
+
+            e.printStackTrace(
+                    response.getWriter()
             );
         }
     }
@@ -444,6 +450,7 @@ public class ProductServlet extends HttpServlet {
 
     private static class ErrorResponse {
 
+        @SuppressWarnings("unused")
         private final String message;
 
         private ErrorResponse(String message) {
