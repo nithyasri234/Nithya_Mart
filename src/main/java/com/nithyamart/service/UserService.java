@@ -74,14 +74,14 @@ public class UserService {
         String normalizedEmail =
                 email.trim().toLowerCase();
 
-        Optional<User> userOptional =
+        User userOptional =
                 userDAO.findByEmail(normalizedEmail);
 
-        if (userOptional.isEmpty()) {
-            return Optional.empty();
+        if (userOptional == null) {
+            return null;
         }
 
-        User user = userOptional.get();
+        User user = userOptional;
 
         boolean validPassword =
                 PasswordUtil.verifyPassword(
@@ -90,7 +90,7 @@ public class UserService {
                 );
 
         if (!validPassword) {
-            return Optional.empty();
+            return null;
         }
 
         return Optional.of(user);
@@ -103,6 +103,6 @@ public class UserService {
             return Optional.empty();
         }
 
-        return userDAO.findById(id);
+        return Optional.ofNullable(userDAO.findById(id));
     }
 }

@@ -9,7 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
-import java.util.Optional;
+
 
 public class UserDAO {
 
@@ -54,8 +54,8 @@ public class UserDAO {
             }
         }
 
-        return findById(user.getId())
-                .orElse(user);
+        User createdUser = findById(user.getId());
+        return createdUser != null ? createdUser : user;
     }
 
     /**
@@ -65,7 +65,7 @@ public class UserDAO {
      * @return matching user, if found
      * @throws SQLException if the database operation fails
      */
-    public Optional<User> findByEmail(String email) throws SQLException {
+    public User findByEmail(String email) throws SQLException {
 
         String sql = """
                 SELECT id, name, email, password_hash, role, created_at
@@ -81,12 +81,12 @@ public class UserDAO {
             try (ResultSet resultSet = statement.executeQuery()) {
 
                 if (resultSet.next()) {
-                    return Optional.of(mapUser(resultSet));
+                    return mapUser(resultSet);
                 }
             }
         }
 
-        return Optional.empty();
+        return null;
     }
 
     /**
@@ -96,7 +96,7 @@ public class UserDAO {
      * @return matching user, if found
      * @throws SQLException if the database operation fails
      */
-    public Optional<User> findById(Long id) throws SQLException {
+    public User findById(Long id) throws SQLException {
 
         String sql = """
                 SELECT id, name, email, password_hash, role, created_at
@@ -112,12 +112,12 @@ public class UserDAO {
             try (ResultSet resultSet = statement.executeQuery()) {
 
                 if (resultSet.next()) {
-                    return Optional.of(mapUser(resultSet));
+                    return mapUser(resultSet);
                 }
             }
         }
 
-        return Optional.empty();
+        return null;
     }
 
     /**

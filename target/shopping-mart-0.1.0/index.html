@@ -1,29 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>NithyaMart - Online Shopping</title>
+    <title>NithyaMart | Online Shopping Marketplace</title>
 
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body class="home-page">
+<body class="marketplace-page">
 
-    <header class="navbar">
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <div class="top-bar-inner">
+            <span>Welcome to NithyaMart</span>
 
-        <div class="logo">
-            <a href="index.html">NithyaMart</a>
+            <div class="top-links">
+                <a href="#">Customer Service</a>
+                <a href="#">Sell on NithyaMart</a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- MAIN HEADER -->
+    <header class="market-header">
+
+        <div class="header-main">
+
+            <!-- LOGO -->
+            <div class="market-logo">
+                <a href="index.html">
+                    <span class="logo-main">Nithya</span><span class="logo-accent">Mart</span>
+                </a>
+            </div>
+
+
+            <!-- SEARCH -->
+            <div class="market-search">
+
+                <select id="headerCategory">
+                    <option value="">All</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Fashion">Fashion</option>
+                    <option value="Home">Home</option>
+                    <option value="Books">Books</option>
+                    <option value="Beauty">Beauty</option>
+                    <option value="Grocery">Grocery</option>
+                </select>
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search for products, brands and more..."
+                >
+
+                <button id="searchButton" type="button">
+                    Search
+                </button>
+
+            </div>
+
+
+            <!-- ACCOUNT -->
+            <div class="header-actions">
+
+                <a href="login.html" id="loginLink" class="header-action">
+                    <span class="action-icon">👤</span>
+                    <span>
+                        <small>Hello, Sign in</small>
+                        <strong>Account</strong>
+                    </span>
+                </a>
+
+
+                <a href="cart.html" class="header-action cart-action">
+                    <span class="cart-icon">🛒</span>
+                    <span>
+                        <small>My</small>
+                        <strong>Cart</strong>
+                    </span>
+                </a>
+
+
+                <a
+                    href="#"
+                    id="logoutLink"
+                    class="header-action"
+                    style="display:none;"
+                >
+                    <span class="action-icon">↪</span>
+                    <span>
+                        <small>Account</small>
+                        <strong>Logout</strong>
+                    </span>
+                </a>
+
+            </div>
+
         </div>
 
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="#products">Products</a>
-            <a href="cart.html">Cart</a>
-            <a href="login.html" id="loginLink">Login</a>
-            <a href="signup.html" id="signupLink">Sign Up</a>
-            <a href="#" id="logoutLink" style="display: none;">Logout</a>
+
+        <!-- CATEGORY NAVIGATION -->
+        <nav class="category-nav">
+
+            <div class="category-nav-inner">
+
+                <a href="#products" class="all-category">
+                    ☰ All Categories
+                </a>
+
+                <a href="#products">Electronics</a>
+                <a href="#products">Fashion</a>
+                <a href="#products">Home & Kitchen</a>
+                <a href="#products">Books</a>
+                <a href="#products">Beauty</a>
+                <a href="#products">Grocery</a>
+
+                <a href="signup.html">Become a Seller</a>
+
+            </div>
+
         </nav>
 
     </header>
@@ -31,117 +130,365 @@
 
     <main>
 
-        <section class="hero">
 
-            <div class="hero-content">
+        <!-- HERO BANNER -->
+        <section class="market-hero">
 
-                <h1>Welcome to NithyaMart</h1>
+            <div class="hero-container">
 
-                <p>
-                    Shop products from multiple sellers
-                    in one place.
-                </p>
+                <div class="hero-copy">
 
-                <a href="#products" class="btn">
-                    Shop Now
-                </a>
+                    <span class="hero-label">
+                        NITHYAMART MARKETPLACE
+                    </span>
 
-            </div>
+                    <h1>
+                        Everything you need.
+                        <span>All in one place.</span>
+                    </h1>
 
-        </section>
+                    <p>
+                        Discover products from multiple sellers,
+                        compare your choices and shop with ease.
+                    </p>
+
+                    <div class="hero-buttons">
+
+                        <a href="#products" class="hero-primary">
+                            Shop Now
+                        </a>
+
+                        <a href="signup.html" class="hero-secondary">
+                            Start Selling
+                        </a>
+
+                    </div>
+
+                </div>
 
 
-        <section class="products-section" id="products">
+                <div class="hero-shopping-card">
 
-            <div class="section-header">
+                    <div class="hero-card-top">
+                        <span>Featured Marketplace</span>
+                        <strong>2026</strong>
+                    </div>
 
-                <h2>Products</h2>
+                    <div class="hero-card-icon">
+                        🛍️
+                    </div>
 
-                <div class="search-area">
+                    <h3>
+                        Shop from multiple sellers
+                    </h3>
 
-                    <input
-                        type="text"
-                        id="searchInput"
-                        placeholder="Search products..."
-                    >
+                    <p>
+                        Electronics, fashion, home products,
+                        books and more.
+                    </p>
 
-                    <select id="categoryFilter">
-
-                        <option value="">
-                            All Categories
-                        </option>
-
-                        <option value="Electronics">
-                            Electronics
-                        </option>
-
-                        <option value="Fashion">
-                            Fashion
-                        </option>
-
-                        <option value="Home">
-                            Home
-                        </option>
-
-                        <option value="Books">
-                            Books
-                        </option>
-
-                        <option value="Beauty">
-                            Beauty
-                        </option>
-
-                        <option value="Grocery">
-                            Grocery
-                        </option>
-
-                    </select>
-
-                    <button
-                        type="button"
-                        id="searchButton"
-                        class="btn"
-                    >
-                        Search
-                    </button>
+                    <div class="hero-card-bottom">
+                        <span>Explore products</span>
+                        <strong></strong>
+                    </div>
 
                 </div>
 
             </div>
 
-
-            <div id="loadingMessage" class="message">
-                Loading products...
-            </div>
+        </section>
 
 
-            <div id="errorMessage"
-                 class="message error"
-                 style="display: none;">
-            </div>
+        <!-- BENEFITS -->
+        <section class="benefits-section">
+
+            <div class="benefits-container">
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">🚚</div>
+
+                    <div>
+                        <strong>Wide Product Selection</strong>
+                        <span>Products from multiple sellers</span>
+                    </div>
+                </div>
 
 
-            <div
-                id="productList"
-                class="product-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon">🔐</div>
+
+                    <div>
+                        <strong>Secure Account</strong>
+                        <span>Protected login and sessions</span>
+                    </div>
+                </div>
+
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">💳</div>
+
+                    <div>
+                        <strong>Easy Checkout</strong>
+                        <span>Simple and convenient ordering</span>
+                    </div>
+                </div>
+
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">⭐</div>
+
+                    <div>
+                        <strong>Customer Reviews</strong>
+                        <span>Rate products after purchase</span>
+                    </div>
+                </div>
+
             </div>
 
         </section>
 
+
+        <!-- CATEGORY CARDS -->
+        <section class="category-section">
+
+            <div class="section-title">
+
+                <div>
+                    <span>EXPLORE</span>
+                    <h2>Shop by Category</h2>
+                </div>
+
+            </div>
+
+
+            <div class="category-cards">
+
+                <a href="#products" class="category-card">
+                    <div class="category-image electronics">
+                        💻
+                    </div>
+                    <strong>Electronics</strong>
+                    <span>Explore now</span>
+                </a>
+
+
+                <a href="#products" class="category-card">
+                    <div class="category-image fashion">
+                        👕
+                    </div>
+                    <strong>Fashion</strong>
+                    <span>Explore now</span>
+                </a>
+
+
+                <a href="#products" class="category-card">
+                    <div class="category-image home">
+                        🏠
+                    </div>
+                    <strong>Home</strong>
+                    <span>Explore now</span>
+                </a>
+
+
+                <a href="#products" class="category-card">
+                    <div class="category-image books">
+                        📚
+                    </div>
+                    <strong>Books</strong>
+                    <span>Explore now</span>
+                </a>
+
+
+                <a href="#products" class="category-card">
+                    <div class="category-image beauty">
+                        ✨
+                    </div>
+                    <strong>Beauty</strong>
+                    <span>Explore now</span>
+                </a>
+
+
+                <a href="#products" class="category-card">
+                    <div class="category-image grocery">
+                        🛒
+                    </div>
+                    <strong>Grocery</strong>
+                    <span>Explore now</span>
+                </a>
+
+            </div>
+
+        </section>
+        <section class="products-section" id="products">
+
+            <div class="section-title">
+
+                <div>
+                    <span>MARKETPLACE</span>
+                    <h2>Featured Products</h2>
+                </div>
+
+                <button
+                    type="button"
+                    id="clearFilters"
+                    class="clear-filter"
+                >
+                    View All
+                </button>
+
+            </div>
+
+
+            <div
+                id="loadingMessage"
+                class="market-message"
+            >
+                Loading products...
+            </div>
+
+
+            <div
+                id="errorMessage"
+                class="market-message error"
+                style="display:none;"
+            ></div>
+
+
+            <div
+                id="productList"
+                class="market-product-grid"
+            ></div>
+
+        </section>
+
+
+        <!-- SELLER PROMOTION -->
+        <section class="seller-banner">
+
+            <div>
+
+                <span>GROW YOUR BUSINESS</span>
+
+                <h2>
+                    Start selling on NithyaMart
+                </h2>
+
+                <p>
+                    Reach customers through our multi-seller marketplace.
+                </p>
+
+            </div>
+
+            <a href="signup.html">
+                Become a Seller →
+            </a>
+
+        </section>
+
+
     </main>
 
 
-    <footer>
+    <!-- FOOTER -->
+    <footer class="nm-footer">
 
-        <p>
-            &copy; 2026 NithyaMart. All rights reserved.
-        </p>
+    <!-- Seller CTA -->
+    <section class="seller-cta">
+        <div class="seller-cta-content">
+            <div>
+                <span class="seller-label">GROW YOUR BUSINESS</span>
+                <h2>Start selling on NithyaMart</h2>
+                <p>
+                    Reach thousands of customers through our
+                    multi-seller marketplace.
+                </p>
+            </div>
 
-    </footer>
+            <a href="signup.html?role=SELLER" class="seller-btn">
+                Become a Seller
+                <span>→</span>
+            </a>
+        </div>
+    </section>
+
+
+    <!-- Main Footer -->
+    <div class="footer-main">
+
+        <div class="footer-brand">
+            <div class="footer-logo">
+                <span class="logo-icon">N</span>
+                <span>Nithya<span>Mart</span></span>
+            </div>
+
+            <p>
+                A multi-seller online shopping marketplace built
+                for simple, secure and convenient shopping.
+            </p>
+
+            <div class="footer-social">
+                <a href="#" aria-label="Facebook">f</a>
+                <a href="#" aria-label="Instagram">◎</a>
+                <a href="#" aria-label="Twitter">𝕏</a>
+                <a href="#" aria-label="LinkedIn">in</a>
+            </div>
+        </div>
+
+
+        <div class="footer-column">
+            <h3>Get to Know Us</h3>
+
+            <a href="#">About NithyaMart</a>
+            <a href="#">Careers</a>
+            <a href="#">Contact Us</a>
+        </div>
+
+
+        <div class="footer-column">
+            <h3>Customer Service</h3>
+
+            <a href="#">Help Center</a>
+            <a href="#">Returns</a>
+            <a href="#">Order Support</a>
+        </div>
+
+
+        <div class="footer-column">
+            <h3>Sell With Us</h3>
+
+            <a href="signup.html?role=SELLER">Become a Seller</a>
+            <a href="#">Seller Guidelines</a>
+            <a href="#">Seller Support</a>
+        </div>
+
+    </div>
+
+
+    <!-- Bottom Footer -->
+    <div class="footer-bottom">
+
+        <div>
+            © 2026 NithyaMart. All rights reserved.
+        </div>
+
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Security</a>
+        </div>
+
+        <div class="tech-stack">
+            Java Servlets&nbsp; • &nbsp;JDBC&nbsp; • &nbsp;H2&nbsp; • &nbsp;MVC
+        </div>
+
+    </div>
+
+</footer>
 
 
     <script src="js/session.js"></script>
     <script src="js/catalog.js"></script>
 
 </body>
+
 </html>

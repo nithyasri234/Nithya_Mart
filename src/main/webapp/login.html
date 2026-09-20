@@ -2,403 +2,455 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
 
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <title>NithyaMart - Login</title>
+    <title>Login | NithyaMart</title>
 
-    <link rel="stylesheet"
-          href="css/style.css">
-
+    <!-- Main stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
+<body class="nm-login-page">
 
-    <!-- Header -->
+    <!-- =========================
+         HEADER
+         ========================= -->
 
-    <div class="header-bar">
-        NITHYA MART
-    </div>
+    <header class="nm-login-header">
+
+        <a href="index.html" class="nm-login-logo">
+            <span class="nm-logo-icon">N</span>
+            <span>Nithya<span>Mart</span></span>
+        </a>
+
+        <a href="index.html" class="nm-back-link">
+            ← Back to Shopping
+        </a>
+
+    </header>
 
 
-    <!-- Login Container -->
+    <!-- =========================
+         LOGIN AREA
+         ========================= -->
 
-    <div class="login-container">
+    <main class="nm-login-wrapper">
 
-        <h2>Login</h2>
+        <!-- LEFT INFORMATION PANEL -->
+
+        <section class="nm-login-info">
+
+            <span class="nm-welcome-label">
+                WELCOME BACK
+            </span>
+
+            <h1>
+                Your shopping
+                <span>journey continues.</span>
+            </h1>
+
+            <p class="nm-login-description">
+                Login to NithyaMart and continue shopping from
+                multiple sellers in one convenient marketplace.
+            </p>
 
 
-        <form id="loginForm"
-              action="login"
-              method="POST">
+            <div class="nm-login-benefits">
+
+                <div class="nm-benefit">
+
+                    <div class="nm-benefit-icon">
+                        🛍️
+                    </div>
+
+                    <div>
+                        <h3>Multiple Sellers</h3>
+                        <p>
+                            Discover products from different sellers
+                            in one place.
+                        </p>
+                    </div>
+
+                </div>
 
 
-            <!-- Email -->
+                <div class="nm-benefit">
 
-            <div class="form-row">
+                    <div class="nm-benefit-icon">
+                        🛒
+                    </div>
 
-                <label for="email">
-                    Email:
-                </label>
+                    <div>
+                        <h3>Easy Shopping</h3>
+                        <p>
+                            Add products to your cart and checkout
+                            easily.
+                        </p>
+                    </div>
 
-                <div class="input-field">
+                </div>
+
+
+                <div class="nm-benefit">
+
+                    <div class="nm-benefit-icon">
+                        🔒
+                    </div>
+
+                    <div>
+                        <h3>Secure Account</h3>
+                        <p>
+                            Your account credentials are securely
+                            protected.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- LOGIN CARD -->
+
+        <section class="nm-login-card">
+
+            <div class="nm-login-card-header">
+
+                <div class="nm-small-logo">
+                    N
+                </div>
+
+                <h2>Login</h2>
+
+                <p>
+                    Enter your account details to continue.
+                </p>
+
+            </div>
+
+
+            <!-- ERROR MESSAGE -->
+
+            <div id="loginError"
+                 class="nm-login-error"
+                 role="alert">
+            </div>
+
+
+            <!-- LOGIN FORM -->
+
+            <form id="loginForm">
+
+                <div class="nm-form-group">
+
+                    <label for="email">
+                        Email Address
+                    </label>
 
                     <input
                         type="email"
                         id="email"
                         name="email"
                         placeholder="Enter your email"
-                        required>
+                        autocomplete="email"
+                        required
+                    >
 
                 </div>
 
-            </div>
 
+                <div class="nm-form-group">
 
-            <!-- Password -->
+                    <div class="nm-password-label">
 
-            <div class="form-row">
+                        <label for="password">
+                            Password
+                        </label>
 
-                <label for="password">
-                    Password:
-                </label>
+                    </div>
 
-                <div class="input-field password-wrapper">
+                    <div class="nm-password-wrapper">
 
-                    <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        placeholder="Enter your password"
-                        autocomplete="current-password"
-                        required>
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            id="togglePassword"
+                            class="nm-password-toggle"
+                            aria-label="Show password">
+                            👁
+                        </button>
+
+                    </div>
 
                 </div>
 
-            </div>
 
+                <div class="nm-login-options">
 
-            <!-- Show Password -->
+                    <label class="nm-checkbox-label">
 
-            <div class="status-container">
+                        <input
+                            type="checkbox"
+                            id="rememberMe"
+                        >
 
-                <label class="checkbox-label">
+                        <span>Remember me</span>
 
-                    <input
-                        type="checkbox"
-                        id="showLoginPassword">
+                    </label>
 
-                    Show password
+                    <a href="#" class="nm-forgot-link">
+                        Forgot password?
+                    </a>
 
-                </label>
+                </div>
 
-            </div>
-
-
-            <!-- Error Message -->
-
-            <div
-                id="loginError"
-                class="error-message"
-                style="display: none;">
-            </div>
-
-
-            <!-- Buttons -->
-
-            <div class="button-row">
 
                 <button
                     type="submit"
-                    class="btn btn-submit">
+                    class="nm-login-button"
+                    id="loginButton">
 
-                    Login
-
-                </button>
-
-
-                <button
-                    type="reset"
-                    class="btn btn-reset">
-
-                    Reset
+                    <span id="loginButtonText">
+                        Login
+                    </span>
 
                 </button>
 
+            </form>
+
+
+            <div class="nm-divider">
+                <span>OR</span>
             </div>
 
 
-            <!-- Signup Link -->
-
-            <div class="footer-text">
+            <p class="nm-signup-text">
 
                 Don't have an account?
 
                 <a href="signup.html">
-                    Sign Up
+                    Create an account
                 </a>
 
-            </div>
+            </p>
 
-        </form>
+        </section>
 
-    </div>
+    </main>
 
 
-    <!-- Login JavaScript -->
+    <!-- =========================
+         FOOTER
+         ========================= -->
+
+    <footer class="nm-login-footer">
+
+        <span>
+            © 2026 NithyaMart
+        </span>
+
+        <span>
+            Secure Shopping • Multiple Sellers • Easy Checkout
+        </span>
+
+    </footer>
+
+
+    <!-- =========================
+         LOGIN JAVASCRIPT
+         ========================= -->
 
     <script>
 
-        document.addEventListener("DOMContentLoaded", () => {
+        const loginForm =
+            document.getElementById("loginForm");
 
-            const loginForm =
-                document.getElementById("loginForm");
+        const loginError =
+            document.getElementById("loginError");
 
-            const loginError =
-                document.getElementById("loginError");
+        const loginButton =
+            document.getElementById("loginButton");
 
-            const passwordInput =
-                document.getElementById("password");
+        const loginButtonText =
+            document.getElementById("loginButtonText");
 
-            const showPassword =
-                document.getElementById("showLoginPassword");
+        const passwordInput =
+            document.getElementById("password");
+
+        const togglePassword =
+            document.getElementById("togglePassword");
 
 
-            /*
-             * Show / Hide Password
-             */
+        /* Show / hide password */
 
-            showPassword.addEventListener("change", () => {
+        togglePassword.addEventListener(
+            "click",
+            function () {
 
-                if (showPassword.checked) {
+                if (passwordInput.type === "password") {
 
                     passwordInput.type = "text";
+
+                    togglePassword.textContent = "🙈";
+
+                    togglePassword.setAttribute(
+                        "aria-label",
+                        "Hide password"
+                    );
 
                 } else {
 
                     passwordInput.type = "password";
 
+                    togglePassword.textContent = "👁";
+
+                    togglePassword.setAttribute(
+                        "aria-label",
+                        "Show password"
+                    );
+                }
+            }
+        );
+
+
+        /* Login */
+
+        loginForm.addEventListener(
+            "submit",
+            async function (event) {
+
+                event.preventDefault();
+
+                loginError.style.display = "none";
+
+                const email =
+                    document.getElementById("email")
+                        .value
+                        .trim();
+
+                const password =
+                    passwordInput.value;
+
+
+                if (!email || !password) {
+
+                    showError(
+                        "Please enter your email and password."
+                    );
+
+                    return;
                 }
 
-            });
+
+                loginButton.disabled = true;
+
+                loginButtonText.textContent =
+                    "Signing in...";
 
 
-            /*
-             * Login Form Submission
-             */
+                try {
 
-            loginForm.addEventListener(
-                "submit",
-                async (event) => {
+                    const formData =
+                        new URLSearchParams();
 
-                    event.preventDefault();
+                    formData.append(
+                        "email",
+                        email
+                    );
 
-
-                    /*
-                     * Clear previous error
-                     */
-
-                    loginError.style.display = "none";
-
-                    loginError.textContent = "";
+                    formData.append(
+                        "password",
+                        password
+                    );
 
 
-                    /*
-                     * Read form values
-                     */
+                    const response =
+                        await fetch(
+                            "login",
+                            {
+                                method: "POST",
 
-                    const email =
-                        document
-                            .getElementById("email")
-                            .value
-                            .trim();
+                                headers: {
+                                    "Content-Type":
+                                        "application/x-www-form-urlencoded"
+                                },
 
-                    const password =
-                        passwordInput.value;
-
-
-                    /*
-                     * Validate email
-                     */
-
-                    if (email === "") {
-
-                        showError(
-                            "Please enter your email."
+                                body: formData.toString()
+                            }
                         );
+
+
+                    if (response.ok) {
+
+                        window.location.href =
+                            "index.html";
 
                         return;
                     }
 
 
-                    /*
-                     * Validate password
-                     */
-
-                    if (password === "") {
-
-                        showError(
-                            "Please enter your password."
-                        );
-
-                        return;
-                    }
-
-
-                    /*
-                     * Disable login button
-                     * while request is running
-                     */
-
-                    const submitButton =
-                        loginForm.querySelector(
-                            ".btn-submit"
-                        );
-
-                    submitButton.disabled = true;
-
-                    submitButton.textContent =
-                        "Logging in...";
+                    let message =
+                        "Invalid email or password.";
 
 
                     try {
 
-                        /*
-                         * Prepare form data
-                         */
+                        const text =
+                            await response.text();
 
-                        const formData =
-                            new URLSearchParams();
-
-                        formData.append(
-                            "email",
-                            email
-                        );
-
-                        formData.append(
-                            "password",
-                            password
-                        );
-
-
-                        /*
-                         * Send request to LoginServlet
-                         */
-
-                        const response =
-                            await fetch(
-                                "login",
-                                {
-                                    method: "POST",
-
-                                    headers: {
-                                        "Content-Type":
-                                            "application/x-www-form-urlencoded"
-                                    },
-
-                                    body: formData
-                                }
-                            );
-
-
-                        /*
-                         * Login successful
-                         */
-
-                        if (response.ok) {
-
-                            window.location.href =
-                                "index.html";
-
-                            return;
+                        if (text) {
+                            message = text;
                         }
-
-
-                        /*
-                         * Invalid credentials
-                         */
-
-                        if (response.status === 401) {
-
-                            showError(
-                                "Invalid email or password."
-                            );
-
-                            return;
-                        }
-
-
-                        /*
-                         * Validation error
-                         */
-
-                        if (response.status === 400) {
-
-                            showError(
-                                "Please enter valid login details."
-                            );
-
-                            return;
-                        }
-
-
-                        /*
-                         * Other server error
-                         */
-
-                        showError(
-                            "Login failed. Please try again."
-                        );
 
                     } catch (error) {
-
-                        console.error(
-                            "Login error:",
-                            error
-                        );
-
-                        showError(
-                            "Unable to connect to the server. Please try again."
-                        );
-
-                    } finally {
-
-                        /*
-                         * Enable button again
-                         */
-
-                        submitButton.disabled = false;
-
-                        submitButton.textContent =
-                            "Login";
-
+                        // Keep default error message
                     }
 
+
+                    showError(message);
+
+
+                } catch (error) {
+
+                    showError(
+                        "Unable to connect to the server. Please try again."
+                    );
+
+                } finally {
+
+                    loginButton.disabled = false;
+
+                    loginButtonText.textContent =
+                        "Login";
                 }
-            );
-
-
-            /*
-             * Display error message
-             */
-
-            function showError(message) {
-
-                loginError.textContent =
-                    message;
-
-                loginError.style.display =
-                    "block";
 
             }
+        );
 
-        });
+
+        function showError(message) {
+
+            loginError.textContent =
+                message;
+
+            loginError.style.display =
+                "block";
+        }
 
     </script>
 
 </body>
-
 </html>

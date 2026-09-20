@@ -1,799 +1,494 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>NithyaMart | Shop Smart, Live Better</title>
+    <title>NithyaMart | Online Shopping Marketplace</title>
 
     <link rel="stylesheet" href="css/style.css">
-
-    <style>
-        /* =========================
-           NITHYAMART HOME PAGE
-           ========================= */
-
-        .home-page {
-            margin: 0;
-            background: #f8fafc;
-            color: #172033;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-
-        /* ---------- NAVBAR ---------- */
-
-        .home-page .navbar {
-            height: 72px;
-            padding: 0 7%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: #ffffff;
-            border-bottom: 1px solid #e5e7eb;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .home-page .logo a {
-            text-decoration: none;
-            font-size: 26px;
-            font-weight: 800;
-            color: #2563eb;
-            letter-spacing: -0.5px;
-        }
-
-        .home-page .navbar nav {
-            display: flex;
-            align-items: center;
-            gap: 28px;
-        }
-
-        .home-page .navbar nav a {
-            color: #475569;
-            text-decoration: none;
-            font-size: 15px;
-            font-weight: 600;
-            transition: 0.2s ease;
-        }
-
-        .home-page .navbar nav a:hover {
-            color: #2563eb;
-        }
-
-        .home-page .navbar nav a:last-child {
-            color: #2563eb;
-        }
-
-        /* ---------- HERO ---------- */
-
-        .home-page .hero {
-            min-height: 500px;
-            display: flex;
-            align-items: center;
-            background:
-                linear-gradient(
-                    110deg,
-                    #eff6ff 0%,
-                    #f8fafc 55%,
-                    #e0f2fe 100%
-                );
-        }
-
-        .home-page .hero-inner {
-            width: 86%;
-            max-width: 1200px;
-            margin: auto;
-            display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            align-items: center;
-            gap: 50px;
-        }
-
-        .home-page .hero-content {
-            padding: 60px 0;
-        }
-
-        .home-page .hero-tag {
-            display: inline-block;
-            padding: 8px 14px;
-            border-radius: 20px;
-            background: #dbeafe;
-            color: #1d4ed8;
-            font-size: 13px;
-            font-weight: 700;
-            margin-bottom: 18px;
-        }
-
-        .home-page .hero h1 {
-            margin: 0;
-            max-width: 650px;
-            font-size: 52px;
-            line-height: 1.08;
-            letter-spacing: -1.5px;
-            color: #0f172a;
-        }
-
-        .home-page .hero h1 span {
-            color: #2563eb;
-        }
-
-        .home-page .hero p {
-            max-width: 570px;
-            margin: 22px 0 30px;
-            font-size: 18px;
-            line-height: 1.7;
-            color: #64748b;
-        }
-
-        .home-page .hero-actions {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
-
-        .home-page .primary-btn,
-        .home-page .secondary-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 13px 22px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-size: 15px;
-            font-weight: 700;
-            cursor: pointer;
-            border: none;
-            transition: 0.2s ease;
-        }
-
-        .home-page .primary-btn {
-            background: #2563eb;
-            color: white;
-        }
-
-        .home-page .primary-btn:hover {
-            background: #1d4ed8;
-            transform: translateY(-1px);
-        }
-
-        .home-page .secondary-btn {
-            background: white;
-            color: #334155;
-            border: 1px solid #cbd5e1;
-        }
-
-        .home-page .secondary-btn:hover {
-            border-color: #2563eb;
-            color: #2563eb;
-        }
-
-        /* ---------- HERO VISUAL ---------- */
-
-        .home-page .hero-visual {
-            min-height: 360px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .home-page .hero-card {
-            width: 330px;
-            min-height: 290px;
-            padding: 30px;
-            border-radius: 22px;
-            background: white;
-            border: 1px solid #e2e8f0;
-            box-shadow: 0 25px 60px rgba(15, 23, 42, 0.12);
-            position: relative;
-        }
-
-        .home-page .hero-card-label {
-            color: #64748b;
-            font-size: 13px;
-            font-weight: 600;
-        }
-
-        .home-page .hero-card-title {
-            margin: 10px 0;
-            font-size: 25px;
-            font-weight: 800;
-            color: #0f172a;
-        }
-
-        .home-page .hero-product-box {
-            height: 130px;
-            margin: 25px 0;
-            border-radius: 15px;
-            background: #eff6ff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 55px;
-        }
-
-        .home-page .hero-price {
-            font-size: 24px;
-            font-weight: 800;
-            color: #2563eb;
-        }
-
-        .home-page .floating-badge {
-            position: absolute;
-            right: -25px;
-            top: 35px;
-            padding: 12px 16px;
-            background: #0f172a;
-            color: white;
-            border-radius: 10px;
-            font-size: 13px;
-            font-weight: 700;
-            box-shadow: 0 12px 25px rgba(15, 23, 42, 0.2);
-        }
-
-        /* ---------- BENEFITS ---------- */
-
-        .home-page .benefits {
-            background: white;
-            border-bottom: 1px solid #e5e7eb;
-        }
-
-        .home-page .benefits-inner {
-            width: 86%;
-            max-width: 1200px;
-            margin: auto;
-            padding: 24px 0;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-
-        .home-page .benefit {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
-
-        .home-page .benefit-icon {
-            width: 42px;
-            height: 42px;
-            border-radius: 10px;
-            background: #eff6ff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #2563eb;
-            font-size: 20px;
-            font-weight: 700;
-        }
-
-        .home-page .benefit strong {
-            display: block;
-            color: #1e293b;
-            font-size: 14px;
-        }
-
-        .home-page .benefit span {
-            display: block;
-            margin-top: 3px;
-            color: #64748b;
-            font-size: 12px;
-        }
-
-        /* ---------- PRODUCTS ---------- */
-
-        .home-page .products-section {
-            width: 86%;
-            max-width: 1200px;
-            margin: auto;
-            padding: 70px 0;
-        }
-
-        .home-page .section-heading {
-            text-align: center;
-            margin-bottom: 35px;
-        }
-
-        .home-page .section-heading .eyebrow {
-            color: #2563eb;
-            font-size: 13px;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .home-page .section-heading h2 {
-            margin: 8px 0;
-            font-size: 34px;
-            color: #0f172a;
-        }
-
-        .home-page .section-heading p {
-            margin: 0;
-            color: #64748b;
-        }
-
-        /* ---------- SEARCH ---------- */
-
-        .home-page .search-area {
-            margin: 30px auto 40px;
-            max-width: 850px;
-            display: grid;
-            grid-template-columns: 1fr 200px 110px;
-            gap: 10px;
-        }
-
-        .home-page .search-area input,
-        .home-page .search-area select {
-            height: 46px;
-            padding: 0 14px;
-            border: 1px solid #cbd5e1;
-            border-radius: 7px;
-            background: white;
-            color: #334155;
-            font-size: 14px;
-            outline: none;
-        }
-
-        .home-page .search-area input:focus,
-        .home-page .search-area select:focus {
-            border-color: #2563eb;
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-        }
-
-        .home-page .search-area button {
-            border: none;
-            border-radius: 7px;
-            background: #2563eb;
-            color: white;
-            font-weight: 700;
-            cursor: pointer;
-        }
-
-        .home-page .search-area button:hover {
-            background: #1d4ed8;
-        }
-
-        /* ---------- PRODUCT GRID ---------- */
-
-        .home-page .product-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 22px;
-        }
-
-        .home-page .product-card {
-            background: white;
-            border: 1px solid #e2e8f0;
-            border-radius: 12px;
-            overflow: hidden;
-            transition: 0.2s ease;
-        }
-
-        .home-page .product-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 15px 35px rgba(15, 23, 42, 0.09);
-            border-color: #bfdbfe;
-        }
-
-        .home-page .product-card img {
-            width: 100%;
-            height: 210px;
-            object-fit: cover;
-            display: block;
-            background: #f1f5f9;
-        }
-
-        .home-page .product-card-content {
-            padding: 18px;
-        }
-
-        .home-page .product-card h3 {
-            margin: 0 0 8px;
-            font-size: 17px;
-            color: #1e293b;
-        }
-
-        .home-page .product-card .category {
-            color: #64748b;
-            font-size: 12px;
-            margin-bottom: 12px;
-        }
-
-        .home-page .product-card .price {
-            font-size: 20px;
-            font-weight: 800;
-            color: #2563eb;
-        }
-
-        .home-page .product-card .stock {
-            margin-top: 7px;
-            font-size: 12px;
-            color: #64748b;
-        }
-
-        .home-page .product-card .view-product {
-            display: block;
-            margin-top: 15px;
-            padding: 10px;
-            text-align: center;
-            border-radius: 6px;
-            background: #eff6ff;
-            color: #1d4ed8;
-            text-decoration: none;
-            font-size: 13px;
-            font-weight: 700;
-        }
-
-        .home-page .product-card .view-product:hover {
-            background: #dbeafe;
-        }
-
-        /* ---------- MESSAGES ---------- */
-
-        .home-page .message {
-            padding: 16px;
-            margin: 20px 0;
-            border-radius: 8px;
-            text-align: center;
-            color: #64748b;
-            background: white;
-            border: 1px solid #e2e8f0;
-        }
-
-        .home-page .message.error {
-            color: #991b1b;
-            background: #fef2f2;
-            border-color: #fecaca;
-        }
-
-        /* ---------- FOOTER ---------- */
-
-        .home-page footer {
-            margin-top: 20px;
-            padding: 35px 20px;
-            text-align: center;
-            background: #0f172a;
-            color: #94a3b8;
-            font-size: 13px;
-        }
-
-        /* ---------- RESPONSIVE ---------- */
-
-        @media (max-width: 1000px) {
-
-            .home-page .hero-inner {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .home-page .hero p {
-                margin-left: auto;
-                margin-right: auto;
-            }
-
-            .home-page .hero-actions {
-                justify-content: center;
-            }
-
-            .home-page .product-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .home-page .search-area {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .home-page .search-area button {
-                height: 46px;
-            }
-        }
-
-        @media (max-width: 700px) {
-
-            .home-page .navbar {
-                height: auto;
-                padding: 16px 5%;
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .home-page .navbar nav {
-                gap: 15px;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .home-page .hero h1 {
-                font-size: 38px;
-            }
-
-            .home-page .hero {
-                min-height: auto;
-            }
-
-            .home-page .hero-card {
-                width: 270px;
-            }
-
-            .home-page .benefits-inner {
-                grid-template-columns: 1fr;
-                gap: 18px;
-            }
-
-            .home-page .products-section {
-                width: 90%;
-                padding: 50px 0;
-            }
-
-            .home-page .product-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .home-page .search-area {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
 </head>
 
-<body class="home-page">
+<body class="marketplace-page">
 
-<header class="navbar">
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <div class="top-bar-inner">
+            <span>Welcome to NithyaMart</span>
 
-    <div class="logo">
-        <a href="index.html">NithyaMart</a>
+            <div class="top-links">
+                <a href="#">Customer Service</a>
+                <a href="#">Sell on NithyaMart</a>
+            </div>
+        </div>
     </div>
 
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="#products">Products</a>
-        <a href="cart.html">Cart</a>
 
-        <a href="login.html" id="loginLink">Login</a>
+    <!-- MAIN HEADER -->
+    <header class="market-header">
 
-        <a href="signup.html" id="signupLink">Sign Up</a>
+        <div class="header-main">
 
-        <a href="#" id="logoutLink" style="display: none;">
-            Logout
-        </a>
-    </nav>
-
-</header>
+            <!-- LOGO -->
+            <div class="market-logo">
+                <a href="index.html">
+                    <span class="logo-main">Nithya</span><span class="logo-accent">Mart</span>
+                </a>
+            </div>
 
 
-<main>
+            <!-- SEARCH -->
+            <div class="market-search">
 
-    <!-- HERO -->
+                <select id="headerCategory">
+                    <option value="">All</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Fashion">Fashion</option>
+                    <option value="Home">Home</option>
+                    <option value="Books">Books</option>
+                    <option value="Beauty">Beauty</option>
+                    <option value="Grocery">Grocery</option>
+                </select>
 
-    <section class="hero">
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search for products, brands and more..."
+                >
 
-        <div class="hero-inner">
-
-            <div class="hero-content">
-
-                <span class="hero-tag">
-                    YOUR EVERYDAY MARKETPLACE
-                </span>
-
-                <h1>
-                    Shop smarter.
-                    <span>Live better.</span>
-                </h1>
-
-                <p>
-                    Discover quality products from multiple sellers,
-                    compare your choices, and enjoy a simple shopping
-                    experience with NithyaMart.
-                </p>
-
-                <div class="hero-actions">
-
-                    <a href="#products" class="primary-btn">
-                        Explore Products
-                    </a>
-
-                    <a href="signup.html" class="secondary-btn">
-                        Become a Seller
-                    </a>
-
-                </div>
+                <button id="searchButton" type="button">
+                    Search
+                </button>
 
             </div>
 
 
-            <div class="hero-visual">
+            <!-- ACCOUNT -->
+            <div class="header-actions">
 
-                <div class="hero-card">
+                <a href="login.html" id="loginLink" class="header-action">
+                    <span class="action-icon">👤</span>
+                    <span>
+                        <small>Hello, Sign in</small>
+                        <strong>Account</strong>
+                    </span>
+                </a>
 
-                    <div class="hero-card-label">
+
+                <a href="cart.html" class="header-action cart-action">
+                    <span class="cart-icon">🛒</span>
+                    <span>
+                        <small>My</small>
+                        <strong>Cart</strong>
+                    </span>
+                </a>
+
+
+                <a
+                    href="#"
+                    id="logoutLink"
+                    class="header-action"
+                    style="display:none;"
+                >
+                    <span class="action-icon">↪</span>
+                    <span>
+                        <small>Account</small>
+                        <strong>Logout</strong>
+                    </span>
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- CATEGORY NAVIGATION -->
+        <nav class="category-nav">
+
+            <div class="category-nav-inner">
+
+                <a href="#products" class="all-category">
+                    ☰ All Categories
+                </a>
+
+                <a href="#products">Electronics</a>
+                <a href="#products">Fashion</a>
+                <a href="#products">Home & Kitchen</a>
+                <a href="#products">Books</a>
+                <a href="#products">Beauty</a>
+                <a href="#products">Grocery</a>
+
+                <a href="signup.html">Become a Seller</a>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+
+    <main>
+
+
+        <!-- HERO BANNER -->
+        <section class="market-hero">
+
+            <div class="hero-container">
+
+                <div class="hero-copy">
+
+                    <span class="hero-label">
                         NITHYAMART MARKETPLACE
+                    </span>
+
+                    <h1>
+                        Everything you need.
+                        <span>All in one place.</span>
+                    </h1>
+
+                    <p>
+                        Discover products from multiple sellers,
+                        compare your choices and shop with ease.
+                    </p>
+
+                    <div class="hero-buttons">
+
+                        <a href="#products" class="hero-primary">
+                            Shop Now
+                        </a>
+
+                        <a href="signup.html" class="hero-secondary">
+                            Start Selling
+                        </a>
+
                     </div>
 
-                    <div class="hero-card-title">
-                        Everything you need,
-                        in one place.
+                </div>
+
+
+                <div class="hero-shopping-card">
+
+                    <div class="hero-card-top">
+                        <span>Featured Marketplace</span>
+                        <strong>2026</strong>
                     </div>
 
-                    <div class="hero-product-box">
+                    <div class="hero-card-icon">
                         🛍️
                     </div>
 
-                    <div class="hero-price">
-                        Shop with confidence
-                    </div>
+                    <h3>
+                        Shop from multiple sellers
+                    </h3>
 
-                    <div class="floating-badge">
-                        Multiple Sellers
+                    <p>
+                        Electronics, fashion, home products,
+                        books and more.
+                    </p>
+
+                    <div class="hero-card-bottom">
+                        <span>Explore products</span>
+                        <strong></strong>
                     </div>
 
                 </div>
 
             </div>
 
-        </div>
+        </section>
 
+
+        <!-- BENEFITS -->
+        <section class="benefits-section">
+
+            <div class="benefits-container">
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">🚚</div>
+
+                    <div>
+                        <strong>Wide Product Selection</strong>
+                        <span>Products from multiple sellers</span>
+                    </div>
+                </div>
+
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">🔐</div>
+
+                    <div>
+                        <strong>Secure Account</strong>
+                        <span>Protected login and sessions</span>
+                    </div>
+                </div>
+
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">💳</div>
+
+                    <div>
+                        <strong>Easy Checkout</strong>
+                        <span>Simple and convenient ordering</span>
+                    </div>
+                </div>
+
+
+                <div class="benefit-item">
+                    <div class="benefit-icon">⭐</div>
+
+                    <div>
+                        <strong>Customer Reviews</strong>
+                        <span>Rate products after purchase</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CATEGORY CARDS -->
+        <section class="category-section">
+
+            <div class="section-title">
+
+                <div>
+                    <span>EXPLORE</span>
+                    <h2>Shop by Category</h2>
+                </div>
+
+            </div>
+
+
+            <div class="category-cards">
+
+                <a href="#products" class="category-card">
+                    <div class="category-image electronics">
+                        💻
+                    </div>
+                    <strong>Electronics</strong>
+                    <span>Explore now</span>
+                </a>
+
+
+                <a href="#products" class="category-card">
+                    <div class="category-image fashion">
+                        👕
+                    </div>
+                    <strong>Fashion</strong>
+                    <span>Explore now</span>
+                </a>
+
+
+                <a href="#products" class="category-card">
+                    <div class="category-image home">
+                        🏠
+                    </div>
+                    <strong>Home</strong>
+                    <span>Explore now</span>
+                </a>
+
+
+                <a href="#products" class="category-card">
+                    <div class="category-image books">
+                        📚
+                    </div>
+                    <strong>Books</strong>
+                    <span>Explore now</span>
+                </a>
+
+
+                <a href="#products" class="category-card">
+                    <div class="category-image beauty">
+                        ✨
+                    </div>
+                    <strong>Beauty</strong>
+                    <span>Explore now</span>
+                </a>
+
+
+                <a href="#products" class="category-card">
+                    <div class="category-image grocery">
+                        🛒
+                    </div>
+                    <strong>Grocery</strong>
+                    <span>Explore now</span>
+                </a>
+
+            </div>
+
+        </section>
+        <section class="products-section" id="products">
+
+            <div class="section-title">
+
+                <div>
+                    <span>MARKETPLACE</span>
+                    <h2>Featured Products</h2>
+                </div>
+
+                <button
+                    type="button"
+                    id="clearFilters"
+                    class="clear-filter"
+                >
+                    View All
+                </button>
+
+            </div>
+
+
+            <div
+                id="loadingMessage"
+                class="market-message"
+            >
+                Loading products...
+            </div>
+
+
+            <div
+                id="errorMessage"
+                class="market-message error"
+                style="display:none;"
+            ></div>
+
+
+            <div
+                id="productList"
+                class="market-product-grid"
+            ></div>
+
+        </section>
+
+
+        <!-- SELLER PROMOTION -->
+        <section class="seller-banner">
+
+            <div>
+
+                <span>GROW YOUR BUSINESS</span>
+
+                <h2>
+                    Start selling on NithyaMart
+                </h2>
+
+                <p>
+                    Reach customers through our multi-seller marketplace.
+                </p>
+
+            </div>
+
+            <a href="signup.html">
+                Become a Seller →
+            </a>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="nm-footer">
+
+    <!-- Seller CTA -->
+    <section class="seller-cta">
+        <div class="seller-cta-content">
+            <div>
+                <span class="seller-label">GROW YOUR BUSINESS</span>
+                <h2>Start selling on NithyaMart</h2>
+                <p>
+                    Reach thousands of customers through our
+                    multi-seller marketplace.
+                </p>
+            </div>
+
+            <a href="signup.html?role=SELLER" class="seller-btn">
+                Become a Seller
+                <span>→</span>
+            </a>
+        </div>
     </section>
 
 
-    <!-- BENEFITS -->
+    <!-- Main Footer -->
+    <div class="footer-main">
 
-    <section class="benefits">
-
-        <div class="benefits-inner">
-
-            <div class="benefit">
-
-                <div class="benefit-icon">
-                    ✓
-                </div>
-
-                <div>
-                    <strong>Multiple Sellers</strong>
-                    <span>Products from different sellers</span>
-                </div>
-
+        <div class="footer-brand">
+            <div class="footer-logo">
+                <span class="logo-icon">N</span>
+                <span>Nithya<span>Mart</span></span>
             </div>
-
-
-            <div class="benefit">
-
-                <div class="benefit-icon">
-                    🔒
-                </div>
-
-                <div>
-                    <strong>Secure Shopping</strong>
-                    <span>Protected login and checkout</span>
-                </div>
-
-            </div>
-
-
-            <div class="benefit">
-
-                <div class="benefit-icon">
-                    ⚡
-                </div>
-
-                <div>
-                    <strong>Simple Experience</strong>
-                    <span>Browse, cart and checkout easily</span>
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- PRODUCTS -->
-
-    <section class="products-section" id="products">
-
-        <div class="section-heading">
-
-            <div class="eyebrow">
-                Marketplace
-            </div>
-
-            <h2>Explore Our Products</h2>
 
             <p>
-                Find what you need from our growing collection.
+                A multi-seller online shopping marketplace built
+                for simple, secure and convenient shopping.
             </p>
 
+            <div class="footer-social">
+                <a href="#" aria-label="Facebook">f</a>
+                <a href="#" aria-label="Instagram">◎</a>
+                <a href="#" aria-label="Twitter">𝕏</a>
+                <a href="#" aria-label="LinkedIn">in</a>
+            </div>
         </div>
 
 
-        <div class="search-area">
+        <div class="footer-column">
+            <h3>Get to Know Us</h3>
 
-            <input
-                type="text"
-                id="searchInput"
-                placeholder="Search products..."
-            >
-
-            <select id="categoryFilter">
-
-                <option value="">
-                    All Categories
-                </option>
-
-                <option value="Electronics">
-                    Electronics
-                </option>
-
-                <option value="Fashion">
-                    Fashion
-                </option>
-
-                <option value="Home">
-                    Home
-                </option>
-
-                <option value="Books">
-                    Books
-                </option>
-
-                <option value="Beauty">
-                    Beauty
-                </option>
-
-                <option value="Grocery">
-                    Grocery
-                </option>
-
-            </select>
-
-            <button
-                type="button"
-                id="searchButton"
-            >
-                Search
-            </button>
-
+            <a href="#">About NithyaMart</a>
+            <a href="#">Careers</a>
+            <a href="#">Contact Us</a>
         </div>
 
 
-        <div
-            id="loadingMessage"
-            class="message"
-        >
-            Loading products...
+        <div class="footer-column">
+            <h3>Customer Service</h3>
+
+            <a href="#">Help Center</a>
+            <a href="#">Returns</a>
+            <a href="#">Order Support</a>
         </div>
 
 
-        <div
-            id="errorMessage"
-            class="message error"
-            style="display: none;"
-        ></div>
+        <div class="footer-column">
+            <h3>Sell With Us</h3>
+
+            <a href="signup.html?role=SELLER">Become a Seller</a>
+            <a href="#">Seller Guidelines</a>
+            <a href="#">Seller Support</a>
+        </div>
+
+    </div>
 
 
-        <div
-            id="productList"
-            class="product-grid"
-        ></div>
+    <!-- Bottom Footer -->
+    <div class="footer-bottom">
 
-    </section>
+        <div>
+            © 2026 NithyaMart. All rights reserved.
+        </div>
 
-</main>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Security</a>
+        </div>
 
+        <div class="tech-stack">
+            Java Servlets&nbsp; • &nbsp;JDBC&nbsp; • &nbsp;H2&nbsp; • &nbsp;MVC
+        </div>
 
-<footer>
-
-    <p>
-        &copy; 2026 NithyaMart.
-        A multi-seller shopping marketplace.
-    </p>
+    </div>
 
 </footer>
 
 
-<script src="js/session.js"></script>
-<script src="js/catalog.js"></script>
+    <script src="js/session.js"></script>
+    <script src="js/catalog.js"></script>
 
 </body>
+
 </html>

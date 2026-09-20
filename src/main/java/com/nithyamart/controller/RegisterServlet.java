@@ -9,13 +9,17 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
+
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
 
     private UserService userService;
+    private UserDAO userDAO;
 
     @Override
     public void init() throws ServletException {
@@ -26,94 +30,218 @@ public class RegisterServlet extends HttpServlet {
 
         if (dataSource == null) {
             throw new ServletException(
-                    "DataSource is not available."
+                    "Database connection is not available."
             );
         }
 
-        UserDAO userDAO = new UserDAO(dataSource);
+        userDAO = new UserDAO(dataSource);
 
         userService = new UserService(userDAO);
     }
 
+
     @Override
-    protected void doPost(HttpServletRequest request,
-                          HttpServletResponse response)
+    protected void doPost(
+            HttpServletRequest request,
+            HttpServletResponse response)
             throws ServletException, IOException {
 
         request.setCharacterEncoding("UTF-8");
 
-        String name = request.getParameter("name");
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
+        String name =
+                request.getParameter("name");
+
+        String email =
+                request.getParameter("email");
+
+        String password =
+                request.getParameter("password");
+
         String confirmPassword =
                 request.getParameter("confirmPassword");
-        String role = request.getParameter("role");
+
+        String role =
+                request.getParameter("role");
+
+
+        /* -----------------------------------------
+           Basic validation
+           ----------------------------------------- */
+
+        if (name == null ||
+                email == null ||
+                password == null ||
+                confirmPassword == null ||
+                role == null) {
+
+            response.sendError(
+                    HttpServletResponse.SC_BAD_REQUEST,
+                    "All fields are required."
+            );
+
+            return;
+        }
+
+
+        if (!password.equals(confirmPassword)) {
+
+            response.sendError(
+                    HttpServletResponse.SC_BAD_REQUEST,
+                    "Passwords do not match."
+            );
+
+            return;
+        }
+
+
+        role = role.trim().toUpperCase();
+
+
+        if (!role.equals("BUYER") &&
+                !role.equals("SELLER")) {
+
+            response.sendError(
+                    HttpServletResponse.SC_BAD_REQUEST,
+                    "Invalid account type."
+            );
+
+            return;
+        }
+
 
         try {
 
-            if (password == null
-                    || !password.equals(confirmPassword)) {
+            /* -----------------------------------------
+               Create account
+               ----------------------------------------- */
 
-                throw new IllegalArgumentException(
-                        "Passwords do not match."
-                );
-            }
-
-            User user = userService.register(
-                    name,
-                    email,
+            userService.register(
+                    name.trim(),
+                    email.trim(),
                     password,
                     role
             );
 
-            response.setStatus(
-                    HttpServletResponse.SC_CREATED
+
+            /* -----------------------------------------
+               Get newly created user
+               ----------------------------------------- */
+User user;
+
+try {
+
+    user = userDAO.findByEmail(
+            email.trim().toLowerCase()
+    );
+
+} catch (SQLException e) {
+
+    e.printStackTrace();
+
+    response.sendError(
+            HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
+            "Account was created but could not be loaded."
+    );
+
+    return;
+}
+
+
+if (user == null) {
+
+    response.sendError(
+            HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
+            "Account was created but could not be loaded."
+    );
+
+    return;
+}
+
+
+            /* -----------------------------------------
+               Create login session
+               ----------------------------------------- */
+
+            HttpSession session =
+                    request.getSession(true);
+
+            session.setMaxInactiveInterval(30 * 60);
+
+
+            /*
+             * Regenerate session ID after registration.
+             * This prevents session fixation.
+             */
+            try {
+                request.changeSessionId();
+            } catch (IllegalStateException ignored) {
+                // Session ID regeneration may not be available
+                // in some container situations.
+            }
+
+
+            session.setAttribute(
+                    "userId",
+                    user.getId()
             );
 
-            response.sendRedirect(
-                    request.getContextPath()
-                            + "/login.html"
+            session.setAttribute(
+                    "userName",
+                    user.getName()
             );
+
+            session.setAttribute(
+                    "userEmail",
+                    user.getEmail()
+            );
+
+            session.setAttribute(
+                    "userRole",
+                    user.getRole()
+            );
+
+
+            /* -----------------------------------------
+               Redirect according to role
+               ----------------------------------------- */
+
+            if ("SELLER".equals(user.getRole())) {
+
+                /*
+                 * Seller goes directly to product creation.
+                 */
+                response.sendRedirect(
+                        request.getContextPath()
+                                + "/addproduct.html"
+                );
+
+            } else {
+
+                /*
+                 * Buyer goes directly to shopping page.
+                 */
+                response.sendRedirect(
+                        request.getContextPath()
+                                + "/index.html"
+                );
+            }
+
 
         } catch (IllegalArgumentException e) {
 
-            response.setStatus(
-                    HttpServletResponse.SC_BAD_REQUEST
-            );
-
-            response.setContentType("text/html;charset=UTF-8");
-
-            response.getWriter().println(
-                    "<h3>Registration failed: "
-                            + escapeHtml(e.getMessage())
-                            + "</h3>"
+            response.sendError(
+                    HttpServletResponse.SC_BAD_REQUEST,
+                    e.getMessage()
             );
 
         } catch (Exception e) {
 
-            getServletContext().log(
-                    "Registration failed",
-                    e
-            );
+            e.printStackTrace();
 
             response.sendError(
                     HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
-                    "Unable to register user."
+                    "Unable to create account. Please try again."
             );
         }
-    }
-
-    private String escapeHtml(String value) {
-
-        if (value == null) {
-            return "";
-        }
-
-        return value
-                .replace("&", "&amp;")
-                .replace("<", "&lt;")
-                .replace(">", "&gt;")
-                .replace("\"", "&quot;")
-                .replace("'", "&#39;");
     }
 }

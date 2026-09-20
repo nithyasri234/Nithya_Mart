@@ -1,18 +1,527 @@
+/* =========================================================
+   NITHYAMART - COMPLETE FRONTEND STYLESHEET
+   ========================================================= */
+
+
+/* =========================================================
+   1. GLOBAL RESET
+   ========================================================= */
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
-    background-color: #d5f0f9;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-    padding-top: 40px;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f7fa;
+    color: #172337;
+    line-height: 1.5;
 }
+
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+
+/* =========================================================
+   2. COMMON BUTTONS
+   ========================================================= */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 42px;
+    padding: 0 20px;
+
+    border: none;
+    border-radius: 6px;
+
+    background: #2874f0;
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.btn:hover {
+    background: #1d5fd0;
+}
+
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+
+/* =========================================================
+   3. MARKETPLACE HOME PAGE
+   ========================================================= */
+
+.marketplace-page {
+    background: #f5f7fa;
+    color: #172337;
+}
+
+
+/* ---------- TOP BAR ---------- */
+
+.top-bar {
+    background: #111827;
+    color: #dbe3ef;
+    font-size: 12px;
+}
+
+.top-bar-inner {
+    width: 92%;
+    max-width: 1400px;
+    height: 34px;
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.top-links {
+    display: flex;
+    gap: 22px;
+}
+
+.top-links a {
+    color: #dbe3ef;
+}
+
+.top-links a:hover {
+    color: #ffffff;
+}
+
+
+/* ---------- MAIN HEADER ---------- */
+
+.market-header {
+    background: #ffffff;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.08);
+}
+.logo-main {
+    color: #172337;
+}
+
+.logo-accent {
+    color: #2874f0;
+}
+.market-search select {
+    width: 100px;
+
+    border: none;
+    border-right: 1px solid #e2e8f0;
+
+    padding: 0 10px;
+
+    background: #f8fafc;
+    color: #475569;
+
+    outline: none;
+}
+
+.market-search input {
+    flex: 1;
+
+    border: none;
+    outline: none;
+
+    padding: 0 15px;
+
+    font-size: 14px;
+}
+
+.market-search input::placeholder {
+    color: #94a3b8;
+}
+
+.market-search button {
+    width: 90px;
+
+    border: none;
+
+    background: #2874f0;
+    color: white;
+
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.market-search button:hover {
+    background: #1d5fd0;
+}
+.header-action small {
+    display: block;
+    font-size: 10px;
+    color: #64748b;
+}
+
+.header-action strong {
+    display: block;
+    font-size: 13px;
+}
+
+.action-icon,
+.cart-icon {
+    font-size: 20px;
+}
+
+
+/* ---------- CATEGORY NAV ---------- */
+
+.category-nav {
+    background: #172337;
+}
+
+.category-nav-inner {
+    width: 92%;
+    max-width: 1400px;
+    min-height: 44px;
+
+    margin: auto;
+
+    display: flex;
+    align-items: center;
+    gap: 28px;
+
+    overflow-x: auto;
+}
+
+.category-nav-inner::-webkit-scrollbar {
+    height: 0;
+}
+
+.category-nav a {
+    color: #e5e7eb;
+    white-space: nowrap;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.category-nav a:hover {
+    color: #ffffff;
+}
+
+.category-nav .all-category {
+    color: #ffffff;
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   4. HOME HERO
+   ========================================================= */
+
+.market-hero {
+    background:
+        linear-gradient(
+            105deg,
+            #e8f1ff,
+            #f7faff 55%,
+            #eaf3ff
+        );
+
+    border-bottom: 1px solid #dbe5f1;
+}
+
+.hero-container {
+    width: 90%;
+    max-width: 1350px;
+    min-height: 410px;
+
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: 1.25fr 0.75fr;
+
+    align-items: center;
+    gap: 50px;
+}
+
+.hero-copy {
+    padding: 45px 0;
+}
+
+.hero-label {
+    color: #2874f0;
+
+    font-size: 12px;
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+}
+
+.hero-copy h1 {
+    max-width: 650px;
+
+    margin: 14px 0;
+
+    color: #172337;
+
+    font-size: 48px;
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+}
+
+.hero-copy h1 span {
+    display: block;
+    color: #2874f0;
+}
+
+.hero-copy p {
+    max-width: 570px;
+
+    margin-bottom: 25px;
+
+    color: #64748b;
+
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.hero-primary,
+.hero-secondary {
+    padding: 12px 22px;
+
+    border-radius: 6px;
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.hero-primary {
+    background: #2874f0;
+    color: #ffffff;
+}
+
+.hero-primary:hover {
+    background: #1d5fd0;
+}
+
+.hero-secondary {
+    background: #ffffff;
+    color: #172337;
+
+    border: 1px solid #cbd5e1;
+}
+
+.hero-secondary:hover {
+    border-color: #2874f0;
+    color: #2874f0;
+}
+
+
+/* ---------- HERO CARD ---------- */
+
+.hero-shopping-card {
+    padding: 25px;
+
+    background: #ffffff;
+
+    border: 1px solid #dbe3ed;
+    border-radius: 14px;
+
+    box-shadow: 0 15px 40px rgba(23, 35, 55, 0.12);
+}
+
+.hero-card-top {
+    display: flex;
+    justify-content: space-between;
+
+    color: #64748b;
+
+    font-size: 12px;
+}
+
+.hero-card-top strong {
+    color: #2874f0;
+}
+
+.hero-card-icon {
+    height: 150px;
+
+    margin: 20px 0;
+
+    border-radius: 10px;
+
+    background: #f1f5ff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 65px;
+}
+
+.hero-shopping-card h3 {
+    margin-bottom: 8px;
+
+    font-size: 21px;
+}
+
+.hero-shopping-card p {
+    color: #64748b;
+    font-size: 13px;
+}
+
+.hero-card-bottom {
+    margin-top: 22px;
+    padding-top: 15px;
+
+    border-top: 1px solid #e5e7eb;
+
+    display: flex;
+    justify-content: space-between;
+
+    color: #2874f0;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   5. BENEFITS
+   ========================================================= */
+
+.benefits-section {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.benefits-container {
+    width: 90%;
+    max-width: 1350px;
+
+    min-height: 88px;
+
+    margin: auto;
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 20px;
+
+    align-items: center;
+}
+
+.benefit-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.benefit-icon {
+    width: 40px;
+    height: 40px;
+
+    border-radius: 50%;
+
+    background: #eef4ff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 17px;
+}
+
+.benefit-item strong {
+    display: block;
+    font-size: 13px;
+}
+
+.benefit-item span {
+    display: block;
+
+    margin-top: 3px;
+
+    color: #64748b;
+
+    font-size: 11px;
+}
+
+
+/* =========================================================
+   6. HOME SECTIONS
+   ========================================================= */
+
+.category-section,
+.products-section {
+    width: 90%;
+    max-width: 1350px;
+
+    margin: auto;
+
+    padding: 45px 0;
+}
+
+.section-title {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: end;
+
+    margin-bottom: 25px;
+}
+
+.section-title > div > span {
+    color: #2874f0;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+.section-title h2 {
+    margin-bottom: 5px;
+}
+
+
+/* =========================================================
+   7. SIGNUP & ACCOUNT CREATION FORM STYLES
+   ========================================================= */
 
 .header-bar {
     width: 100%;
@@ -26,76 +535,12 @@ body {
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.status-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 12px;
-}
-
-/* MODIFIED: Consolidated requirements box setup with clean calculations */
-.requirements-box {
-    position: absolute;
-    /* Traps calculation relative to label column width (35%) + your new input width (335px) + 20px spacer gutter gap */
-    left: calc(100% + 15px); 
-    top: 50px;
-    transform: translateY(-50%); /* Centers the panel vertically against the field */
-    background-color: #111c2e;
-    border: 1px solid #2d3748;
-    border-radius: 8px;
-    padding: 16px;
-    width: 280px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-    display: none; 
-    flex-direction: column;
-    gap: 8px;
-    z-index: 999
-}
-
-/* Adjusted responsive layout media breakpoints for smaller viewports */
-@media (max-width: 950px) {
-    .requirements-box {
-        position: static;
-        width: 100%;
-        margin-top: 10px;
-        max-width: 480px;
-    }
-    .password-wrapper {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-}
-
-.requirement-item {
-    display: flex;
-    align-items: center;
-    font-size: 13px;
-    color: #718096;
-    transition: color 0.2s;
-}
-
-.requirement-item::before {
-    content: "○";
-    display: inline-block;
-    width: 20px;
-    font-size: 14px;
-}
-
-.requirement-item.valid {
-    color: #48bb78;
-}
-
-.requirement-item.valid::before {
-    content: "✓";
-    font-weight: bold;
-}
-
 .login-container {
     background-color: rgb(245, 248, 251);
     border: 2px solid #005082;
     border-radius: 8px;
     width: 90%;
-    max-width: 600px;
+    max-width: 580px;
     margin: 60px auto;
     padding: 40px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.05);
@@ -105,24 +550,25 @@ body {
     text-align: center;
     font-size: 36px;
     margin-bottom: 40px;
-    color: #000;
+    color: #172337;
 }
 
-/* Consolidated layout anchor context rule row */
+/* Form Row Setup: Stacks labels above input elements */
 .form-row {
     display: flex;
-    align-items: center;
-    margin-bottom: 15px;
+    flex-direction: column; 
+    margin-bottom: 20px;
 }
 
 .form-row label {
-    width: 35%;
     font-size: 16px;
-    color: #f9f6f6;
+    color: #172337;
+    margin-bottom: 8px;
+    font-weight: bold;
 }
 
 .form-row .input-field {
-     width: 65%; /* Restored default standard row sizing column */
+    width: 100%; 
 }
 
 .form-row input[type="text"],
@@ -130,340 +576,2116 @@ body {
 .form-row input[type="password"],
 .form-row select {
     width: 100%;
-    padding: 6px 10px;
+    padding: 10px;
     border: 1px solid #767676;
-    font-size: 14px;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #ffffff;
+    outline: none;
 }
 
-/* MODIFIED: Fixed styling properties for password element input cell size to match your layout width */
-#password {
-    width: 335px !important; /* Locks down size width specifications securely */
+.form-row input:focus,
+.form-row select:focus {
+    border-color: #2874f0;
 }
 
 .form-row input::placeholder {
     color: #a9a9a9;
 }
 
-.action-row {
-    display: flex;
-    flex-direction: column;
-    margin-left: 35%;
-    margin-bottom: 10px;
+/* Relative positioning root anchor for the password requirements popup */
+.password-wrapper {
+    position: relative;
+    display: block;
+    width: 100%;
 }
 
-.error-message {
-    color: red;
-    font-size: 14px;
+/* Floating validation window layout fixes */
+.requirements-box {
+    position: absolute;
+    left: 105%;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 260px;
+    box-sizing: border-box;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    background-color: #1a233a;
+    color: #a5b4fc;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+    z-index: 100;
+}
+.requirement-item 
+{
+    font-size: 13px;
     margin-bottom: 8px;
-    display: none; 
+    padding-left: 20px;
+    position: relative;
+    text-align: left !important;
+    white-space: normal !important;
+    display: block !important;
+    width: 100%;
 }
-
-.checkbox-container {
+.requirement-item:last-child {
+    margin-bottom: 0;
+}
+.requirement-item::before 
+{
+    content: "o";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #6366f1;
+}
+.requirement-item.valid {
+    color: #48bb78;
+}
+.requirement-item.valid::before {
+    content: "✓";
+    font-weight: bold;
+}
+.status-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center
+    ;margin-top: 5px;
+    margin-bottom: 20px;
+}
+.checkbox-label {
     display: flex;
     align-items: center;
     gap: 8px;
     font-size: 14px;
-}
-
-.checkbox-container input {
     cursor: pointer;
 }
-
+.match-indicator {
+    font-size: 14px;
+    font-weight: bold;
+}
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
 .button-row {
     display: flex;
-    justify-content: space-between;
+    gap: 15px;
     margin-top: 30px;
     margin-bottom: 15px;
 }
-
-.btn {
-    color: white;
-    padding: 8px 30px;
-    border: none;
-    border-radius: 4px;
+.button-row .btn {
+    flex: 1;
+    min-height: 44px;
     font-size: 16px;
-    cursor: pointer;
+    border-radius: 4px;
 }
-
 .btn-submit {
     background-color: #005082;
 }
-
-.btn-reset {
-    background-color: #005082;
+.btn-submit:hover {
+    background-color: #003e5f;
 }
-
+.btn-reset {
+    background-color: #4a5568;
+}
+.btn-reset:hover {
+    background-color: #374151;
+}
 .footer-text {
     font-size: 14px;
-    color: #000;
-    margin-top: 10px;
+    color: #172337;
+    margin-top: 15px;
+    text-align: center;
 }
-.password-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-    width: 65%;
+.footer-text a {
+    color: #2874f0;
+    font-weight: bold;
 }
-.home-page{
-    font-family: Arial, sans-serif;
-    background: #f5f6f8;
-    color: #222;
-    line-height: 1.6;
+.footer-text a:hover {
+    text-decoration: underline;
+}
+@media (max-width: 980px) 
+{
+    .requirements-box {
+        position: static !important;
+        transform: none !important;
+        width: 100% !important;
+        margin-top: 10px;
+        box-shadow: none;}
+}
+/* =========================================================
+   NITHYAMART PROFESSIONAL FOOTER
+   ========================================================= */
+
+.nm-footer {
+    margin-top: 60px;
+    background: #111827;
+    color: #ffffff;
 }
 
-.navbar {
-    background: #1f2937;
-    color: white;
-    min-height: 65px;
-    padding: 0 6%;
+
+/* =========================
+   SELLER CTA
+   ========================= */
+
+.seller-cta {
+    background: linear-gradient(
+        135deg,
+        #172554 0%,
+        #1e3a8a 50%,
+        #2563eb 100%
+    );
+
+    padding: 45px 7%;
+}
+
+.seller-cta-content {
+    max-width: 1200px;
+    margin: 0 auto;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    gap: 30px;
 }
 
-.logo a {
-    color: white;
+.seller-label {
+    display: inline-block;
+
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+
+    color: #93c5fd;
+
+    margin-bottom: 8px;
+}
+
+.seller-cta h2 {
+    margin: 0 0 10px;
+
+    font-size: 30px;
+    font-weight: 700;
+
+    color: #ffffff;
+}
+
+.seller-cta p {
+    margin: 0;
+
+    font-size: 16px;
+    line-height: 1.6;
+
+    color: #dbeafe;
+}
+
+
+/* Seller Button */
+
+.seller-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 14px 24px;
+
+    background: #ffffff;
+    color: #1d4ed8;
+
     text-decoration: none;
-    font-size: 26px;
-    font-weight: bold;
+
+    border-radius: 8px;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    white-space: nowrap;
+
+    transition: all 0.25s ease;
 }
 
-.navbar nav {
+.seller-btn span {
+    font-size: 20px;
+    transition: transform 0.25s ease;
+}
+
+.seller-btn:hover {
+    background: #eff6ff;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.seller-btn:hover span {
+    transform: translateX(4px);
+}
+
+
+/* =========================
+   MAIN FOOTER
+   ========================= */
+
+.footer-main {
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 55px 7%;
+
+    display: grid;
+
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+
+    gap: 50px;
+}
+
+
+/* =========================
+   BRAND
+   ========================= */
+
+.footer-brand {
+    max-width: 340px;
+}
+
+.footer-logo {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 10px;
+
+    margin-bottom: 18px;
+
+    font-size: 25px;
+    font-weight: 800;
 }
 
-.navbar nav a {
-    color: white;
-    text-decoration: none;
-    font-size: 15px;
+.footer-logo > span:last-child span {
+    color: #60a5fa;
 }
 
-.navbar nav a:hover {
-    text-decoration: underline;
-}
 
-.hero {
-    min-height: 360px;
-    background: linear-gradient(
-        135deg,
-        #2563eb,
-        #7c3aed
-    );
+/* Logo N circle */
+
+.logo-icon {
+    width: 38px;
+    height: 38px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    text-align: center;
-    color: white;
-    padding: 40px 20px;
+    background: #2563eb;
+
+    border-radius: 10px;
+
+    font-size: 21px;
+    font-weight: 800;
+
+    box-shadow: 0 5px 15px rgba(37, 99, 235, 0.35);
 }
 
-.hero-content {
-    max-width: 700px;
+
+.footer-brand p {
+    margin: 0;
+
+    color: #9ca3af;
+
+    font-size: 14px;
+
+    line-height: 1.8;
 }
 
-.hero h1 {
-    font-size: 46px;
+
+/* =========================
+   SOCIAL ICONS
+   ========================= */
+
+.footer-social {
+    display: flex;
+    gap: 10px;
+
+    margin-top: 22px;
+}
+
+.footer-social a {
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #374151;
+    border-radius: 50%;
+
+    color: #d1d5db;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    transition: all 0.25s ease;
+}
+
+.footer-social a:hover {
+    background: #2563eb;
+
+    border-color: #2563eb;
+
+    color: #ffffff;
+
+    transform: translateY(-3px);
+}
+
+
+/* =========================
+   FOOTER COLUMNS
+   ========================= */
+
+.footer-column h3 {
+    margin: 0 0 20px;
+
+    font-size: 16px;
+    font-weight: 700;
+
+    color: #ffffff;
+}
+
+.footer-column a {
+    display: block;
+
+    width: fit-content;
+
+    margin-bottom: 13px;
+
+    color: #9ca3af;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    transition: all 0.2s ease;
+}
+
+.footer-column a:hover {
+    color: #60a5fa;
+
+    transform: translateX(3px);
+}
+
+
+/* =========================
+   BOTTOM FOOTER
+   ========================= */
+
+.footer-bottom {
+    border-top: 1px solid #374151;
+
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 22px 7%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    color: #6b7280;
+
+    font-size: 13px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-links a {
+    color: #9ca3af;
+
+    text-decoration: none;
+
+    transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+    color: #60a5fa;
+}
+
+.tech-stack {
+    color: #6b7280;
+}
+
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 900px) {
+
+    .seller-cta-content {
+        flex-direction: column;
+
+        align-items: flex-start;
+    }
+
+    .footer-main {
+        grid-template-columns: 1fr 1fr;
+
+        gap: 40px;
+    }
+
+    .footer-brand {
+        grid-column: 1 / -1;
+
+        max-width: 600px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+
+        text-align: center;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .seller-cta {
+        padding: 35px 20px;
+    }
+
+    .seller-cta h2 {
+        font-size: 24px;
+    }
+
+    .seller-cta p {
+        font-size: 14px;
+    }
+
+    .seller-btn {
+        width: 100%;
+
+        justify-content: center;
+    }
+
+    .footer-main {
+        padding: 40px 20px;
+
+        grid-template-columns: 1fr;
+
+        gap: 30px;
+    }
+
+    .footer-brand {
+        grid-column: auto;
+    }
+
+    .footer-bottom {
+        padding: 20px;
+
+        align-items: center;
+    }
+
+    .footer-links {
+        flex-wrap: wrap;
+
+        justify-content: center;
+
+        gap: 12px;
+    }
+
+    .tech-stack {
+        line-height: 1.6;
+    }
+}
+/* =========================================================
+   NITHYAMART LOGIN PAGE
+   ========================================================= */
+
+.nm-login-page {
+    min-height: 100vh;
+
+    margin: 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f8fafc 0%,
+            #eef4ff 100%
+        );
+
+    color: #172033;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.nm-login-header {
+    height: 72px;
+
+    padding: 0 6%;
+
+    background: #ffffff;
+
+    border-bottom: 1px solid #e5e7eb;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    box-sizing: border-box;
+}
+
+
+/* Logo */
+
+.nm-login-logo {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    color: #172033;
+
+    text-decoration: none;
+
+    font-size: 24px;
+
+    font-weight: 800;
+}
+
+.nm-login-logo > span:last-child span {
+    color: #2563eb;
+}
+
+
+.nm-logo-icon {
+    width: 38px;
+
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #1d4ed8
+        );
+
+    color: #ffffff;
+
+    border-radius: 10px;
+
+    font-size: 21px;
+
+    font-weight: 800;
+
+    box-shadow:
+        0 5px 14px
+        rgba(37, 99, 235, 0.25);
+}
+
+
+/* Back button */
+
+.nm-back-link {
+    color: #374151;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    padding: 9px 15px;
+
+    border-radius: 7px;
+
+    transition: 0.2s ease;
+}
+
+.nm-back-link:hover {
+    color: #2563eb;
+
+    background: #eff6ff;
+}
+
+
+/* =========================================================
+   MAIN LOGIN AREA
+   ========================================================= */
+
+.nm-login-wrapper {
+    width: min(1120px, 90%);
+
+    margin: auto;
+
+    padding: 55px 0;
+
+    display: grid;
+
+    grid-template-columns:
+        1fr
+        430px;
+
+    gap: 80px;
+
+    align-items: center;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   LEFT SIDE
+   ========================================================= */
+
+.nm-login-info {
+    padding: 10px 0;
+}
+
+
+.nm-welcome-label {
+    display: inline-block;
+
     margin-bottom: 15px;
+
+    color: #2563eb;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
 }
 
-.hero p {
-    font-size: 20px;
+
+.nm-login-info h1 {
+    margin: 0;
+
+    max-width: 620px;
+
+    color: #111827;
+
+    font-size: clamp(
+        42px,
+        5vw,
+        64px
+    );
+
+    line-height: 1.08;
+
+    font-weight: 800;
+
+    letter-spacing: -2px;
+}
+
+
+.nm-login-info h1 span {
+    display: block;
+
+    color: #2563eb;
+}
+
+
+.nm-login-description {
+    max-width: 600px;
+
+    margin: 22px 0 35px;
+
+    color: #64748b;
+
+    font-size: 17px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================================================
+   BENEFITS
+   ========================================================= */
+
+.nm-login-benefits {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+
+.nm-benefit {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+}
+
+
+.nm-benefit-icon {
+    width: 48px;
+
+    height: 48px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #ffffff;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 12px;
+
+    font-size: 21px;
+
+    box-shadow:
+        0 4px 12px
+        rgba(15, 23, 42, 0.05);
+}
+
+
+.nm-benefit h3 {
+    margin: 0 0 4px;
+
+    color: #1e293b;
+
+    font-size: 15px;
+
+    font-weight: 700;
+}
+
+
+.nm-benefit p {
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   LOGIN CARD
+   ========================================================= */
+
+.nm-login-card {
+    width: 100%;
+
+    padding: 38px;
+
+    box-sizing: border-box;
+
+    background: #ffffff;
+
+    border: 1px solid #e2e8f0;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 20px 50px
+        rgba(15, 23, 42, 0.10);
+}
+
+
+/* Card heading */
+
+.nm-login-card-header {
     margin-bottom: 25px;
 }
 
-.btn {
-    display: inline-block;
+
+.nm-small-logo {
+    width: 42px;
+
+    height: 42px;
+
+    margin-bottom: 16px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    border-radius: 10px;
+
+    font-size: 20px;
+
+    font-weight: 800;
+}
+
+
+.nm-login-card h2 {
+    margin: 0 0 7px;
+
+    color: #111827;
+
+    font-size: 28px;
+
+    font-weight: 800;
+}
+
+
+.nm-login-card-header p {
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   ERROR
+   ========================================================= */
+
+.nm-login-error {
+    display: none;
+
+    margin-bottom: 18px;
+
+    padding: 11px 13px;
+
+    background: #fef2f2;
+
+    border: 1px solid #fecaca;
+
+    border-radius: 8px;
+
+    color: #b91c1c;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+.nm-form-group {
+    margin-bottom: 20px;
+}
+
+
+.nm-form-group label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #334155;
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+
+.nm-form-group input[type="email"],
+.nm-form-group input[type="password"],
+.nm-form-group input[type="text"] {
+    width: 100%;
+
+    height: 48px;
+
+    padding: 0 14px;
+
+    box-sizing: border-box;
+
+    background: #ffffff;
+
+    border: 1px solid #cbd5e1;
+
+    border-radius: 8px;
+
+    outline: none;
+
+    color: #1e293b;
+
+    font-size: 14px;
+
+    transition: all 0.2s ease;
+}
+
+
+.nm-form-group input::placeholder {
+    color: #94a3b8;
+}
+
+
+.nm-form-group input:focus {
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(37, 99, 235, 0.10);
+}
+
+
+/* =========================================================
+   PASSWORD
+   ========================================================= */
+
+.nm-password-wrapper {
+    position: relative;
+}
+
+
+.nm-password-wrapper input {
+    padding-right: 48px !important;
+}
+
+
+.nm-password-toggle {
+    position: absolute;
+
+    right: 5px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    width: 38px;
+
+    height: 38px;
+
     border: none;
+
+    background: transparent;
+
+    cursor: pointer;
+
     border-radius: 6px;
 
-    background: #2563eb;
-    color: white;
+    font-size: 16px;
+}
 
-    padding: 10px 18px;
+
+.nm-password-toggle:hover {
+    background: #f1f5f9;
+}
+
+
+/* =========================================================
+   LOGIN OPTIONS
+   ========================================================= */
+
+.nm-login-options {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    margin: -3px 0 22px;
+
+    font-size: 13px;
+}
+
+
+.nm-checkbox-label {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    color: #64748b;
+
+    cursor: pointer;
+}
+
+
+.nm-checkbox-label input {
+    width: 15px;
+
+    height: 15px;
+
+    accent-color: #2563eb;
+
+    cursor: pointer;
+}
+
+
+.nm-forgot-link {
+    color: #2563eb;
 
     text-decoration: none;
+
+    font-weight: 600;
+}
+
+
+.nm-forgot-link:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   LOGIN BUTTON
+   ========================================================= */
+
+.nm-login-button {
+    width: 100%;
+
+    height: 50px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #1d4ed8
+        );
+
+    color: #ffffff;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
     cursor: pointer;
+
+    box-shadow:
+        0 7px 15px
+        rgba(37, 99, 235, 0.20);
+
+    transition: all 0.2s ease;
+}
+
+
+.nm-login-button:hover {
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 10px 20px
+        rgba(37, 99, 235, 0.28);
+}
+
+
+.nm-login-button:active {
+    transform: translateY(0);
+}
+
+
+.nm-login-button:disabled {
+    opacity: 0.65;
+
+    cursor: not-allowed;
+
+    transform: none;
+}
+
+
+/* =========================================================
+   DIVIDER
+   ========================================================= */
+
+.nm-divider {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin: 25px 0;
+
+    color: #94a3b8;
+
+    font-size: 11px;
+
+    font-weight: 600;
+}
+
+
+.nm-divider::before,
+.nm-divider::after {
+    content: "";
+
+    height: 1px;
+
+    flex: 1;
+
+    background: #e2e8f0;
+}
+
+
+/* =========================================================
+   SIGN UP
+   ========================================================= */
+
+.nm-signup-text {
+    margin: 0;
+
+    text-align: center;
+
+    color: #64748b;
+
+    font-size: 13px;
+}
+
+
+.nm-signup-text a {
+    color: #2563eb;
+
+    text-decoration: none;
+
+    font-weight: 700;
+}
+
+
+.nm-signup-text a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.nm-login-footer {
+    min-height: 55px;
+
+    padding: 0 6%;
+
+    box-sizing: border-box;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    background: #ffffff;
+
+    border-top: 1px solid #e5e7eb;
+
+    color: #94a3b8;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .nm-login-wrapper {
+        grid-template-columns: 1fr;
+
+        gap: 35px;
+
+        max-width: 550px;
+
+        padding: 40px 0;
+    }
+
+    .nm-login-info {
+        text-align: center;
+    }
+
+    .nm-login-info h1 {
+        margin: 0 auto;
+
+        font-size: 42px;
+    }
+
+    .nm-login-description {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .nm-login-benefits {
+        text-align: left;
+
+        max-width: 430px;
+
+        margin: 0 auto;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .nm-login-header {
+        height: 65px;
+
+        padding: 0 20px;
+    }
+
+    .nm-login-logo {
+        font-size: 20px;
+    }
+
+    .nm-logo-icon {
+        width: 34px;
+        height: 34px;
+
+        font-size: 18px;
+    }
+
+    .nm-back-link {
+        font-size: 12px;
+
+        padding: 7px;
+    }
+
+    .nm-login-wrapper {
+        width: calc(100% - 30px);
+
+        padding: 30px 0;
+    }
+
+    .nm-login-info h1 {
+        font-size: 34px;
+
+        letter-spacing: -1px;
+    }
+
+    .nm-login-description {
+        font-size: 14px;
+    }
+
+    .nm-login-card {
+        padding: 25px 20px;
+
+        border-radius: 14px;
+    }
+
+    .nm-login-card h2 {
+        font-size: 24px;
+    }
+
+    .nm-login-footer {
+        flex-direction: column;
+
+        justify-content: center;
+
+        text-align: center;
+
+        padding: 15px 20px;
+
+        line-height: 1.5;
+    }
+}
+/* =========================================================
+   NITHYAMART HEADER + SEARCH BAR
+   PROFESSIONAL RESPONSIVE VERSION
+   ========================================================= */
+
+
+/* =========================================================
+   MAIN HEADER
+   ========================================================= */
+
+.header-main {
+    width: 100%;
+
+    min-height: 96px;
+
+    padding: 0 40px;
+
+    box-sizing: border-box;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 32px;
+
+    background: #ffffff;
+}
+
+
+/* =========================================================
+   NITHYAMART LOGO
+   ========================================================= */
+
+.market-logo {
+    flex: 0 0 auto;
+
+    width: 235px;
+
+    display: flex;
+
+    align-items: center;
+
+    white-space: nowrap;
+
+    color: #172033;
+
+    text-decoration: none;
+
+    font-size: 36px;
+
+    font-weight: 800;
+
+    letter-spacing: -1.5px;
+}
+
+
+.market-logo span {
+    color: #172033;
+}
+
+
+.market-logo span:last-child {
+    color: #2875e8;
+}
+
+
+/* =========================================================
+   SEARCH AREA
+   ========================================================= */
+
+.market-search {
+    flex: 1 1 auto;
+
+    min-width: 0;
+
+    width: 100%;
+
+    max-width: 560px;
+
+    height: 56px;
+
+    display: flex;
+
+    align-items: stretch;
+
+    box-sizing: border-box;
+
+    background: #ffffff;
+
+    border: 1px solid #cbd5e1;
+
+    border-radius: 9px;
+
+    overflow: hidden;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* Search bar focus */
+
+.market-search:focus-within {
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(37, 99, 235, 0.10);
+}
+
+
+/* =========================================================
+   CATEGORY SELECT
+   ========================================================= */
+
+.market-search select {
+    flex: 0 0 125px;
+
+    width: 125px;
+
+    min-width: 125px;
+
+    height: 100%;
+
+    padding: 0 14px;
+
+    box-sizing: border-box;
+
+    border: none;
+
+    border-right: 1px solid #dbe2ea;
+
+    outline: none;
+
+    background: #f8fafc;
+
+    color: #475569;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    appearance: auto;
+}
+
+
+/* Select hover */
+
+.market-search select:hover {
+    background: #f1f5f9;
+}
+
+
+/* Select focus */
+
+.market-search select:focus {
+    background: #f8fafc;
+}
+
+
+/* =========================================================
+   SEARCH INPUT
+   ========================================================= */
+
+.market-search input {
+    flex: 1 1 auto;
+
+    width: 100%;
+
+    min-width: 0;
+
+    height: 100%;
+
+    padding: 0 16px;
+
+    box-sizing: border-box;
+
+    border: none;
+
+    outline: none;
+
+    background: #ffffff;
+
+    color: #1e293b;
+
+    font-family: inherit;
 
     font-size: 15px;
 }
 
-.btn:hover {
+
+/* Placeholder */
+
+.market-search input::placeholder {
+    color: #94a3b8;
+
+    opacity: 1;
+}
+
+
+/* =========================================================
+   SEARCH BUTTON
+   ========================================================= */
+
+.market-search button {
+    flex: 0 0 82px;
+
+    width: 82px;
+
+    min-width: 82px;
+
+    height: 100%;
+
+    padding: 0;
+
+    margin: 0;
+
+    box-sizing: border-box;
+
+    border: none;
+
+    outline: none;
+
+    background: #2563eb;
+
+    color: #ffffff;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    transition:
+        background 0.2s ease,
+        transform 0.15s ease;
+}
+
+
+/* Search button hover */
+
+.market-search button:hover {
     background: #1d4ed8;
 }
 
-.hero .btn {
-    background: white;
-    color: #2563eb;
+
+/* Search button active */
+
+.market-search button:active {
+    background: #1e40af;
+
+    transform: scale(0.98);
 }
 
-.hero .btn:hover {
-    background: #e5e7eb;
-}
 
-.products-section {
-    width: 90%;
-    max-width: 1200px;
-    margin: 40px auto;
-}
+/* =========================================================
+   HEADER ACTIONS
+   ACCOUNT + CART
+   ========================================================= */
 
-.section-header {
+.header-actions {
+    flex: 0 0 auto;
+
+    min-width: 0;
+
     display: flex;
-    justify-content: space-between;
+
     align-items: center;
-    gap: 20px;
-    margin-bottom: 25px;
+
+    justify-content: flex-end;
+
+    gap: 24px;
 }
 
-.section-header h2 {
-    font-size: 30px;
-}
 
-.search-area {
+/* =========================================================
+   ACCOUNT AREA
+   ========================================================= */
+
+.header-account {
     display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
+
+    align-items: center;
+
+    gap: 9px;
+
+    color: #172033;
+
+    text-decoration: none;
+
+    white-space: nowrap;
+
+    cursor: pointer;
 }
 
-.search-area input,
-.search-area select {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background: white;
+
+.header-account-icon {
+    width: 36px;
+
+    height: 36px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: #51338a;
+
+    font-size: 25px;
 }
 
-.search-area input {
-    width: 220px;
+
+.header-account-text {
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    line-height: 1.3;
 }
 
-.product-grid {
-    display: grid;
 
-    grid-template-columns:
-        repeat(auto-fill, minmax(220px, 1fr));
-
-    gap: 25px;
-}
-
-.product-card {
-    background: white;
-    border-radius: 10px;
-
-    overflow: hidden;
-
-    box-shadow:
-        0 2px 8px rgba(0, 0, 0, 0.08);
-
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
-}
-
-.product-card:hover {
-    transform: translateY(-4px);
-
-    box-shadow:
-        0 5px 15px rgba(0, 0, 0, 0.15);
-}
-
-.product-card img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    background: #eee;
-}
-
-.product-info {
-    padding: 18px;
-}
-
-.product-info h3 {
-    margin-bottom: 8px;
-    font-size: 19px;
-}
-
-.product-info p {
-    color: #555;
-    margin-bottom: 8px;
-}
-
-.product-price {
-    font-size: 20px;
-    font-weight: bold;
-    color: #2563eb;
-    margin-bottom: 10px;
-}
-
-.product-category {
-    display: inline-block;
-
-    background: #e5e7eb;
-    color: #374151;
-
-    padding: 4px 8px;
-    border-radius: 4px;
+.header-account-text small {
+    color: #64748b;
 
     font-size: 12px;
-    margin-bottom: 12px;
 }
 
-.message {
-    text-align: center;
-    padding: 20px;
-    color: #555;
+
+.header-account-text strong {
+    color: #172033;
+
+    font-size: 15px;
 }
 
-.error {
-    color: #dc2626;
+
+/* =========================================================
+   CART AREA
+   ========================================================= */
+
+.header-cart {
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    color: #172033;
+
+    text-decoration: none;
+
+    white-space: nowrap;
+
+    cursor: pointer;
 }
 
-footer {
-    margin-top: 60px;
 
-    background: #1f2937;
-    color: white;
+.header-cart-icon {
+    position: relative;
 
-    text-align: center;
+    width: 38px;
 
-    padding: 25px;
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 25px;
 }
 
-@media (max-width: 768px) {
 
-    .navbar {
-        flex-direction: column;
+.header-cart-text {
+    display: flex;
+
+    flex-direction: column;
+
+    line-height: 1.3;
+}
+
+
+.header-cart-text small {
+    color: #64748b;
+
+    font-size: 12px;
+}
+
+
+.header-cart-text strong {
+    color: #172033;
+
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   CART COUNT
+   ========================================================= */
+
+.cart-count {
+    position: absolute;
+
+    top: -5px;
+
+    right: -5px;
+
+    min-width: 17px;
+
+    height: 17px;
+
+    padding: 0 4px;
+
+    box-sizing: border-box;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #2563eb;
+
+    color: #ffffff;
+
+    font-size: 10px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   HEADER HOVER EFFECTS
+   ========================================================= */
+
+.header-account:hover,
+.header-cart:hover {
+    color: #2563eb;
+}
+
+
+.header-account:hover strong,
+.header-cart:hover strong {
+    color: #2563eb;
+}
+
+
+/* =========================================================
+   TABLET / SMALL LAPTOP
+   ========================================================= */
+
+@media (max-width: 1200px) {
+
+    .header-main {
+        padding: 0 25px;
+
+        gap: 22px;
+    }
+
+
+    .market-logo {
+        width: 190px;
+
+        font-size: 30px;
+    }
+
+
+    .market-search {
+        max-width: none;
+
+        height: 52px;
+    }
+
+
+    .market-search select {
+        flex-basis: 105px;
+
+        width: 105px;
+
+        min-width: 105px;
+    }
+
+
+    .market-search button {
+        flex-basis: 76px;
+
+        width: 76px;
+
+        min-width: 76px;
+    }
+
+
+    .header-actions {
         gap: 15px;
-        padding: 15px;
     }
 
-    .navbar nav {
-        flex-wrap: wrap;
-        justify-content: center;
+
+    .header-account-text small,
+    .header-cart-text small {
+        font-size: 11px;
     }
 
-    .hero h1 {
-        font-size: 34px;
+
+    .header-account-text strong,
+    .header-cart-text strong {
+        font-size: 14px;
+    }
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1000px) {
+
+    .header-main {
+        min-height: 90px;
+
+        gap: 15px;
+
+        padding: 0 20px;
     }
 
-    .hero p {
-        font-size: 17px;
+
+    .market-logo {
+        width: auto;
+
+        font-size: 28px;
     }
 
-    .section-header {
-        flex-direction: column;
-        align-items: stretch;
+
+    .market-search {
+        flex: 1 1 auto;
+
+        height: 50px;
     }
 
-    .search-area {
-        flex-direction: column;
+
+    .market-search select {
+        flex-basis: 90px;
+
+        width: 90px;
+
+        min-width: 90px;
+
+        font-size: 13px;
     }
 
-    .search-area input {
+
+    .market-search input {
+        font-size: 14px;
+
+        padding: 0 12px;
+    }
+
+
+    .market-search button {
+        flex-basis: 70px;
+
+        width: 70px;
+
+        min-width: 70px;
+
+        font-size: 13px;
+    }
+
+
+    .header-actions {
+        gap: 8px;
+    }
+
+
+    .header-account-text,
+    .header-cart-text {
+        display: none;
+    }
+
+
+    .header-account-icon,
+    .header-cart-icon {
+        width: 36px;
+
+        height: 36px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+    .header-main {
+        min-height: auto;
+
+        padding: 15px 18px;
+
+        display: grid;
+
+        grid-template-columns: 1fr auto;
+
+        grid-template-areas:
+            "logo actions"
+            "search search";
+
+        gap: 15px;
+    }
+
+
+    /* Logo */
+
+    .market-logo {
+        grid-area: logo;
+
+        width: auto;
+
+        font-size: 27px;
+    }
+
+
+    /* Actions */
+
+    .header-actions {
+        grid-area: actions;
+
+        gap: 10px;
+    }
+
+
+    /* Search */
+
+    .market-search {
+        grid-area: search;
+
         width: 100%;
+
+        max-width: none;
+
+        height: 50px;
     }
 
+
+    .market-search select {
+        flex: 0 0 85px;
+
+        width: 85px;
+
+        min-width: 85px;
+
+        padding: 0 8px;
+
+        font-size: 12px;
+    }
+
+
+    .market-search input {
+        min-width: 0;
+
+        padding: 0 10px;
+
+        font-size: 13px;
+    }
+
+
+    .market-search button {
+        flex: 0 0 65px;
+
+        width: 65px;
+
+        min-width: 65px;
+
+        font-size: 12px;
+    }
+
+
+    .header-account-icon,
+    .header-cart-icon {
+        width: 34px;
+
+        height: 34px;
+
+        font-size: 22px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 420px) {
+
+    .header-main {
+        padding: 12px 12px;
+    }
+
+
+    .market-logo {
+        font-size: 23px;
+    }
+
+
+    .market-search {
+        height: 47px;
+    }
+
+
+    .market-search select {
+        flex: 0 0 70px;
+
+        width: 70px;
+
+        min-width: 70px;
+
+        font-size: 11px;
+    }
+
+
+    .market-search input {
+        font-size: 12px;
+
+        padding: 0 8px;
+    }
+
+
+    .market-search button {
+        flex: 0 0 58px;
+
+        width: 58px;
+
+        min-width: 58px;
+
+        font-size: 11px;
+    }
+
+
+    .header-account-icon,
+    .header-cart-icon {
+        width: 30px;
+
+        height: 30px;
+
+        font-size: 20px;
+    }
 }
