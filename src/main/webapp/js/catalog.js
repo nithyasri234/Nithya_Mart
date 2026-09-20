@@ -11,14 +11,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     async function loadProducts() {
 
+        // Stop if this page is not the product catalog page
+        if (!productList || !loadingMessage || !errorMessage) {
+            return;
+        }
+
         loadingMessage.style.display = "block";
         errorMessage.style.display = "none";
         productList.innerHTML = "";
 
         try {
 
-            const keyword = searchInput.value.trim();
-            const category = categoryFilter.value;
+            const keyword = searchInput ? searchInput.value.trim() : "";
+            const category = categoryFilter ? categoryFilter.value : "";
 
             const params = new URLSearchParams();
 
@@ -30,22 +35,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 params.append("category", category);
             }
 
-
             let url = "api/v1/products";
 
             if (params.toString()) {
                 url += "?" + params.toString();
             }
 
-
             const response = await fetch(url);
 
             if (!response.ok) {
-                throw new Error(
-                    "Unable to load products."
-                );
+                throw new Error("Unable to load products.");
             }
-
 
             const products = await response.json();
 
@@ -69,8 +69,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function displayProducts(products) {
 
-        productList.innerHTML = "";
+        if (!productList) {
+            return;
+        }
 
+        productList.innerHTML = "";
 
         if (!Array.isArray(products) || products.length === 0) {
 
@@ -83,18 +86,15 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-
         products.forEach(product => {
 
             const card = document.createElement("div");
 
             card.className = "product-card";
 
-
             const imageUrl =
                 product.imageUrl ||
                 "https://via.placeholder.com/400x300?text=NithyaMart";
-
 
             card.innerHTML = `
 
@@ -115,7 +115,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     </h3>
 
                     <p>
-                        ${escapeHtml(product.description || "No description available.")}
+                        ${escapeHtml(
+                            product.description ||
+                            "No description available."
+                        )}
                     </p>
 
                     <div class="product-price">
@@ -136,7 +139,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 </div>
             `;
-
 
             productList.appendChild(card);
         });
@@ -166,56 +168,44 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    searchButton.addEventListener(
-        "click",
-        loadProducts
-    );
+    // Search button
+    if (searchButton) {
+
+        searchButton.addEventListener(
+            "click",
+            loadProducts
+        );
+    }
 
 
-   if (searchInput) {
-    searchInput.addEventListener(
-        "keydown",
-        event => {
-            if (event.key === "Enter") {
-                loadProducts();
+    // Search box - Enter key
+    if (searchInput) {
+
+        searchInput.addEventListener(
+            "keydown",
+            event => {
+
+                if (event.key === "Enter") {
+                    loadProducts();
+                }
             }
-        }
-    );
-}
-
-if (categoryFilter) {
-    categoryFilter.addEventListener(
-        "change",
-        loadProducts
-    );
-}
-
-loadProducts();
-if (searchInput && categoryFilter) {
-
-    searchInput.addEventListener(
-        "keydown",
-        event => {
-            if (event.key === "Enter") {
-                loadProducts();
-            }
-        }
-    );
-
-    categoryFilter.addEventListener(
-        "change",
-        loadProducts
-    );
-
-    loadProducts();
-}
-
-    categoryFilter.addEventListener(
-        "change",
-        loadProducts
-    );
+        );
+    }
 
 
-    loadProducts();
+    // Category filter
+    if (categoryFilter) {
+
+        categoryFilter.addEventListener(
+            "change",
+            loadProducts
+        );
+    }
+
+
+    // Load products only on pages that contain the catalog
+    if (productList) {
+        loadProducts();
+    }
 
 });
