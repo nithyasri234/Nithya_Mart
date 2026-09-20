@@ -22,19 +22,15 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-
         DataSource dataSource =
                 (DataSource) getServletContext()
                         .getAttribute("dataSource");
 
         if (dataSource == null) {
-            throw new ServletException(
-                    "DataSource is not available."
-            );
+            throw new ServletException("DataSource is not available.");
         }
 
         UserDAO userDAO = new UserDAO(dataSource);
-
         userService = new UserService(userDAO);
     }
 
@@ -49,38 +45,31 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
 
         try {
-
             Optional<User> userOptional =
                     userService.login(email, password);
 
             if (userOptional.isEmpty()) {
-
                 response.setStatus(
-                        HttpServletResponse.SC_UNAUTHORIZED
-                );
-
+                        HttpServletResponse.SC_UNAUTHORIZED);
                 response.setContentType(
-                        "text/html;charset=UTF-8"
-                );
+                        "text/html;charset=UTF-8");
 
                 response.getWriter().println(
-                        "<h3>Invalid email or password.</h3>"
-                );
+                        "<h3>Invalid email or password.</h3>");
 
                 return;
             }
 
             User user = userOptional.get();
 
-            HttpSession oldSession =
-                    request.getSession(false);
-
-            if (oldSession != null) {
-                oldSession.invalidate();
-            }
-
+            /*
+             * Create the session and regenerate its ID
+             * after successful authentication.
+             */
             HttpSession session =
                     request.getSession(true);
+
+            request.changeSessionId();
 
             session.setMaxInactiveInterval(30 * 60);
 
@@ -91,47 +80,46 @@ public class LoginServlet extends HttpServlet {
 
             response.sendRedirect(
                     request.getContextPath()
-                            + "/index.html"
-            );
+                            + "/index.html");
 
         } catch (IllegalArgumentException e) {
 
             response.setStatus(
-                    HttpServletResponse.SC_BAD_REQUEST
-            );
+                    HttpServletResponse.SC_BAD_REQUEST);
 
             response.setContentType(
-                    "text/html;charset=UTF-8"
-            );
+                    "text/html;charset=UTF-8");
 
             response.getWriter().println(
                     "<h3>"
                             + escapeHtml(e.getMessage())
-                            + "</h3>"
-            );
+                            + "</h3>");
 
         } catch (Exception e) {
 
-            getServletContext().log(
-                    "Login failed",
-                    e
-            );
+            /*
+             * Temporary debugging response.
+             * This lets us see the real exception from Render
+             * instead of only "Unable to login."
+             */
+            getServletContext().log("Login failed", e);
 
-            response.sendError(
-                    HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
-                    "Unable to login."
-            );
+            response.setStatus(
+                    HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+
+            response.setContentType(
+                    "text/plain;charset=UTF-8");
+
+            e.printStackTrace(response.getWriter());
         }
     }
 
     private String escapeHtml(String value) {
-
         if (value == null) {
             return "";
         }
 
-        return value
-                .replace("&", "&amp;")
+        return value.replace("&", "&amp;")
                 .replace("<", "&lt;")
                 .replace(">", "&gt;")
                 .replace("\"", "&quot;")
