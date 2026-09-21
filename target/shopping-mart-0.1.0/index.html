@@ -321,69 +321,172 @@
         </section>
         <section class="products-section" id="products">
 
-            <div class="section-title">
+    <div class="marketplace-products-header">
+        <div>
+            <span>SHOP NITHYAMART</span>
+            <h2>Explore Products</h2>
+        </div>
 
-                <div>
-                    <span>MARKETPLACE</span>
-                    <h2>Featured Products</h2>
-                </div>
-
-                <button
-                    type="button"
-                    id="clearFilters"
-                    class="clear-filter"
-                >
-                    View All
-                </button>
-
-            </div>
+        <button
+            type="button"
+            id="clearFilters"
+            class="clear-filter">
+            View All
+        </button>
+    </div>
 
 
-            <div
-                id="loadingMessage"
-                class="market-message"
-            >
-                Loading products...
-            </div>
-
-
-            <div
-                id="errorMessage"
-                class="market-message error"
-                style="display:none;"
-            ></div>
-
-
-            <div
-                id="productList"
-                class="market-product-grid"
-            ></div>
-
-        </section>
-
-
-        <!-- SELLER PROMOTION -->
-        <section class="seller-banner">
-
+    <!-- ELECTRONICS -->
+    <section class="category-product-section">
+        <div class="category-product-heading">
             <div>
-
-                <span>GROW YOUR BUSINESS</span>
-
-                <h2>
-                    Start selling on NithyaMart
-                </h2>
-
-                <p>
-                    Reach customers through our multi-seller marketplace.
-                </p>
-
+                <span>TOP PICKS</span>
+                <h2>Electronics</h2>
             </div>
 
-            <a href="signup.html">
-                Become a Seller →
-            </a>
+            <button
+                type="button"
+                class="view-all-category"
+                data-category="Electronics">
+                View All →
+            </button>
+        </div>
 
-        </section>
+        <div
+            id="products-Electronics"
+            class="horizontal-product-row">
+        </div>
+    </section>
+
+
+    <!-- FASHION -->
+    <section class="category-product-section">
+        <div class="category-product-heading">
+            <div>
+                <span>STYLE FOR YOU</span>
+                <h2>Fashion</h2>
+            </div>
+
+            <button
+                type="button"
+                class="view-all-category"
+                data-category="Fashion">
+                View All →
+            </button>
+        </div>
+
+        <div
+            id="products-Fashion"
+            class="horizontal-product-row">
+        </div>
+    </section>
+
+
+    <!-- HOME -->
+    <section class="category-product-section">
+        <div class="category-product-heading">
+            <div>
+                <span>MAKE HOME BETTER</span>
+                <h2>Home</h2>
+            </div>
+
+            <button
+                type="button"
+                class="view-all-category"
+                data-category="Home">
+                View All →
+            </button>
+        </div>
+
+        <div
+            id="products-Home"
+            class="horizontal-product-row">
+        </div>
+    </section>
+
+
+    <!-- BOOKS -->
+    <section class="category-product-section">
+        <div class="category-product-heading">
+            <div>
+                <span>READ & LEARN</span>
+                <h2>Books</h2>
+            </div>
+
+            <button
+                type="button"
+                class="view-all-category"
+                data-category="Books">
+                View All →
+            </button>
+        </div>
+
+        <div
+            id="products-Books"
+            class="horizontal-product-row">
+        </div>
+    </section>
+
+
+    <!-- BEAUTY -->
+    <section class="category-product-section">
+        <div class="category-product-heading">
+            <div>
+                <span>BEAUTY PICKS</span>
+                <h2>Beauty</h2>
+            </div>
+
+            <button
+                type="button"
+                class="view-all-category"
+                data-category="Beauty">
+                View All →
+            </button>
+        </div>
+
+        <div
+            id="products-Beauty"
+            class="horizontal-product-row">
+        </div>
+    </section>
+
+
+    <!-- GROCERY -->
+    <section class="category-product-section">
+        <div class="category-product-heading">
+            <div>
+                <span>EVERYDAY ESSENTIALS</span>
+                <h2>Grocery</h2>
+            </div>
+
+            <button
+                type="button"
+                class="view-all-category"
+                data-category="Grocery">
+                View All →
+            </button>
+        </div>
+
+        <div
+            id="products-Grocery"
+            class="horizontal-product-row">
+        </div>
+    </section>
+
+
+    <div
+        id="loadingMessage"
+        class="market-message">
+        Loading products...
+    </div>
+
+    <div
+        id="errorMessage"
+        class="market-message error"
+        style="display:none;">
+    </div>
+
+</section>
 
 
     </main>
@@ -492,3 +595,5 @@
 </body>
 
 </html>
+
+

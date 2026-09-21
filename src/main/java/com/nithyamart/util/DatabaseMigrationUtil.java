@@ -12,13 +12,14 @@ import org.h2.tools.RunScript;
 
 public final class DatabaseMigrationUtil {
 
-    private static final String[] MIGRATIONS = {
-        "V1__init_schema.sql",
-        "V2__products_schema.sql",
-        "V3__cart_schema.sql",
-        "V4__orders_schema.sql",
-        "V5__reviews_schema.sql"
-    };
+   private static final String[] MIGRATIONS = {
+    "V1__init_schema.sql",
+    "V2__products_schema.sql",
+    "V3__cart_schema.sql",
+    "V4__orders_schema.sql",
+    "V5__reviews_schema.sql",
+    "V6__demo_products.sql"
+};
 
     private DatabaseMigrationUtil() {
     }
@@ -73,6 +74,25 @@ public final class DatabaseMigrationUtil {
 
             System.out.println("Migration completed: " + migration);
         }
+        String seedPath = "db/seed.sql";
+
+InputStream seedInputStream = Thread.currentThread()
+        .getContextClassLoader()
+        .getResourceAsStream(seedPath);
+
+if (seedInputStream == null) {
+    throw new IllegalStateException(
+            "Seed file not found: " + seedPath);
+}
+
+try (Reader reader = new InputStreamReader(
+        seedInputStream,
+        StandardCharsets.UTF_8)) {
+
+    RunScript.execute(connection, reader);
+}
+
+System.out.println("Demo seed data loaded successfully.");
     }
 
     private static boolean isAlreadyApplied(

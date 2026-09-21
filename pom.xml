@@ -83,6 +83,14 @@
         <targetPath>db/migrations</targetPath>
         <filtering>false</filtering>
     </resource>
+    <resource>
+    <directory>${project.basedir}/db</directory>
+    <includes>
+        <include>seed.sql</include>
+    </includes>
+    <targetPath>db</targetPath>
+    <filtering>false</filtering>
+</resource>
 
 </resources>
         <plugins>

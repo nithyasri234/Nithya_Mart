@@ -64,24 +64,24 @@ public class UserService {
             throws SQLException {
 
         if (email == null || email.isBlank()) {
-            throw new IllegalArgumentException("Email is required.");
+            throw new IllegalArgumentException(
+                    "Email is required.");
         }
 
         if (password == null || password.isBlank()) {
-            throw new IllegalArgumentException("Password is required.");
+            throw new IllegalArgumentException(
+                    "Password is required.");
         }
 
         String normalizedEmail =
                 email.trim().toLowerCase();
 
-        User userOptional =
+        User user =
                 userDAO.findByEmail(normalizedEmail);
 
-        if (userOptional == null) {
-            return null;
+        if (user == null) {
+            return Optional.empty();
         }
-
-        User user = userOptional;
 
         boolean validPassword =
                 PasswordUtil.verifyPassword(
@@ -90,7 +90,7 @@ public class UserService {
                 );
 
         if (!validPassword) {
-            return null;
+            return Optional.empty();
         }
 
         return Optional.of(user);
@@ -103,6 +103,8 @@ public class UserService {
             return Optional.empty();
         }
 
-        return Optional.ofNullable(userDAO.findById(id));
+        return Optional.ofNullable(
+                userDAO.findById(id)
+        );
     }
 }

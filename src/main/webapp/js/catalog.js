@@ -1,153 +1,376 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    const productList = document.getElementById("productList");
-    const loadingMessage = document.getElementById("loadingMessage");
-    const errorMessage = document.getElementById("errorMessage");
+    const loadingMessage =
+        document.getElementById("loadingMessage");
 
-    const searchInput = document.getElementById("searchInput");
-    const categoryFilter = document.getElementById("categoryFilter");
-    const searchButton = document.getElementById("searchButton");
+    const errorMessage =
+        document.getElementById("errorMessage");
+
+    const searchInput =
+        document.getElementById("searchInput");
+
+    const headerCategory =
+        document.getElementById("headerCategory");
+
+    const searchButton =
+        document.getElementById("searchButton");
+
+    const clearFilters =
+        document.getElementById("clearFilters");
+
+
+    const categories = [
+        "Electronics",
+        "Fashion",
+        "Home",
+        "Books",
+        "Beauty",
+        "Grocery"
+    ];
+
+
+    let allProducts = [];
 
 
     async function loadProducts() {
 
-        // Stop if this page is not the product catalog page
-        if (!productList || !loadingMessage || !errorMessage) {
-            return;
+        if (loadingMessage) {
+            loadingMessage.style.display = "block";
         }
 
-        loadingMessage.style.display = "block";
-        errorMessage.style.display = "none";
-        productList.innerHTML = "";
+        if (errorMessage) {
+            errorMessage.style.display = "none";
+        }
 
         try {
 
-            const keyword = searchInput ? searchInput.value.trim() : "";
-            const category = categoryFilter ? categoryFilter.value : "";
-
-            const params = new URLSearchParams();
-
-            if (keyword) {
-                params.append("keyword", keyword);
-            }
-
-            if (category) {
-                params.append("category", category);
-            }
-
-            let url = "api/v1/products";
-
-            if (params.toString()) {
-                url += "?" + params.toString();
-            }
-
-            const response = await fetch(url);
+            const response =
+                await fetch("api/v1/products");
 
             if (!response.ok) {
-                throw new Error("Unable to load products.");
+                throw new Error(
+                    "Unable to load products."
+                );
             }
 
-            const products = await response.json();
+            allProducts =
+                await response.json();
 
-            loadingMessage.style.display = "none";
-
-            displayProducts(products);
+            renderAllCategories(
+                allProducts
+            );
 
         } catch (error) {
 
-            console.error("Product loading error:", error);
+            console.error(
+                "Product loading error:",
+                error
+            );
 
-            loadingMessage.style.display = "none";
+            if (errorMessage) {
+                errorMessage.textContent =
+                    "Unable to load products. Please try again.";
 
-            errorMessage.textContent =
-                "Unable to load products. Please try again.";
+                errorMessage.style.display =
+                    "block";
+            }
 
-            errorMessage.style.display = "block";
+        } finally {
+
+            if (loadingMessage) {
+                loadingMessage.style.display =
+                    "none";
+            }
+
         }
     }
 
 
-    function displayProducts(products) {
+    function renderAllCategories(products) {
 
-        if (!productList) {
+        categories.forEach(category => {
+
+            const categoryProducts =
+                products.filter(product =>
+                    String(product.category || "")
+                        .toLowerCase()
+                        === category.toLowerCase()
+                );
+
+            renderCategory(
+                category,
+                categoryProducts
+            );
+
+        });
+    }
+
+
+    function renderCategory(
+        category,
+        products
+    ) {
+
+        const container =
+            document.getElementById(
+                "products-" + category
+            );
+
+        if (!container) {
             return;
         }
 
-        productList.innerHTML = "";
+        container.innerHTML = "";
 
-        if (!Array.isArray(products) || products.length === 0) {
 
-            productList.innerHTML = `
-                <div class="message">
-                    No products found.
+        if (
+            !Array.isArray(products)
+            || products.length === 0
+        ) {
+
+            container.innerHTML = `
+                <div class="category-empty">
+                    No products available in ${escapeHtml(category)} yet.
                 </div>
             `;
 
             return;
         }
+
 
         products.forEach(product => {
 
-            const card = document.createElement("div");
+            const card =
+                document.createElement("article");
 
-            card.className = "product-card";
+            card.className =
+                "horizontal-product-card";
+
 
             const imageUrl =
-                product.imageUrl ||
-                "https://via.placeholder.com/400x300?text=NithyaMart";
+                product.imageUrl
+                || "https://placehold.co/500x400?text=NithyaMart";
+
 
             card.innerHTML = `
 
-                <img
-                    src="${escapeHtml(imageUrl)}"
-                    alt="${escapeHtml(product.name || "Product")}"
-                    onerror="this.src='https://via.placeholder.com/400x300?text=NithyaMart'"
-                >
+                <div class="home-product-image-wrap">
 
-                <div class="product-info">
+                    <img
+                        class="home-product-image"
+                        src="${escapeHtml(imageUrl)}"
+                        alt="${escapeHtml(
+                            product.name || "Product"
+                        )}"
+                    >
 
-                    <span class="product-category">
-                        ${escapeHtml(product.category || "Other")}
+                </div>
+
+
+                <div class="home-product-content">
+
+                    <span class="home-product-category">
+                        ${escapeHtml(
+                            product.category || "Other"
+                        )}
                     </span>
 
+
                     <h3>
-                        ${escapeHtml(product.name || "Unnamed Product")}
+                        ${escapeHtml(
+                            product.name || "Product"
+                        )}
                     </h3>
 
-                    <p>
+
+                    <p class="home-product-description">
                         ${escapeHtml(
-                            product.description ||
-                            "No description available."
+                            product.description
+                            || "No description available."
                         )}
                     </p>
 
-                    <div class="product-price">
+
+                    <div class="home-product-price">
                         ₹${formatPrice(product.price)}
                     </div>
 
-                    <p>
-                        Stock:
-                        ${product.stockQuantity ?? 0}
-                    </p>
 
-                    <a
-                        class="btn"
-                        href="product-details.html?id=${encodeURIComponent(product.id)}"
-                    >
-                        View Product
-                    </a>
+                    <div class="home-product-stock">
+                        ${Number(product.stockQuantity) > 0
+                            ? "In stock"
+                            : "Out of stock"}
+                    </div>
+
+
+                    <div class="home-product-actions">
+
+                        <button
+                            type="button"
+                            class="home-add-cart-button"
+                            data-product-id="${product.id}"
+                            ${Number(product.stockQuantity) <= 0
+                                ? "disabled"
+                                : ""}>
+                            Add to Cart
+                        </button>
+
+
+                        <a
+                            class="home-view-button"
+                            href="product-details.html?id=${encodeURIComponent(
+                                product.id
+                            )}">
+                            View
+                        </a>
+
+                    </div>
 
                 </div>
             `;
 
-            productList.appendChild(card);
+
+            container.appendChild(card);
+
         });
+
+
+        attachCartButtons(container);
+    }
+
+
+    function attachCartButtons(container) {
+
+        container
+            .querySelectorAll(".home-add-cart-button")
+            .forEach(button => {
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        const productId =
+                            button.dataset.productId;
+
+                        addToCart(
+                            productId,
+                            button
+                        );
+
+                    }
+                );
+
+            });
+    }
+
+
+    async function addToCart(
+        productId,
+        button
+    ) {
+
+        button.disabled = true;
+        button.textContent = "Adding...";
+
+
+        try {
+
+            /*
+             * CartServlet currently expects
+             * productId and quantity as request
+             * parameters.
+             */
+            const url =
+                "api/v1/cart?productId="
+                + encodeURIComponent(productId)
+                + "&quantity=1";
+
+
+            const response =
+                await fetch(
+                    url,
+                    {
+                        method: "POST"
+                    }
+                );
+
+
+            if (response.status === 401) {
+
+                alert(
+                    "Please login as a buyer to add products to your cart."
+                );
+
+                window.location.href =
+                    "login.html";
+
+                return;
+            }
+
+
+            if (!response.ok) {
+
+                let message =
+                    "Unable to add product to cart.";
+
+                try {
+
+                    const data =
+                        await response.json();
+
+                    if (data.message) {
+                        message =
+                            data.message;
+                    }
+
+                } catch (error) {
+                    // Keep default message.
+                }
+
+                throw new Error(message);
+            }
+
+
+            button.textContent =
+                "Added ✓";
+
+
+            setTimeout(() => {
+
+                button.textContent =
+                    "Add to Cart";
+
+                button.disabled =
+                    false;
+
+            }, 1200);
+
+
+        } catch (error) {
+
+            console.error(
+                "Add to cart error:",
+                error
+            );
+
+            alert(
+                error.message
+                || "Unable to add product to cart."
+            );
+
+            button.disabled =
+                false;
+
+            button.textContent =
+                "Add to Cart";
+        }
     }
 
 
     function formatPrice(price) {
 
-        const number = Number(price);
+        const number =
+            Number(price);
 
         if (Number.isNaN(number)) {
             return "0.00";
@@ -160,25 +383,105 @@ document.addEventListener("DOMContentLoaded", () => {
     function escapeHtml(value) {
 
         return String(value)
-            .replaceAll("&", "&amp;")
-            .replaceAll("<", "&lt;")
-            .replaceAll(">", "&gt;")
-            .replaceAll('"', "&quot;")
-            .replaceAll("'", "&#039;");
+            .replaceAll(
+                "&",
+                "&amp;"
+            )
+            .replaceAll(
+                "<",
+                "&lt;"
+            )
+            .replaceAll(
+                ">",
+                "&gt;"
+            )
+            .replaceAll(
+                '"',
+                "&quot;"
+            )
+            .replaceAll(
+                "'",
+                "&#039;"
+            );
     }
 
 
-    // Search button
+    /*
+     * Search
+     */
     if (searchButton) {
 
         searchButton.addEventListener(
             "click",
-            loadProducts
+            () => {
+
+                const keyword =
+                    searchInput
+                        ? searchInput.value
+                            .trim()
+                            .toLowerCase()
+                        : "";
+
+                const category =
+                    headerCategory
+                        ? headerCategory.value
+                        : "";
+
+
+                const filtered =
+                    allProducts.filter(product => {
+
+                        const matchesKeyword =
+                            !keyword
+                            || String(
+                                product.name || ""
+                            )
+                                .toLowerCase()
+                                .includes(keyword)
+                            || String(
+                                product.description || ""
+                            )
+                                .toLowerCase()
+                                .includes(keyword);
+
+
+                        const matchesCategory =
+                            !category
+                            || String(
+                                product.category || ""
+                            )
+                                .toLowerCase()
+                            === category.toLowerCase();
+
+
+                        return (
+                            matchesKeyword
+                            && matchesCategory
+                        );
+
+                    });
+
+
+                renderAllCategories(
+                    filtered
+                );
+
+
+                document
+                    .getElementById("products")
+                    ?.scrollIntoView({
+                        behavior: "smooth"
+                    });
+
+            }
         );
+
     }
 
 
-    // Search box - Enter key
+    /*
+     * Search with Enter
+     */
     if (searchInput) {
 
         searchInput.addEventListener(
@@ -186,26 +489,92 @@ document.addEventListener("DOMContentLoaded", () => {
             event => {
 
                 if (event.key === "Enter") {
-                    loadProducts();
+
+                    searchButton?.click();
+
                 }
+
             }
         );
+
     }
 
 
-    // Category filter
-    if (categoryFilter) {
+    /*
+     * View All
+     */
+    if (clearFilters) {
 
-        categoryFilter.addEventListener(
-            "change",
-            loadProducts
+        clearFilters.addEventListener(
+            "click",
+            () => {
+
+                if (searchInput) {
+                    searchInput.value = "";
+                }
+
+                if (headerCategory) {
+                    headerCategory.value = "";
+                }
+
+                renderAllCategories(
+                    allProducts
+                );
+
+            }
         );
+
     }
 
 
-    // Load products only on pages that contain the catalog
-    if (productList) {
-        loadProducts();
-    }
+    /*
+     * Category View All buttons
+     */
+    document
+        .querySelectorAll(
+            ".view-all-category"
+        )
+        .forEach(button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    const category =
+                        button.dataset.category;
+
+                    const products =
+                        allProducts.filter(
+                            product =>
+                                String(
+                                    product.category || ""
+                                ).toLowerCase()
+                                === category.toLowerCase()
+                        );
+
+                    renderCategory(
+                        category,
+                        products
+                    );
+
+                    document
+                        .getElementById(
+                            "products-" + category
+                        )
+                        ?.scrollIntoView({
+                            behavior: "smooth",
+                            block: "center"
+                        });
+
+                }
+            );
+
+        });
+
+
+    /*
+     * Initial load
+     */
+    loadProducts();
 
 });
