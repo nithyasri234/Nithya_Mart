@@ -1,3 +1,4 @@
+
 package com.nithyamart.controller;
 
 import com.google.gson.Gson;
@@ -14,9 +15,9 @@ import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
+import java.math.BigDecimal;
 
 @WebServlet("/api/v1/products/*")
 public class ProductServlet extends HttpServlet {
@@ -46,6 +47,9 @@ public class ProductServlet extends HttpServlet {
         gson = new Gson();
     }
 
+    // =========================
+    // READ
+    // =========================
     @Override
     protected void doGet(HttpServletRequest request,
                          HttpServletResponse response)
@@ -60,6 +64,9 @@ public class ProductServlet extends HttpServlet {
             String path =
                     request.getPathInfo();
 
+            // GET /api/v1/products
+            // GET /api/v1/products?keyword=phone
+            // GET /api/v1/products?category=Electronics
             if (path == null
                     || path.equals("/")
                     || path.isBlank()) {
@@ -84,6 +91,7 @@ public class ProductServlet extends HttpServlet {
                 return;
             }
 
+            // GET /api/v1/products/{id}
             Long productId =
                     parseId(path);
 
@@ -132,6 +140,9 @@ public class ProductServlet extends HttpServlet {
         }
     }
 
+    // =========================
+    // CREATE
+    // =========================
     @Override
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response)
@@ -168,6 +179,7 @@ public class ProductServlet extends HttpServlet {
 
             product.setSellerId(sellerId);
 
+            // CREATE product
             Product created =
                     productService.createProduct(product);
 
@@ -195,20 +207,17 @@ public class ProductServlet extends HttpServlet {
                     e
             );
 
-            response.setStatus(
-                    HttpServletResponse.SC_INTERNAL_SERVER_ERROR
-            );
-
-            response.setContentType(
-                    "text/plain;charset=UTF-8"
-            );
-
-            e.printStackTrace(
-                    response.getWriter()
+            sendError(
+                    response,
+                    HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
+                    "Unable to create product."
             );
         }
     }
 
+    // =========================
+    // UPDATE
+    // =========================
     @Override
     protected void doPut(HttpServletRequest request,
                          HttpServletResponse response)
@@ -263,6 +272,7 @@ public class ProductServlet extends HttpServlet {
             product.setId(productId);
             product.setSellerId(sellerId);
 
+            // UPDATE product
             boolean updated =
                     productService.updateProduct(
                             product,
@@ -308,6 +318,9 @@ public class ProductServlet extends HttpServlet {
         }
     }
 
+    // =========================
+    // DELETE
+    // =========================
     @Override
     protected void doDelete(HttpServletRequest request,
                             HttpServletResponse response)
@@ -353,6 +366,7 @@ public class ProductServlet extends HttpServlet {
             Long sellerId =
                     (Long) session.getAttribute("userId");
 
+            // DELETE product
             boolean deleted =
                     productService.deleteProduct(
                             productId,
@@ -370,6 +384,7 @@ public class ProductServlet extends HttpServlet {
                 return;
             }
 
+            // Successful delete
             response.setStatus(
                     HttpServletResponse.SC_NO_CONTENT
             );
@@ -397,6 +412,9 @@ public class ProductServlet extends HttpServlet {
         }
     }
 
+    // =========================
+    // SELLER CHECK
+    // =========================
     private boolean isSeller(HttpSession session) {
 
         if (session == null) {
@@ -409,6 +427,9 @@ public class ProductServlet extends HttpServlet {
         return "SELLER".equals(role);
     }
 
+    // =========================
+    // ID PARSER
+    // =========================
     private Long parseId(String path) {
 
         if (path == null || path.isBlank()) {
@@ -420,11 +441,15 @@ public class ProductServlet extends HttpServlet {
 
         try {
             return Long.parseLong(idText);
+
         } catch (NumberFormatException e) {
             return null;
         }
     }
 
+    // =========================
+    // JSON RESPONSE
+    // =========================
     private void writeJson(HttpServletResponse response,
                            Object data)
             throws IOException {
@@ -433,6 +458,9 @@ public class ProductServlet extends HttpServlet {
                 .write(gson.toJson(data));
     }
 
+    // =========================
+    // ERROR RESPONSE
+    // =========================
     private void sendError(HttpServletResponse response,
                            int status,
                            String message)
@@ -457,4 +485,6 @@ public class ProductServlet extends HttpServlet {
             this.message = message;
         }
     }
+
 }
+
