@@ -20,38 +20,31 @@
 </head>
 
 
-<body>
+<body class="marketplace-page">
 
 
-    <!-- =========================
+    <!-- =====================================================
          HEADER
-         ========================= -->
+         ===================================================== -->
 
-    <header class="site-header">
+    <header class="market-header">
 
-        <div class="header-container">
+        <div class="header-main">
 
 
             <!-- Logo -->
 
             <a
                 href="index.html"
-                class="logo"
+                class="market-logo"
             >
-                NithyaMart
+                <span>Nithya</span><span>Mart</span>
             </a>
 
 
             <!-- Search -->
 
-            <div class="search-area">
-
-                <input
-                    type="text"
-                    id="searchInput"
-                    placeholder="Search products..."
-                    autocomplete="off"
-                >
+            <div class="market-search">
 
                 <select id="headerCategory">
 
@@ -86,6 +79,14 @@
                 </select>
 
 
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search products..."
+                    autocomplete="off"
+                >
+
+
                 <button
                     type="button"
                     id="searchButton"
@@ -96,86 +97,227 @@
             </div>
 
 
-            <!-- Header Links -->
+            <!-- Header Actions -->
 
             <div class="header-actions">
 
-                <a
-                    href="cart.html"
-                    class="header-link"
-                >
-                    🛒 Cart
-                </a>
 
+                <!-- Account -->
 
                 <a
                     href="login.html"
-                    class="header-link"
+                    class="header-account"
                     id="loginLink"
                 >
-                    Login
+
+                    <span class="header-account-icon">
+                        👤
+                    </span>
+
+                    <span class="header-account-text">
+
+                        <small>
+                            Hello, Sign in
+                        </small>
+
+                        <strong>
+                            Account
+                        </strong>
+
+                    </span>
+
                 </a>
 
+
+                <!-- Cart -->
 
                 <a
-                    href="signup.html"
-                    class="header-link"
-                    id="signupLink"
+                    href="cart.html"
+                    class="header-cart"
                 >
-                    Sign Up
+
+                    <span class="header-cart-icon">
+
+                        🛒
+
+                        <span class="cart-count">
+                            0
+                        </span>
+
+                    </span>
+
+                    <span class="header-cart-text">
+
+                        <small>
+                            Your
+                        </small>
+
+                        <strong>
+                            Cart
+                        </strong>
+
+                    </span>
+
                 </a>
+
 
             </div>
 
         </div>
 
-    </header>
 
+        <!-- Category Navigation -->
 
+        <nav class="category-nav">
 
-    <!-- =========================
-         HERO SECTION
-         ========================= -->
-
-    <main>
-
-
-        <section class="hero-section">
-
-            <div class="hero-content">
-
-                <span class="hero-small-text">
-                    WELCOME TO NITHYAMART
-                </span>
-
-
-                <h1>
-                    Everything you need,
-                    <br>
-                    all in one place.
-                </h1>
-
-
-                <p>
-                    Shop electronics, fashion, home essentials,
-                    books, beauty products and groceries.
-                </p>
-
+            <div class="category-nav-inner">
 
                 <a
                     href="#products"
-                    class="hero-button"
+                    class="all-category"
                 >
-                    Start Shopping
+                    All
+                </a>
+
+                <a href="#products-Electronics">
+                    Electronics
+                </a>
+
+                <a href="#products-Fashion">
+                    Fashion
+                </a>
+
+                <a href="#products-Home">
+                    Home
+                </a>
+
+                <a href="#products-Books">
+                    Books
+                </a>
+
+                <a href="#products-Beauty">
+                    Beauty
+                </a>
+
+                <a href="#products-Grocery">
+                    Grocery
                 </a>
 
             </div>
 
+        </nav>
 
-            <div class="hero-image">
+    </header>
 
-                <div class="hero-shopping-icon">
-                    🛍️
+
+
+    <!-- =====================================================
+         MAIN
+         ===================================================== -->
+
+    <main>
+
+
+        <!-- =================================================
+             HERO
+             ================================================= -->
+
+        <section class="market-hero">
+
+            <div class="hero-container">
+
+
+                <!-- Hero Text -->
+
+                <div class="hero-copy">
+
+                    <span class="hero-label">
+                        WELCOME TO NITHYAMART
+                    </span>
+
+
+                    <h1>
+                        Everything you need,
+                        <span>
+                            all in one place.
+                        </span>
+                    </h1>
+
+
+                    <p>
+                        Shop electronics, fashion, home essentials,
+                        books, beauty products and groceries from
+                        NithyaMart.
+                    </p>
+
+
+                    <div class="hero-buttons">
+
+                        <a
+                            href="#products"
+                            class="hero-primary"
+                        >
+                            Start Shopping
+                        </a>
+
+
+                        <a
+                            href="#products"
+                            class="hero-secondary"
+                        >
+                            Explore Products
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Hero Card -->
+
+                <div class="hero-shopping-card">
+
+                    <div class="hero-card-top">
+
+                        <span>
+                            NITHYAMART
+                        </span>
+
+                        <strong>
+                            ONLINE MARKET
+                        </strong>
+
+                    </div>
+
+
+                    <div class="hero-card-icon">
+                        🛍️
+                    </div>
+
+
+                    <h3>
+                        Everything in one place
+                    </h3>
+
+
+                    <p>
+                        Discover products from multiple
+                        categories and shop easily.
+                    </p>
+
+
+                    <div class="hero-card-bottom">
+
+                        <span>
+                            6 Categories
+                        </span>
+
+                        <span>
+                            Shop Now →
+                        </span>
+
+                    </div>
+
                 </div>
 
             </div>
@@ -184,66 +326,155 @@
 
 
 
-        <!-- =========================
+        <!-- =================================================
+             BENEFITS
+             ================================================= -->
+
+        <section class="benefits-section">
+
+            <div class="benefits-container">
+
+
+                <div class="benefit-item">
+
+                    <div class="benefit-icon">
+                        🚚
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Easy Shopping
+                        </strong>
+
+                        <span>
+                            Simple online experience
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="benefit-item">
+
+                    <div class="benefit-icon">
+                        🔒
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Secure Account
+                        </strong>
+
+                        <span>
+                            Safe login and checkout
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="benefit-item">
+
+                    <div class="benefit-icon">
+                        🛒
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Easy Cart
+                        </strong>
+
+                        <span>
+                            Add and manage products
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="benefit-item">
+
+                    <div class="benefit-icon">
+                        ⭐
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Multiple Categories
+                        </strong>
+
+                        <span>
+                            Everything in one place
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
              SHOP BY CATEGORY
-             ========================= -->
+             ================================================= -->
 
         <section class="category-section">
 
-            <div class="section-heading">
 
-                <span>
-                    EXPLORE
-                </span>
+            <div class="section-title">
 
-                <h2>
-                    Shop by Category
-                </h2>
+                <div>
 
-                <p>
-                    Find everything you need from our categories.
-                </p>
+                    <span>
+                        EXPLORE
+                    </span>
+
+                    <h2>
+                        Shop by Category
+                    </h2>
+
+                    <p>
+                        Find everything you need from our categories.
+                    </p>
+
+                </div>
 
             </div>
 
 
 
-            <!--
-                IMPORTANT:
-
-                Each category card is followed immediately
-                by its products.
-
-                There is NO separate duplicate
-                Electronics/Fashion/Home section.
-            -->
-
             <div class="category-categories">
 
 
-                <!-- =========================
+                <!-- =========================================
                      ELECTRONICS
-                     ========================= -->
+                     ========================================= -->
 
                 <div class="category-group">
-
 
                     <a
                         href="#products-Electronics"
                         class="category-card"
                     >
 
-                        <div
-                            class="category-image electronics"
-                        >
+                        <div class="category-image electronics">
                             💻
                         </div>
-
 
                         <strong>
                             Electronics
                         </strong>
-
 
                         <span>
                             Explore now
@@ -267,29 +498,24 @@
 
 
 
-                <!-- =========================
+                <!-- =========================================
                      FASHION
-                     ========================= -->
+                     ========================================= -->
 
                 <div class="category-group">
-
 
                     <a
                         href="#products-Fashion"
                         class="category-card"
                     >
 
-                        <div
-                            class="category-image fashion"
-                        >
+                        <div class="category-image fashion">
                             👕
                         </div>
-
 
                         <strong>
                             Fashion
                         </strong>
-
 
                         <span>
                             Explore now
@@ -313,29 +539,24 @@
 
 
 
-                <!-- =========================
+                <!-- =========================================
                      HOME
-                     ========================= -->
+                     ========================================= -->
 
                 <div class="category-group">
-
 
                     <a
                         href="#products-Home"
                         class="category-card"
                     >
 
-                        <div
-                            class="category-image home"
-                        >
+                        <div class="category-image home">
                             🏠
                         </div>
-
 
                         <strong>
                             Home
                         </strong>
-
 
                         <span>
                             Explore now
@@ -359,29 +580,24 @@
 
 
 
-                <!-- =========================
+                <!-- =========================================
                      BOOKS
-                     ========================= -->
+                     ========================================= -->
 
                 <div class="category-group">
-
 
                     <a
                         href="#products-Books"
                         class="category-card"
                     >
 
-                        <div
-                            class="category-image books"
-                        >
+                        <div class="category-image books">
                             📚
                         </div>
-
 
                         <strong>
                             Books
                         </strong>
-
 
                         <span>
                             Explore now
@@ -405,29 +621,24 @@
 
 
 
-                <!-- =========================
+                <!-- =========================================
                      BEAUTY
-                     ========================= -->
+                     ========================================= -->
 
                 <div class="category-group">
-
 
                     <a
                         href="#products-Beauty"
                         class="category-card"
                     >
 
-                        <div
-                            class="category-image beauty"
-                        >
+                        <div class="category-image beauty">
                             ✨
                         </div>
-
 
                         <strong>
                             Beauty
                         </strong>
-
 
                         <span>
                             Explore now
@@ -451,29 +662,24 @@
 
 
 
-                <!-- =========================
+                <!-- =========================================
                      GROCERY
-                     ========================= -->
+                     ========================================= -->
 
                 <div class="category-group">
-
 
                     <a
                         href="#products-Grocery"
                         class="category-card"
                     >
 
-                        <div
-                            class="category-image grocery"
-                        >
+                        <div class="category-image grocery">
                             🛒
                         </div>
-
 
                         <strong>
                             Grocery
                         </strong>
-
 
                         <span>
                             Explore now
@@ -502,9 +708,9 @@
 
 
 
-        <!-- =========================
-             PRODUCTS AREA
-             ========================= -->
+        <!-- =================================================
+             PRODUCTS / SEARCH AREA
+             ================================================= -->
 
         <section
             class="products-section"
@@ -530,18 +736,12 @@
                 <button
                     type="button"
                     id="clearFilters"
-                    class="clear-filter"
+                    class="btn"
                 >
                     View All
                 </button>
 
             </div>
-
-
-            <!--
-                Search results will also be rendered
-                into the category containers above.
-            -->
 
 
             <div
@@ -558,37 +758,153 @@
 
 
 
-    <!-- =========================
+    <!-- =====================================================
          FOOTER
-         ========================= -->
+         ===================================================== -->
 
-    <footer class="site-footer">
+    <footer class="nm-footer">
 
-        <div class="footer-container">
 
+        <div class="footer-main">
+
+
+            <!-- Brand -->
 
             <div class="footer-brand">
 
-                <h3>
-                    NithyaMart
-                </h3>
+                <div class="footer-logo">
+
+                    <span class="logo-icon">
+                        N
+                    </span>
+
+                    <span>
+                        Nithya<span>Mart</span>
+                    </span>
+
+                </div>
+
 
                 <p>
                     Your simple and convenient
-                    online marketplace.
+                    online marketplace for everyday shopping.
                 </p>
 
+
+                <div class="footer-social">
+
+                    <a href="#" aria-label="Facebook">
+                        f
+                    </a>
+
+                    <a href="#" aria-label="Instagram">
+                        ◎
+                    </a>
+
+                    <a href="#" aria-label="Twitter">
+                        𝕏
+                    </a>
+
+                </div>
+
             </div>
+
+
+
+            <!-- Shop -->
+
+            <div class="footer-column">
+
+                <h3>
+                    Shop
+                </h3>
+
+                <a href="#products-Electronics">
+                    Electronics
+                </a>
+
+                <a href="#products-Fashion">
+                    Fashion
+                </a>
+
+                <a href="#products-Home">
+                    Home
+                </a>
+
+                <a href="#products-Books">
+                    Books
+                </a>
+
+            </div>
+
+
+
+            <!-- More -->
+
+            <div class="footer-column">
+
+                <h3>
+                    More
+                </h3>
+
+                <a href="#products-Beauty">
+                    Beauty
+                </a>
+
+                <a href="#products-Grocery">
+                    Grocery
+                </a>
+
+                <a href="cart.html">
+                    Cart
+                </a>
+
+                <a href="login.html">
+                    Account
+                </a>
+
+            </div>
+
+
+
+            <!-- Account -->
+
+            <div class="footer-column">
+
+                <h3>
+                    Account
+                </h3>
+
+                <a href="login.html">
+                    Login
+                </a>
+
+                <a href="signup.html">
+                    Sign Up
+                </a>
+
+                <a href="cart.html">
+                    My Cart
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="footer-bottom">
+
+            <span>
+                © 2026 NithyaMart. All rights reserved.
+            </span>
 
 
             <div class="footer-links">
 
                 <a href="index.html">
                     Home
-                </a>
-
-                <a href="cart.html">
-                    Cart
                 </a>
 
                 <a href="login.html">
@@ -602,24 +918,20 @@
             </div>
 
 
-        </div>
-
-
-        <div class="footer-bottom">
-
-            <p>
-                © 2026 NithyaMart. All rights reserved.
-            </p>
+            <span class="tech-stack">
+                Java • Servlets • JDBC
+            </span>
 
         </div>
+
 
     </footer>
 
 
 
-    <!-- =========================
+    <!-- =====================================================
          JAVASCRIPT
-         ========================= -->
+         ===================================================== -->
 
     <script src="js/session.js"></script>
 
