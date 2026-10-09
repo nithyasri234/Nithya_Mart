@@ -224,6 +224,63 @@ public class AdminServlet extends HttpServlet {
         }
     }
 
+    @Override
+    protected void doPut(HttpServletRequest request,
+                         HttpServletResponse response)
+            throws IOException {
+
+        response.setContentType("application/json;charset=UTF-8");
+
+        if (!isAdmin(request)) {
+            sendError(response, HttpServletResponse.SC_FORBIDDEN, "Admin access is required.");
+            return;
+        }
+
+        try {
+            String path = request.getPathInfo();
+            // Expected path: /orders/{id}/status or /orders/{id}
+            if (path != null && path.startsWith("/orders/")) {
+                String sub = path.substring("/orders/".length());
+                if (sub.endsWith("/status")) {
+                    sub = sub.substring(0, sub.length() - "/status".length());
+                }
+                Long orderId = Long.parseLong(sub);
+
+                String status = request.getParameter("status");
+                if (status == null || status.isBlank()) {
+                    try {
+                        var bodyMap = gson.fromJson(request.getReader(), java.util.Map.class);
+                        if (bodyMap != null && bodyMap.containsKey("status")) {
+                            status = String.valueOf(bodyMap.get("status"));
+                        }
+                    } catch (Exception ignored) {
+                    }
+                }
+
+                if (status == null || status.isBlank()) {
+                    sendError(response, HttpServletResponse.SC_BAD_REQUEST, "Status parameter is required.");
+                    return;
+                }
+
+                boolean updated = adminDAO.updateOrderStatus(orderId, status.trim().toUpperCase());
+                if (updated) {
+                    writeJson(response, new MessageResponse("Order status updated to " + status.trim().toUpperCase()));
+                } else {
+                    sendError(response, HttpServletResponse.SC_NOT_FOUND, "Order not found.");
+                }
+                return;
+            }
+
+            sendError(response, HttpServletResponse.SC_BAD_REQUEST, "Invalid admin resource path.");
+
+        } catch (NumberFormatException e) {
+            sendError(response, HttpServletResponse.SC_BAD_REQUEST, "Invalid order ID.");
+        } catch (Exception e) {
+            getServletContext().log("Unable to update order status.", e);
+            sendError(response, HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Unable to update order status.");
+        }
+    }
+
     private boolean isAdmin(
             HttpServletRequest request) {
 

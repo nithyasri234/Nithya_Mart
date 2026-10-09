@@ -68,7 +68,7 @@ public class UserDAO {
     public User findByEmail(String email) throws SQLException {
 
         String sql = """
-                SELECT id, name, email, password_hash, role, created_at
+                SELECT id, name, email, password_hash, role, phone, created_at
                 FROM users
                 WHERE email = ?
                 """;
@@ -99,7 +99,7 @@ public class UserDAO {
     public User findById(Long id) throws SQLException {
 
         String sql = """
-                SELECT id, name, email, password_hash, role, created_at
+                SELECT id, name, email, password_hash, role, phone, created_at
                 FROM users
                 WHERE id = ?
                 """;
@@ -118,6 +118,69 @@ public class UserDAO {
         }
 
         return null;
+    }
+
+    /**
+     * Updates a user's name and phone number.
+     */
+    public boolean updateProfile(Long id, String name, String phone) throws SQLException {
+        String sql = """
+                UPDATE users
+                SET name = ?, phone = ?
+                WHERE id = ?
+                """;
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setString(1, name);
+            statement.setString(2, phone);
+            statement.setLong(3, id);
+
+            return statement.executeUpdate() > 0;
+        }
+    }
+
+    /**
+     * Updates a user's password hash.
+     */
+    public boolean updatePassword(Long id, String passwordHash) throws SQLException {
+        String sql = """
+                UPDATE users
+                SET password_hash = ?
+                WHERE id = ?
+                """;
+
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.setString(1, passwordHash);
+            statement.setLong(2, id);
+
+            return statement.executeUpdate() > 0;
+        }
+    }
+
+    /**
+     * Returns all registered users ordered by id desc.
+     */
+    public java.util.List<User> findAll() throws SQLException {
+        String sql = """
+                SELECT id, name, email, password_hash, role, phone, created_at
+                FROM users
+                ORDER BY id DESC
+                """;
+
+        java.util.List<User> list = new java.util.ArrayList<>();
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql);
+             ResultSet resultSet = statement.executeQuery()) {
+
+            while (resultSet.next()) {
+                list.add(mapUser(resultSet));
+            }
+        }
+        return list;
     }
 
     /**
@@ -150,7 +213,7 @@ public class UserDAO {
 
         Timestamp createdTimestamp = resultSet.getTimestamp("created_at");
 
-        return new User(
+        User user = new User(
                 resultSet.getLong("id"),
                 resultSet.getString("name"),
                 resultSet.getString("email"),
@@ -160,5 +223,13 @@ public class UserDAO {
                         ? createdTimestamp.toLocalDateTime()
                         : null
         );
+
+        try {
+            user.setPhone(resultSet.getString("phone"));
+        } catch (SQLException ignored) {
+            // column might not be present in old schema/query projections
+        }
+
+        return user;
     }
 }

@@ -211,7 +211,7 @@
 
                     </label>
 
-                    <a href="#" class="nm-forgot-link">
+                    <a href="forgot-password.html" class="nm-forgot-link">
                         Forgot password?
                     </a>
 
@@ -394,6 +394,21 @@
 
 
                     if (response.ok) {
+                        try {
+                            const sessRes = await fetch("api/v1/session");
+                            if (sessRes.ok) {
+                                const sessData = await sessRes.json();
+                                if (sessData.userRole === "SELLER") {
+                                    window.location.href = "addproduct.html";
+                                    return;
+                                } else if (sessData.userRole === "ADMIN") {
+                                    window.location.href = "admin.html";
+                                    return;
+                                }
+                            }
+                        } catch (e) {
+                            // Fallback to home page
+                        }
 
                         window.location.href =
                             "index.html";

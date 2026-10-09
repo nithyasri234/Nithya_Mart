@@ -2,61 +2,128 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>NithyaMart - Add Product</title>
-
-    <link rel="stylesheet"
-          href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NithyaMart - Seller Dashboard & Add Product</title>
+    <link rel="stylesheet" href="css/style.css">
 
     <style>
-
-        .add-product-page {
-            width: 90%;
-            max-width: 800px;
-            margin: 40px auto;
+        .seller-page-wrapper {
+            width: 92%;
+            max-width: 1100px;
+            margin: 30px auto 60px auto;
         }
 
-        .add-product-container {
-            background-color: white;
-            padding: 30px;
+        .seller-header-nav {
+            background-color: #005082;
+            color: white;
+            padding: 15px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        .seller-header-nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .seller-header-nav .brand-logo {
+            font-size: 22px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .seller-nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .seller-nav-links a:hover {
+            text-decoration: underline;
+        }
+
+        .seller-badge-container {
+            background: #f0f7ff;
+            border-left: 4px solid #005082;
+            padding: 15px 20px;
+            border-radius: 6px;
+            margin-bottom: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .seller-auth-warning {
+            background: #fee2e2;
+            border-left: 4px solid #dc2626;
+            color: #991b1b;
+            padding: 18px 24px;
+            border-radius: 6px;
+            margin-bottom: 25px;
+            display: none;
+        }
+
+        .seller-auth-warning a {
+            color: #b91c1c;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        .seller-panels-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        .seller-card {
+            background: white;
             border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
         }
 
-        .add-product-container h2 {
-            text-align: center;
-            margin-bottom: 30px;
+        .seller-card h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
             color: #005082;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 12px;
+        }
+
+        .form-grid-two {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
         }
 
         .product-form-row {
-            margin-bottom: 20px;
+            margin-bottom: 18px;
         }
 
         .product-form-row label {
             display: block;
             margin-bottom: 7px;
-            font-weight: bold;
+            font-weight: 600;
+            color: #334155;
+            font-size: 14px;
         }
 
         .product-form-row input,
         .product-form-row textarea,
         .product-form-row select {
             width: 100%;
-            padding: 11px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 15px;
-        }
-
-        .product-form-row textarea {
-            min-height: 120px;
-            resize: vertical;
+            padding: 11px 14px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 14px;
+            box-sizing: border-box;
+            background-color: #f8fafc;
         }
 
         .product-form-row input:focus,
@@ -64,693 +131,789 @@
         .product-form-row select:focus {
             outline: none;
             border-color: #005082;
+            background-color: white;
+            box-shadow: 0 0 0 3px rgba(0, 80, 130, 0.1);
+        }
+
+        .product-form-row textarea {
+            min-height: 100px;
+            resize: vertical;
         }
 
         .product-button-row {
             display: flex;
-            justify-content: center;
             gap: 15px;
             margin-top: 25px;
         }
 
-        .product-button-row button,
-        .product-button-row a {
-            padding: 11px 20px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            text-decoration: none;
-            font-size: 15px;
-        }
-
-        .add-product-button {
+        .btn-seller-primary {
             background-color: #005082;
             color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 15px;
+            transition: background 0.2s;
         }
 
-        .add-product-button:hover {
-            background-color: #003f66;
+        .btn-seller-primary:hover {
+            background-color: #003a5e;
         }
 
-        .cancel-product-button {
-            background-color: #e5e7eb;
-            color: #222;
+        .btn-seller-secondary {
+            background-color: #e2e8f0;
+            color: #334155;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 15px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .btn-seller-secondary:hover {
+            background-color: #cbd5e1;
         }
 
         .form-message {
-            text-align: center;
-            padding: 12px;
-            margin-top: 15px;
-            border-radius: 5px;
+            padding: 14px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-size: 14px;
             display: none;
         }
 
         .form-success {
             background-color: #dcfce7;
             color: #166534;
+            border: 1px solid #86efac;
         }
 
         .form-error {
             background-color: #fee2e2;
             color: #991b1b;
+            border: 1px solid #fca5a5;
         }
 
-        @media (max-width: 600px) {
+        /* Products Table */
+        .seller-table-wrap {
+            overflow-x: auto;
+            margin-top: 20px;
+        }
 
-            .add-product-page {
-                width: 95%;
+        .seller-products-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        .seller-products-table th,
+        .seller-products-table td {
+            padding: 12px 14px;
+            text-align: left;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .seller-products-table th {
+            background-color: #f8fafc;
+            color: #475569;
+            font-weight: 600;
+        }
+
+        .seller-table-img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 4px;
+            background: #eee;
+        }
+
+        .badge-stock {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .stock-ok {
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .stock-low {
+            background: #fef3c7;
+            color: #b45309;
+        }
+
+        .stock-out {
+            background: #fee2e2;
+            color: #b91c1c;
+        }
+
+        .action-btn-group {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-action-edit {
+            background: #0284c7;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .btn-action-delete {
+            background: #dc2626;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        /* Modal */
+        .seller-modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            overflow-y: auto;
+        }
+
+        .seller-modal-content {
+            background: white;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 650px;
+            position: relative;
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 18px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+        }
+
+        @media (max-width: 768px) {
+            .form-grid-two {
+                grid-template-columns: 1fr;
             }
-
-            .add-product-container {
-                padding: 20px;
+            .seller-header-nav {
+                flex-direction: column;
+                gap: 10px;
             }
-
             .product-button-row {
                 flex-direction: column;
             }
-
         }
-
     </style>
-
 </head>
-
 
 <body>
 
-    <!-- Header -->
+    <!-- Header Navigation -->
+    <header class="seller-header-nav">
+        <a href="index.html" class="brand-logo">NITHYA MART <span style="font-size: 14px; font-weight: normal; opacity: 0.85;">| Seller Portal</span></a>
+        <nav class="seller-nav-links">
+            <a href="index.html">← Marketplace</a>
+            <a href="addproduct.html" style="text-decoration: underline;">Products</a>
+            <span id="sellerIdentityText" style="font-size: 14px; opacity: 0.9;"></span>
+            <a href="logout" id="sellerLogoutLink">Logout</a>
+        </nav>
+    </header>
 
-    <div class="header-bar">
-        NITHYA MART
-    </div>
+    <main class="seller-page-wrapper">
 
+        <!-- Unauthenticated Seller Warning -->
+        <div id="authWarning" class="seller-auth-warning">
+            <strong>Authentication Notice:</strong> You must be logged in as a registered Seller to add and manage catalog products. 
+            <a href="login.html">Click here to Sign In</a> or <a href="signup.html">Register as a Seller</a>.
+        </div>
 
-    <main class="add-product-page">
+        <!-- Authenticated Seller Banner -->
+        <div id="sellerBadge" class="seller-badge-container" style="display: none;">
+            <div>
+                <strong id="sellerDisplayName">Seller Account</strong>
+                <div id="sellerDisplayEmail" style="color: #64748b; font-size: 13px; margin-top: 3px;">seller@example.com</div>
+            </div>
+            <div>
+                <span style="background: #005082; color: white; padding: 4px 10px; border-radius: 12px; font-size: 12px; font-weight: bold;">VERIFIED SELLER</span>
+            </div>
+        </div>
 
-        <div class="add-product-container">
+        <!-- Global Message -->
+        <div id="formMessage" class="form-message"></div>
 
-            <h2>Add New Product</h2>
+        <div class="seller-panels-grid">
 
+            <!-- Panel 1: Add New Product -->
+            <section class="seller-card">
+                <h2>Add New Product</h2>
+                <p style="color: #64748b; font-size: 14px; margin-top: -10px; margin-bottom: 25px;">
+                    Fill out the form below to list a new product in the NithyaMart catalog. It will immediately appear on the home page and in its category.
+                </p>
 
-            <form id="addProductForm">
+                <form id="addProductForm" action="api/v1/products" method="POST">
 
+                    <div class="product-form-row">
+                        <label for="productName">Product Name *</label>
+                        <input type="text" id="productName" name="name" placeholder="e.g. Wireless Noise-Cancelling Headphones" maxlength="150" required>
+                    </div>
 
-                <!-- Product Name -->
+                    <div class="form-grid-two">
+                        <div class="product-form-row">
+                            <label for="category">Category *</label>
+                            <select id="category" name="category" required>
+                                <option value="">Select Category</option>
+                                <option value="Electronics">Electronics</option>
+                                <option value="Fashion">Fashion</option>
+                                <option value="Home">Home</option>
+                                <option value="Books">Books</option>
+                                <option value="Beauty">Beauty</option>
+                                <option value="Grocery">Grocery</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
 
-                <div class="product-form-row">
+                        <div class="product-form-row">
+                            <label for="price">Price (₹) *</label>
+                            <input type="number" id="price" name="price" placeholder="0.00" min="0" step="0.01" required>
+                        </div>
+                    </div>
 
-                    <label for="productName">
-                        Product Name:
-                    </label>
+                    <div class="form-grid-two">
+                        <div class="product-form-row">
+                            <label for="stockQuantity">Stock Quantity *</label>
+                            <input type="number" id="stockQuantity" name="stockQuantity" placeholder="Available units" min="0" step="1" required>
+                        </div>
 
-                    <input
-                        type="text"
-                        id="productName"
-                        name="name"
-                        placeholder="Enter product name"
-                        maxlength="100"
-                        required>
+                        <div class="product-form-row">
+                            <label for="imageUrl">Image URL</label>
+                            <input type="url" id="imageUrl" name="imageUrl" placeholder="https://example.com/image.jpg">
+                        </div>
+                    </div>
 
-                </div>
+                    <div class="product-form-row">
+                        <label for="description">Product Description *</label>
+                        <textarea id="description" name="description" placeholder="Provide accurate features, specifications, and details for buyers..." maxlength="1000" required></textarea>
+                    </div>
 
+                    <div class="product-button-row">
+                        <button type="submit" id="addProductButton" class="btn-seller-primary">
+                            Add Product
+                        </button>
+                        <button type="reset" class="btn-seller-secondary">
+                            Reset Form
+                        </button>
+                        <a href="index.html" class="btn-seller-secondary">
+                            View Marketplace
+                        </a>
+                    </div>
+                </form>
+            </section>
 
-                <!-- Description -->
-
-                <div class="product-form-row">
-
-                    <label for="description">
-                        Description:
-                    </label>
-
-                    <textarea
-                        id="description"
-                        name="description"
-                        placeholder="Enter product description"
-                        required></textarea>
-
-                </div>
-
-
-                <!-- Price -->
-
-                <div class="product-form-row">
-
-                    <label for="price">
-                        Price (₹):
-                    </label>
-
-                    <input
-                        type="number"
-                        id="price"
-                        name="price"
-                        placeholder="Enter product price"
-                        min="0"
-                        step="0.01"
-                        required>
-
-                </div>
-
-
-                <!-- Stock -->
-
-                <div class="product-form-row">
-
-                    <label for="stockQuantity">
-                        Stock Quantity:
-                    </label>
-
-                    <input
-                        type="number"
-                        id="stockQuantity"
-                        name="stockQuantity"
-                        placeholder="Enter available stock"
-                        min="0"
-                        step="1"
-                        required>
-
-                </div>
-
-
-                <!-- Category -->
-
-                <div class="product-form-row">
-
-                    <label for="category">
-                        Category:
-                    </label>
-
-                    <select
-                        id="category"
-                        name="category"
-                        required>
-
-                        <option value="">
-                            Select Category
-                        </option>
-
-                        <option value="Electronics">
-                            Electronics
-                        </option>
-
-                        <option value="Fashion">
-                            Fashion
-                        </option>
-
-                        <option value="Home">
-                            Home
-                        </option>
-
-                        <option value="Books">
-                            Books
-                        </option>
-
-                        <option value="Beauty">
-                            Beauty
-                        </option>
-
-                        <option value="Grocery">
-                            Grocery
-                        </option>
-
-                        <option value="Other">
-                            Other
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-                <!-- Image URL -->
-
-                <div class="product-form-row">
-
-                    <label for="imageUrl">
-                        Image URL:
-                    </label>
-
-                    <input
-                        type="url"
-                        id="imageUrl"
-                        name="imageUrl"
-                        placeholder="https://example.com/product.jpg">
-
-                </div>
-
-
-                <!-- Message -->
-
-                <div
-                    id="formMessage"
-                    class="form-message">
-                </div>
-
-
-                <!-- Buttons -->
-
-                <div class="product-button-row">
-
-                    <button
-                        type="submit"
-                        id="addProductButton"
-                        class="add-product-button">
-
-                        Add Product
-
+            <!-- Panel 2: Seller's Listed Products -->
+            <section class="seller-card">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <h2 style="margin: 0; border: none; padding: 0;">My Listed Products</h2>
+                    <button type="button" id="refreshProductsBtn" class="btn-seller-secondary" style="padding: 6px 14px; font-size: 13px;">
+                        ↻ Refresh List
                     </button>
+                </div>
+                <p style="color: #64748b; font-size: 14px; margin-top: 8px; margin-bottom: 20px;">
+                    Manage price, stock, and information for products listed by your account.
+                </p>
 
-
-                    <button
-                        type="reset"
-                        class="cancel-product-button">
-
-                        Reset
-
-                    </button>
-
-
-                    <a
-                        href="index.html"
-                        class="cancel-product-button">
-
-                        Back to Home
-
-                    </a>
-
+                <div id="productsLoading" style="text-align: center; padding: 30px; color: #64748b;">
+                    Loading your catalog...
                 </div>
 
-            </form>
+                <div id="productsEmpty" style="display: none; text-align: center; padding: 40px; color: #64748b; background: #f8fafc; border-radius: 8px;">
+                    <p style="font-size: 16px; margin-bottom: 10px;">📦 You haven't added any products yet.</p>
+                    <p style="font-size: 14px;">Use the form above to add your first product to NithyaMart!</p>
+                </div>
+
+                <div class="seller-table-wrap">
+                    <table class="seller-products-table" id="sellerProductsTable" style="display: none;">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Name</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="sellerProductsTbody">
+                            <!-- Populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
 
         </div>
 
     </main>
 
+    <!-- Edit Product Modal -->
+    <div id="editModal" class="seller-modal">
+        <div class="seller-modal-content">
+            <button type="button" class="modal-close-btn" id="closeEditModal">&times;</button>
+            <h2 style="margin-top: 0; color: #005082;">Edit Product</h2>
+            <div id="editMessage" class="form-message"></div>
 
+            <form id="editProductForm">
+                <input type="hidden" id="editProductId">
+
+                <div class="product-form-row">
+                    <label for="editProductName">Product Name *</label>
+                    <input type="text" id="editProductName" required maxlength="150">
+                </div>
+
+                <div class="form-grid-two">
+                    <div class="product-form-row">
+                        <label for="editCategory">Category *</label>
+                        <select id="editCategory" required>
+                            <option value="Electronics">Electronics</option>
+                            <option value="Fashion">Fashion</option>
+                            <option value="Home">Home</option>
+                            <option value="Books">Books</option>
+                            <option value="Beauty">Beauty</option>
+                            <option value="Grocery">Grocery</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="product-form-row">
+                        <label for="editPrice">Price (₹) *</label>
+                        <input type="number" id="editPrice" min="0" step="0.01" required>
+                    </div>
+                </div>
+
+                <div class="form-grid-two">
+                    <div class="product-form-row">
+                        <label for="editStock">Stock Quantity *</label>
+                        <input type="number" id="editStock" min="0" step="1" required>
+                    </div>
+
+                    <div class="product-form-row">
+                        <label for="editImageUrl">Image URL</label>
+                        <input type="url" id="editImageUrl">
+                    </div>
+                </div>
+
+                <div class="product-form-row">
+                    <label for="editDescription">Description *</label>
+                    <textarea id="editDescription" required maxlength="1000"></textarea>
+                </div>
+
+                <div class="product-button-row">
+                    <button type="submit" id="saveEditBtn" class="btn-seller-primary">Save Changes</button>
+                    <button type="button" id="cancelEditBtn" class="btn-seller-secondary">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Seller JavaScript Logic -->
     <script>
-
-        document.addEventListener(
-            "DOMContentLoaded",
-            () => {
-
-                const form =
-                    document.getElementById(
-                        "addProductForm"
-                    );
-
-                const message =
-                    document.getElementById(
-                        "formMessage"
-                    );
-
-                const submitButton =
-                    document.getElementById(
-                        "addProductButton"
-                    );
-
-
-                form.addEventListener(
-                    "submit",
-                    async (event) => {
-
-                        event.preventDefault();
-
-
-                        hideMessage();
-
-
-                        const name =
-                            document
-                                .getElementById(
-                                    "productName"
-                                )
-                                .value
-                                .trim();
-
-
-                        const description =
-                            document
-                                .getElementById(
-                                    "description"
-                                )
-                                .value
-                                .trim();
-
-
-                        const price =
-                            Number(
-                                document
-                                    .getElementById(
-                                        "price"
-                                    )
-                                    .value
-                            );
-
-
-                        const stockQuantity =
-                            Number(
-                                document
-                                    .getElementById(
-                                        "stockQuantity"
-                                    )
-                                    .value
-                            );
-
-
-                        const category =
-                            document
-                                .getElementById(
-                                    "category"
-                                )
-                                .value;
-
-
-                        const imageUrl =
-                            document
-                                .getElementById(
-                                    "imageUrl"
-                                )
-                                .value
-                                .trim();
-
-
-                        /*
-                         * Client-side validation
-                         */
-
-                        if (name === "") {
-
-                            showError(
-                                "Product name is required."
-                            );
-
-                            return;
-                        }
-
-
-                        if (description === "") {
-
-                            showError(
-                                "Product description is required."
-                            );
-
-                            return;
-                        }
-
-
-                        if (
-                            Number.isNaN(price)
-                            || price < 0
-                        ) {
-
-                            showError(
-                                "Please enter a valid price."
-                            );
-
-                            return;
-                        }
-
-
-                        if (
-                            !Number.isInteger(
-                                stockQuantity
-                            )
-                            || stockQuantity < 0
-                        ) {
-
-                            showError(
-                                "Stock quantity must be a whole number."
-                            );
-
-                            return;
-                        }
-
-
-                        if (category === "") {
-
-                            showError(
-                                "Please select a category."
-                            );
-
-                            return;
-                        }
-
-
-                        /*
-                         * Prepare product data
-                         */
-
-                        const product = {
-
-                            name: name,
-
-                            description: description,
-
-                            price: price,
-
-                            stockQuantity:
-                                stockQuantity,
-
-                            category: category,
-
-                            imageUrl:
-                                imageUrl
-
-                        };
-
-
-                        /*
-                         * Disable button
-                         */
-
-                        submitButton.disabled =
-                            true;
-
-                        submitButton.textContent =
-                            "Adding Product...";
-
-
-                        try {
-
-                            /*
-                             * Send product to backend
-                             */
-
-                            const response =
-                                await fetch(
-                                    "api/v1/products",
-                                    {
-                                        method: "POST",
-
-                                        headers: {
-                                            "Content-Type":
-                                                "application/json"
-                                        },
-
-                                        body:
-                                            JSON.stringify(
-                                                product
-                                            )
-                                    }
-                                );
-
-
-                            /*
-                             * User is not logged in
-                             */
-
-                            if (
-                                response.status === 401
-                            ) {
-
-                                showError(
-                                    "Please login as a seller first."
-                                );
-
-                                return;
-                            }
-
-
-                            /*
-                             * Seller role required
-                             */
-
-                            if (
-                                response.status === 403
-                            ) {
-
-                                showError(
-                                    "Only sellers can add products."
-                                );
-
-                                return;
-                            }
-
-
-                            /*
-                             * Validation error
-                             */
-
-                            if (
-                                response.status === 400
-                            ) {
-
-                                const data =
-                                    await getResponseData(
-                                        response
-                                    );
-
-                                showError(
-                                    data.message ||
-                                    "Please check the product details."
-                                );
-
-                                return;
-                            }
-
-
-                            /*
-                             * Product created
-                             */
-
-                            if (response.ok) {
-
-                                showSuccess(
-                                    "Product added successfully!"
-                                );
-
-
-                                form.reset();
-
-
-                                /*
-                                 * Go back to home after
-                                 * a short delay
-                                 */
-
-                                setTimeout(
-                                    () => {
-
-                                        window.location.href =
-                                            "index.html";
-
-                                    },
-                                    1200
-                                );
-
-
-                                return;
-                            }
-
-
-                            /*
-                             * Other server errors
-                             */
-
-                            showError(
-                                "Unable to add product. Please try again."
-                            );
-
-                        } catch (error) {
-
-                            console.error(
-                                "Add product error:",
-                                error
-                            );
-
-                            showError(
-                                "Unable to connect to the server."
-                            );
-
-                        } finally {
-
-                            submitButton.disabled =
-                                false;
-
-                            submitButton.textContent =
-                                "Add Product";
-
-                        }
-
+        document.addEventListener("DOMContentLoaded", () => {
+            const form = document.getElementById("addProductForm");
+            const message = document.getElementById("formMessage");
+            const submitButton = document.getElementById("addProductButton");
+            const authWarning = document.getElementById("authWarning");
+            const sellerBadge = document.getElementById("sellerBadge");
+            const sellerDisplayName = document.getElementById("sellerDisplayName");
+            const sellerDisplayEmail = document.getElementById("sellerDisplayEmail");
+            const sellerIdentityText = document.getElementById("sellerIdentityText");
+
+            const productsLoading = document.getElementById("productsLoading");
+            const productsEmpty = document.getElementById("productsEmpty");
+            const sellerProductsTable = document.getElementById("sellerProductsTable");
+            const sellerProductsTbody = document.getElementById("sellerProductsTbody");
+            const refreshProductsBtn = document.getElementById("refreshProductsBtn");
+
+            // Modal elements
+            const editModal = document.getElementById("editModal");
+            const closeEditModal = document.getElementById("closeEditModal");
+            const cancelEditBtn = document.getElementById("cancelEditBtn");
+            const editProductForm = document.getElementById("editProductForm");
+            const editMessage = document.getElementById("editMessage");
+
+            let currentSellerId = null;
+            let currentSellerProducts = [];
+
+            // 1. Check Session on load
+            checkSellerSession();
+
+            async function checkSellerSession() {
+                try {
+                    const response = await fetch("api/v1/session");
+                    if (!response.ok) {
+                        showUnauthenticatedUI();
+                        return;
                     }
-                );
-
-
-                /*
-                 * Show error
-                 */
-
-                function showError(text) {
-
-                    message.textContent =
-                        text;
-
-                    message.className =
-                        "form-message form-error";
-
-                    message.style.display =
-                        "block";
-
-                }
-
-
-                /*
-                 * Show success
-                 */
-
-                function showSuccess(text) {
-
-                    message.textContent =
-                        text;
-
-                    message.className =
-                        "form-message form-success";
-
-                    message.style.display =
-                        "block";
-
-                }
-
-
-                /*
-                 * Hide message
-                 */
-
-                function hideMessage() {
-
-                    message.textContent =
-                        "";
-
-                    message.style.display =
-                        "none";
-
-                }
-
-
-                /*
-                 * Read backend response
-                 */
-
-                async function getResponseData(
-                    response
-                ) {
-
-                    try {
-
-                        return await response.json();
-
-                    } catch {
-
-                        return {};
-
+                    const data = await response.json();
+                    if (!data.loggedIn || data.userRole !== "SELLER") {
+                        showUnauthenticatedUI();
+                        return;
                     }
 
-                }
+                    currentSellerId = data.userId;
+                    sellerDisplayName.textContent = data.userName || "Seller";
+                    sellerDisplayEmail.textContent = data.userEmail || "";
+                    sellerIdentityText.textContent = `👤 ${data.userName || "Seller"}`;
+                    sellerBadge.style.display = "flex";
+                    authWarning.style.display = "none";
 
+                    // Load seller's own products
+                    loadSellerProducts();
+                } catch (e) {
+                    console.error("Session check failed:", e);
+                    showUnauthenticatedUI();
+                }
             }
-        );
 
+            function showUnauthenticatedUI() {
+                authWarning.style.display = "block";
+                sellerBadge.style.display = "none";
+                productsLoading.style.display = "none";
+                productsEmpty.style.display = "block";
+                productsEmpty.innerHTML = `
+                    <p style="font-size: 16px; color: #dc2626;">⚠️ Seller login is required to add or manage products.</p>
+                    <a href="login.html" class="btn-seller-primary" style="display: inline-block; margin-top: 10px; text-decoration: none;">Login Now</a>
+                `;
+            }
+
+            // 2. Load Seller's Products
+            async function loadSellerProducts() {
+                productsLoading.style.display = "block";
+                sellerProductsTable.style.display = "none";
+                productsEmpty.style.display = "none";
+
+                try {
+                    const res = await fetch("api/v1/products/seller");
+                    if (!res.ok) {
+                        throw new Error("Unable to load products.");
+                    }
+                    const products = await res.json();
+                    currentSellerProducts = Array.isArray(products) ? products : [];
+                    renderProductsTable(currentSellerProducts);
+                } catch (error) {
+                    console.error("Failed to load seller products:", error);
+                    productsLoading.style.display = "none";
+                    productsEmpty.style.display = "block";
+                    productsEmpty.innerHTML = `<p style="color: #dc2626;">Unable to load your products. Please try refreshing.</p>`;
+                }
+            }
+
+            function renderProductsTable(products) {
+                productsLoading.style.display = "none";
+                if (!products || products.length === 0) {
+                    sellerProductsTable.style.display = "none";
+                    productsEmpty.style.display = "block";
+                    return;
+                }
+
+                productsEmpty.style.display = "none";
+                sellerProductsTable.style.display = "table";
+                sellerProductsTbody.innerHTML = "";
+
+                products.forEach(p => {
+                    const stock = Number(p.stockQuantity ?? 0);
+                    let stockClass = "stock-ok";
+                    let stockLabel = `${stock} in stock`;
+                    if (stock === 0) {
+                        stockClass = "stock-out";
+                        stockLabel = "Out of stock";
+                    } else if (stock <= 5) {
+                        stockClass = "stock-low";
+                        stockLabel = `${stock} left (Low)`;
+                    }
+
+                    const price = Number(p.price ?? 0).toFixed(2);
+                    const imgUrl = p.imageUrl || "https://placehold.co/100x100?text=Product";
+
+                    const tr = document.createElement("tr");
+                    tr.innerHTML = `
+                        <td>
+                            <img src="${escapeHtml(imgUrl)}" class="seller-table-img" alt="${escapeHtml(p.name)}" onerror="this.src='https://placehold.co/100x100?text=Product'">
+                        </td>
+                        <td>
+                            <strong>${escapeHtml(p.name)}</strong>
+                            <div style="color: #64748b; font-size: 12px; margin-top: 3px; max-width: 250px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                ${escapeHtml(p.description || "")}
+                            </div>
+                        </td>
+                        <td><span style="background: #f1f5f9; padding: 3px 8px; border-radius: 4px;">${escapeHtml(p.category)}</span></td>
+                        <td><strong>₹${price}</strong></td>
+                        <td><span class="badge-stock ${stockClass}">${stockLabel}</span></td>
+                        <td>
+                            <div class="action-btn-group">
+                                <button type="button" class="btn-action-edit" data-id="${p.id}">Edit</button>
+                                <button type="button" class="btn-action-delete" data-id="${p.id}">Delete</button>
+                            </div>
+                        </td>
+                    `;
+                    sellerProductsTbody.appendChild(tr);
+                });
+
+                // Attach Action Listeners
+                sellerProductsTbody.querySelectorAll(".btn-action-edit").forEach(b => {
+                    b.addEventListener("click", () => openEditModal(b.dataset.id));
+                });
+
+                sellerProductsTbody.querySelectorAll(".btn-action-delete").forEach(b => {
+                    b.addEventListener("click", () => deleteProduct(b.dataset.id));
+                });
+            }
+
+            refreshProductsBtn.addEventListener("click", loadSellerProducts);
+
+            // 3. Add Product Form Submission
+            form.addEventListener("submit", async (event) => {
+                event.preventDefault();
+                hideMessage();
+
+                const name = document.getElementById("productName").value.trim();
+                const description = document.getElementById("description").value.trim();
+                const price = Number(document.getElementById("price").value);
+                const stockQuantity = Number(document.getElementById("stockQuantity").value);
+                const category = document.getElementById("category").value;
+                const imageUrl = document.getElementById("imageUrl").value.trim();
+
+                if (!name) {
+                    showError("Product name is required.");
+                    return;
+                }
+                if (!description) {
+                    showError("Product description is required.");
+                    return;
+                }
+                if (Number.isNaN(price) || price < 0) {
+                    showError("Please enter a valid price (₹ 0 or greater).");
+                    return;
+                }
+                if (!Number.isInteger(stockQuantity) || stockQuantity < 0) {
+                    showError("Stock quantity must be a whole number (0 or greater).");
+                    return;
+                }
+                if (!category) {
+                    showError("Please select a category.");
+                    return;
+                }
+
+                const productPayload = {
+                    name,
+                    description,
+                    price,
+                    stockQuantity,
+                    category,
+                    imageUrl: imageUrl || `https://placehold.co/500x400?text=${encodeURIComponent(name)}`
+                };
+
+                submitButton.disabled = true;
+                submitButton.textContent = "Adding Product...";
+
+                try {
+                    const response = await fetch("api/v1/products", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Accept": "application/json"
+                        },
+                        body: JSON.stringify(productPayload)
+                    });
+
+                    if (response.status === 401) {
+                        showError("Please login as a seller first.");
+                        return;
+                    }
+                    if (response.status === 403) {
+                        showError("Only sellers can add products. Your account does not have seller permissions.");
+                        return;
+                    }
+
+                    if (response.ok) {
+                        showSuccess("✓ Product created and added to NithyaMart catalog successfully!");
+                        form.reset();
+                        // Instantly refresh seller's product listing
+                        loadSellerProducts();
+                    } else {
+                        const data = await getResponseData(response);
+                        showError(data.message || "Failed to create product. Please verify inputs.");
+                    }
+                } catch (error) {
+                    console.error("Add product error:", error);
+                    showError("Unable to connect to the server. Please check your connection.");
+                } finally {
+                    submitButton.disabled = false;
+                    submitButton.textContent = "Add Product";
+                }
+            });
+
+            // 4. Edit Product Modal Logic
+            function openEditModal(productId) {
+                const prod = currentSellerProducts.find(p => String(p.id) === String(productId));
+                if (!prod) return;
+
+                document.getElementById("editProductId").value = prod.id;
+                document.getElementById("editProductName").value = prod.name;
+                document.getElementById("editCategory").value = prod.category;
+                document.getElementById("editPrice").value = prod.price;
+                document.getElementById("editStock").value = prod.stockQuantity;
+                document.getElementById("editImageUrl").value = prod.imageUrl || "";
+                document.getElementById("editDescription").value = prod.description || "";
+
+                editMessage.style.display = "none";
+                editModal.style.display = "block";
+            }
+
+            function closeEdit() {
+                editModal.style.display = "none";
+            }
+
+            closeEditModal.addEventListener("click", closeEdit);
+            cancelEditBtn.addEventListener("click", closeEdit);
+            window.addEventListener("click", (e) => {
+                if (e.target === editModal) closeEdit();
+            });
+
+            editProductForm.addEventListener("submit", async (e) => {
+                e.preventDefault();
+                const id = document.getElementById("editProductId").value;
+                const name = document.getElementById("editProductName").value.trim();
+                const category = document.getElementById("editCategory").value;
+                const price = Number(document.getElementById("editPrice").value);
+                const stockQuantity = Number(document.getElementById("editStock").value);
+                const imageUrl = document.getElementById("editImageUrl").value.trim();
+                const description = document.getElementById("editDescription").value.trim();
+
+                const saveBtn = document.getElementById("saveEditBtn");
+                saveBtn.disabled = true;
+                saveBtn.textContent = "Saving...";
+
+                try {
+                    const res = await fetch(`api/v1/products/${id}`, {
+                        method: "PUT",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            id: Number(id),
+                            name,
+                            category,
+                            price,
+                            stockQuantity,
+                            imageUrl,
+                            description
+                        })
+                    });
+
+                    if (res.ok) {
+                        closeEdit();
+                        showSuccess("✓ Product updated successfully!");
+                        loadSellerProducts();
+                    } else {
+                        const data = await getResponseData(res);
+                        editMessage.className = "form-message form-error";
+                        editMessage.textContent = data.message || "Failed to update product.";
+                        editMessage.style.display = "block";
+                    }
+                } catch (err) {
+                    console.error("Update error:", err);
+                    editMessage.className = "form-message form-error";
+                    editMessage.textContent = "Network error updating product.";
+                    editMessage.style.display = "block";
+                } finally {
+                    saveBtn.disabled = false;
+                    saveBtn.textContent = "Save Changes";
+                }
+            });
+
+            // 5. Delete Product
+            async function deleteProduct(productId) {
+                const prod = currentSellerProducts.find(p => String(p.id) === String(productId));
+                const name = prod ? prod.name : "this product";
+
+                if (!confirm(`Are you sure you want to delete "${name}"? This cannot be undone.`)) {
+                    return;
+                }
+
+                try {
+                    const res = await fetch(`api/v1/products/${productId}`, {
+                        method: "DELETE"
+                    });
+
+                    if (res.ok || res.status === 204) {
+                        showSuccess(`✓ Product "${name}" deleted successfully.`);
+                        loadSellerProducts();
+                    } else {
+                        const data = await getResponseData(res);
+                        showError(data.message || "Unable to delete product.");
+                    }
+                } catch (e) {
+                    console.error("Delete error:", e);
+                    showError("Error connecting to server to delete product.");
+                }
+            }
+
+            // Helpers
+            function showError(text) {
+                message.textContent = text;
+                message.className = "form-message form-error";
+                message.style.display = "block";
+                message.scrollIntoView({ behavior: "smooth", block: "center" });
+            }
+
+            function showSuccess(text) {
+                message.textContent = text;
+                message.className = "form-message form-success";
+                message.style.display = "block";
+                message.scrollIntoView({ behavior: "smooth", block: "center" });
+            }
+
+            function hideMessage() {
+                message.textContent = "";
+                message.style.display = "none";
+            }
+
+            async function getResponseData(res) {
+                try {
+                    return await res.json();
+                } catch {
+                    return {};
+                }
+            }
+
+            function escapeHtml(str) {
+                if (!str) return "";
+                return String(str)
+                    .replace(/&/g, "&amp;")
+                    .replace(/</g, "&lt;")
+                    .replace(/>/g, "&gt;")
+                    .replace(/"/g, "&quot;")
+                    .replace(/'/g, "&#039;");
+            }
+        });
     </script>
-
 </body>
-
 </html>

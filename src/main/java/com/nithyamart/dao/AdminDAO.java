@@ -24,7 +24,7 @@ public class AdminDAO {
     public List<User> findAllUsers() throws SQLException {
 
         String sql = """
-                SELECT id, name, email, password_hash, role, created_at
+                SELECT id, name, email, password_hash, role, phone, created_at
                 FROM users
                 ORDER BY created_at DESC
                 """;
@@ -41,7 +41,7 @@ public class AdminDAO {
                 Timestamp createdTimestamp =
                         resultSet.getTimestamp("created_at");
 
-                users.add(new User(
+                User user = new User(
                         resultSet.getLong("id"),
                         resultSet.getString("name"),
                         resultSet.getString("email"),
@@ -50,7 +50,12 @@ public class AdminDAO {
                         createdTimestamp != null
                                 ? createdTimestamp.toLocalDateTime()
                                 : null
-                ));
+                );
+                try {
+                    user.setPhone(resultSet.getString("phone"));
+                } catch (SQLException ignored) {
+                }
+                users.add(user);
             }
         }
 
@@ -65,6 +70,12 @@ public class AdminDAO {
                     o.buyer_id,
                     u.name AS buyer_name,
                     o.total_amount,
+                    o.payment_method,
+                    o.payment_status,
+                    o.order_status,
+                    o.delivery_address,
+                    o.discount_amount,
+                    o.coupon_code,
                     o.created_at
                 FROM orders o
                 JOIN users u
@@ -84,7 +95,7 @@ public class AdminDAO {
                 Timestamp createdTimestamp =
                         resultSet.getTimestamp("created_at");
 
-                orders.add(new OrderSummary(
+                OrderSummary order = new OrderSummary(
                         resultSet.getLong("id"),
                         resultSet.getLong("buyer_id"),
                         resultSet.getString("buyer_name"),
@@ -92,11 +103,31 @@ public class AdminDAO {
                         createdTimestamp != null
                                 ? createdTimestamp.toLocalDateTime()
                                 : null
-                ));
+                );
+                try {
+                    order.setPaymentMethod(resultSet.getString("payment_method"));
+                    order.setPaymentStatus(resultSet.getString("payment_status"));
+                    order.setOrderStatus(resultSet.getString("order_status"));
+                    order.setDeliveryAddress(resultSet.getString("delivery_address"));
+                    order.setDiscountAmount(resultSet.getBigDecimal("discount_amount"));
+                    order.setCouponCode(resultSet.getString("coupon_code"));
+                } catch (SQLException ignored) {
+                }
+                orders.add(order);
             }
         }
 
         return orders;
+    }
+
+    public boolean updateOrderStatus(Long orderId, String newStatus) throws SQLException {
+        String sql = "UPDATE orders SET order_status = ? WHERE id = ?";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, newStatus);
+            statement.setLong(2, orderId);
+            return statement.executeUpdate() > 0;
+        }
     }
 
     public List<Product> findAllProducts() throws SQLException {

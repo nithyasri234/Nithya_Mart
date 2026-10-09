@@ -21,21 +21,49 @@ public class CartDAO {
     public void addItem(Long buyerId, Long productId, int quantity)
             throws SQLException {
 
-        String sql = """
-                MERGE INTO cart_items
-                    (buyer_id, product_id, quantity)
-                KEY (buyer_id, product_id)
-                VALUES (?, ?, ?)
+        String checkSql = """
+                SELECT quantity
+                FROM cart_items
+                WHERE buyer_id = ? AND product_id = ?
                 """;
 
         try (Connection connection = dataSource.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
+             PreparedStatement checkStmt = connection.prepareStatement(checkSql)) {
 
-            statement.setLong(1, buyerId);
-            statement.setLong(2, productId);
-            statement.setInt(3, quantity);
+            checkStmt.setLong(1, buyerId);
+            checkStmt.setLong(2, productId);
 
-            statement.executeUpdate();
+            try (ResultSet rs = checkStmt.executeQuery()) {
+                if (rs.next()) {
+                    int existingQty = rs.getInt("quantity");
+                    int newQty = existingQty + quantity;
+
+                    String updateSql = """
+                            UPDATE cart_items
+                            SET quantity = ?
+                            WHERE buyer_id = ? AND product_id = ?
+                            """;
+                    try (PreparedStatement updateStmt = connection.prepareStatement(updateSql)) {
+                        updateStmt.setInt(1, newQty);
+                        updateStmt.setLong(2, buyerId);
+                        updateStmt.setLong(3, productId);
+                        updateStmt.executeUpdate();
+                    }
+                    return;
+                }
+            }
+
+            String insertSql = """
+                    INSERT INTO cart_items
+                        (buyer_id, product_id, quantity)
+                    VALUES (?, ?, ?)
+                    """;
+            try (PreparedStatement insertStmt = connection.prepareStatement(insertSql)) {
+                insertStmt.setLong(1, buyerId);
+                insertStmt.setLong(2, productId);
+                insertStmt.setInt(3, quantity);
+                insertStmt.executeUpdate();
+            }
         }
     }
 

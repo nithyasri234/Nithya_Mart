@@ -9,6 +9,7 @@ public class User {
     private String email;
     private String passwordHash;
     private String role;
+    private String phone;
     private LocalDateTime createdAt;
 
     public User() {
@@ -71,6 +72,14 @@ public class User {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public LocalDateTime getCreatedAt() {

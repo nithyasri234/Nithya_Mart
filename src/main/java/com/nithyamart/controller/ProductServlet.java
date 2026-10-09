@@ -76,6 +76,28 @@ public class ProductServlet extends HttpServlet {
             String path =
                     request.getPathInfo();
 
+            if ("/seller".equalsIgnoreCase(path) || "true".equalsIgnoreCase(request.getParameter("sellerOnly"))) {
+                HttpSession session = request.getSession(false);
+                if (!isSeller(session)) {
+                    sendError(response, HttpServletResponse.SC_FORBIDDEN, "Seller login is required.");
+                    return;
+                }
+                Long sellerId = (Long) session.getAttribute("userId");
+                List<Product> products = productService.findBySellerId(sellerId);
+                writeJson(response, products);
+                return;
+            }
+
+            String sellerIdParam = request.getParameter("sellerId");
+            if (sellerIdParam != null && !sellerIdParam.isBlank()) {
+                Long sellerId = parseLong(sellerIdParam);
+                if (sellerId != null) {
+                    List<Product> products = productService.findBySellerId(sellerId);
+                    writeJson(response, products);
+                    return;
+                }
+            }
+
             // GET /api/v1/products
             // GET /api/v1/products?keyword=phone
             // GET /api/v1/products?category=Electronics
@@ -196,10 +218,16 @@ public class ProductServlet extends HttpServlet {
             }
 
             Product product =
-                    gson.fromJson(
-                            request.getReader(),
-                            Product.class
-                    );
+                    extractProductFromRequest(request);
+
+            if (product == null) {
+                sendError(
+                        response,
+                        HttpServletResponse.SC_BAD_REQUEST,
+                        "Product details are required."
+                );
+                return;
+            }
 
             Long sellerId =
                     (Long) session.getAttribute("userId");
@@ -288,10 +316,16 @@ public class ProductServlet extends HttpServlet {
             }
 
             Product product =
-                    gson.fromJson(
-                            request.getReader(),
-                            Product.class
-                    );
+                    extractProductFromRequest(request);
+
+            if (product == null) {
+                sendError(
+                        response,
+                        HttpServletResponse.SC_BAD_REQUEST,
+                        "Product details are required."
+                );
+                return;
+            }
 
             Long sellerId =
                     (Long) session.getAttribute("userId");
@@ -471,6 +505,73 @@ public class ProductServlet extends HttpServlet {
         try {
             return Long.parseLong(idText.trim());
 
+        } catch (NumberFormatException e) {
+            return null;
+        }
+    }
+
+    private Product extractProductFromRequest(HttpServletRequest request) {
+        String contentType = request.getContentType();
+        if (contentType != null && contentType.toLowerCase().contains("application/json")) {
+            try {
+                return gson.fromJson(request.getReader(), Product.class);
+            } catch (Exception e) {
+                return null;
+            }
+        }
+
+        String name = request.getParameter("name");
+        String description = request.getParameter("description");
+        BigDecimal price = parseBigDecimal(request.getParameter("price"));
+        Integer stock = parseInteger(request.getParameter("stockQuantity"));
+        if (stock == null) {
+            stock = parseInteger(request.getParameter("stock"));
+        }
+        String category = request.getParameter("category");
+        String imageUrl = request.getParameter("imageUrl");
+
+        if (name != null || price != null || category != null) {
+            Product product = new Product();
+            product.setName(name);
+            product.setDescription(description);
+            product.setPrice(price);
+            product.setStockQuantity(stock != null ? stock : 0);
+            product.setCategory(category);
+            product.setImageUrl(imageUrl);
+            return product;
+        }
+
+        try {
+            String body = request.getReader().lines().collect(java.util.stream.Collectors.joining("\n"));
+            if (body != null && !body.isBlank()) {
+                body = body.trim();
+                if (body.startsWith("{")) {
+                    return gson.fromJson(body, Product.class);
+                }
+            }
+        } catch (Exception ignored) {
+        }
+
+        return null;
+    }
+
+    private Long parseLong(String value) {
+        if (value == null || value.isBlank()) {
+            return null;
+        }
+        try {
+            return Long.parseLong(value.trim());
+        } catch (NumberFormatException e) {
+            return null;
+        }
+    }
+
+    private Integer parseInteger(String value) {
+        if (value == null || value.isBlank()) {
+            return null;
+        }
+        try {
+            return Integer.parseInt(value.trim());
         } catch (NumberFormatException e) {
             return null;
         }
