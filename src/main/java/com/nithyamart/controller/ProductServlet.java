@@ -126,18 +126,22 @@ public class ProductServlet extends HttpServlet {
             );
 
         } catch (Exception e) {
+    getServletContext().log(
+        "GET /api/v1/products failed",
+        e
+    );
 
-            getServletContext().log(
-                    "Unable to load products.",
-                    e
-            );
+    response.setStatus(
+        HttpServletResponse.SC_INTERNAL_SERVER_ERROR
+    );
 
-            sendError(
-                    response,
-                    HttpServletResponse.SC_INTERNAL_SERVER_ERROR,
-                    "Unable to load products."
-            );
-        }
+    response.setContentType("application/json");
+    response.setCharacterEncoding("UTF-8");
+
+    response.getWriter().write(
+        "{\"message\":\"Unable to load products.\"}"
+    );
+}
     }
 
     // =========================

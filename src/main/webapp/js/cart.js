@@ -298,145 +298,75 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
     }
+async function updateQuantity(productId, quantity) {
+    if (!Number.isInteger(quantity) || quantity < 1) {
+        alert("Quantity must be at least 1.");
+        return;
+    }
+    try {
+        const params = new URLSearchParams({
+            productId: String(productId),
+            quantity: String(quantity)
+        });
 
+        const response = await fetch("api/v1/cart", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+                "Accept": "application/json"
+            },
+            body: params.toString()
+        });
 
-    async function updateQuantity(
-        productId,
-        quantity
-    ) {
-
-        if (
-            !Number.isInteger(quantity)
-            || quantity < 1
-        ) {
-
-            alert(
-                "Quantity must be at least 1."
-            );
-
+        if (response.status === 401) {
+            window.location.href = "login.html";
             return;
         }
 
-
-        try {
-
-            const response =
-                await fetch(
-                    "api/v1/cart/" +
-                    encodeURIComponent(productId),
-                    {
-                        method: "PUT",
-
-                        headers: {
-                            "Content-Type":
-                                "application/json"
-                        },
-
-                        body: JSON.stringify({
-                            quantity: quantity
-                        })
-                    }
-                );
-
-
-            if (response.status === 401) {
-
-                window.location.href =
-                    "login.html";
-
-                return;
-            }
-
-
-            if (!response.ok) {
-
-                throw new Error(
-                    "Unable to update quantity."
-                );
-
-            }
-
-
-            await loadCart();
-
-
-        } catch (error) {
-
-            console.error(
-                "Update cart error:",
-                error
-            );
-
-            showError(
-                error.message
-            );
-
+        if (!response.ok) {
+            throw new Error("Unable to update quantity.");
         }
 
+        await loadCart();
+    } catch (error) {
+        console.error("Update cart error:", error);
+        showError(error.message || "Unable to update quantity.");
+    }
+}
+
+async function removeItem(productId) {
+    if (!confirm("Remove this product from your cart?")) {
+        return;
     }
 
+    try {
+        const params = new URLSearchParams({
+            productId: String(productId)
+        });
 
-    async function removeItem(productId) {
+        const response = await fetch("api/v1/cart?" + params.toString(), {
+            method: "DELETE",
+            headers: {
+                "Accept": "application/json"
+            }
+        });
 
-        const confirmed =
-            confirm(
-                "Remove this product from your cart?"
-            );
-
-
-        if (!confirmed) {
+        if (response.status === 401) {
+            window.location.href = "login.html";
             return;
         }
 
-
-        try {
-
-            const response = await fetch(
-    "api/v1/cart?productId=" +
-    encodeURIComponent(productId) +
-    "&quantity=" +
-    encodeURIComponent(quantity),
-    {
-        method: "PUT"
-    }
-);
-
-
-            if (response.status === 401) {
-
-                window.location.href =
-                    "login.html";
-
-                return;
-            }
-
-
-            if (!response.ok) {
-
-                throw new Error(
-                    "Unable to remove product."
-                );
-
-            }
-
-
-            await loadCart();
-
-
-        } catch (error) {
-
-            console.error(
-                "Remove cart item error:",
-                error
-            );
-
-            showError(
-                error.message
-            );
-
+        if (!response.ok) {
+            throw new Error("Unable to remove product.");
         }
 
+        await loadCart();
+    } catch (error) {
+        console.error("Remove cart item error:", error);
+        showError(error.message || "Unable to remove product.");
     }
+}
+    
 
 
     function showLoading() {
