@@ -54,13 +54,13 @@ public class ProductServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request,
                          HttpServletResponse response)
             throws IOException {
-
+ getServletContext().log(
+    "PRODUCT API HIT - doGet called"
+);
         response.setContentType(
                 "application/json;charset=UTF-8"
         );
-        getServletContext().log(
-    "PRODUCT API HIT - doGet called"
-);
+       
         try {
 
             String path =
