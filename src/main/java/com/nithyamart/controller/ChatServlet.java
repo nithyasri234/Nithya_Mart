@@ -11,16 +11,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import com.nithyamart.util.JsonUtil;
+
 @WebServlet("/api/v1/chat")
 public class ChatServlet extends HttpServlet {
 
     private ChatProvider chatProvider;
     private Gson gson;
 
+    public ChatServlet() {
+    }
+
+    public ChatServlet(ChatProvider chatProvider, Gson gson) {
+        this.chatProvider = chatProvider != null ? chatProvider : new MockChatProvider();
+        this.gson = gson != null ? gson : JsonUtil.getGson();
+    }
+
     @Override
     public void init() throws ServletException {
         chatProvider = new MockChatProvider();
-        gson = new Gson();
+        gson = JsonUtil.getGson();
     }
 
     @Override

@@ -52,10 +52,10 @@ public class LoginServlet extends HttpServlet {
                 response.setStatus(
                         HttpServletResponse.SC_UNAUTHORIZED);
                 response.setContentType(
-                        "text/html;charset=UTF-8");
+                        "text/plain;charset=UTF-8");
 
-                response.getWriter().println(
-                        "<h3>Invalid email or password.</h3>");
+                response.getWriter().print(
+                        "Invalid email or password.");
 
                 return;
             }
@@ -88,20 +88,13 @@ public class LoginServlet extends HttpServlet {
                     HttpServletResponse.SC_BAD_REQUEST);
 
             response.setContentType(
-                    "text/html;charset=UTF-8");
+                    "text/plain;charset=UTF-8");
 
-            response.getWriter().println(
-                    "<h3>"
-                            + escapeHtml(e.getMessage())
-                            + "</h3>");
+            response.getWriter().print(
+                    e.getMessage());
 
         } catch (Exception e) {
 
-            /*
-             * Temporary debugging response.
-             * This lets us see the real exception from Render
-             * instead of only "Unable to login."
-             */
             getServletContext().log("Login failed", e);
 
             response.setStatus(
@@ -110,7 +103,8 @@ public class LoginServlet extends HttpServlet {
             response.setContentType(
                     "text/plain;charset=UTF-8");
 
-            e.printStackTrace(response.getWriter());
+            response.getWriter().print(
+                    "Unable to login. Please try again later.");
         }
     }
 

@@ -108,3 +108,49 @@ passwordInput.addEventListener("input", validatePassword);
 
 // Check password match while typing
 confirmPasswordInput.addEventListener("input", checkMatch);
+
+function showError(message) {
+    const errorDiv = document.getElementById("signupError");
+    if (errorDiv) {
+        errorDiv.textContent = message;
+        errorDiv.style.display = "block";
+    }
+}
+
+function hideError() {
+    const errorDiv = document.getElementById("signupError");
+    if (errorDiv) {
+        errorDiv.textContent = "";
+        errorDiv.style.display = "none";
+    }
+}
+
+function validateForm() {
+    hideError();
+    const username = document.getElementById("username");
+    const email = document.getElementById("email");
+    const password = passwordInput.value;
+    const confirmPassword = confirmPasswordInput.value;
+
+    if (!username || !username.value.trim()) {
+        showError("Name is required.");
+        return false;
+    }
+
+    if (!email || !email.value.trim()) {
+        showError("Email is required.");
+        return false;
+    }
+
+    if (!password || password.length < 6 || password.length > 12) {
+        showError("Password must be between 6 and 12 characters.");
+        return false;
+    }
+
+    if (password !== confirmPassword) {
+        showError("Passwords do not match.");
+        return false;
+    }
+
+    return true;
+}

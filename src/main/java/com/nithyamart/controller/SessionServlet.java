@@ -11,14 +11,23 @@ import javax.servlet.http.HttpSession;
 
 import java.io.IOException;
 
+import com.nithyamart.util.JsonUtil;
+
 @WebServlet("/api/v1/session")
 public class SessionServlet extends HttpServlet {
 
     private Gson gson;
 
+    public SessionServlet() {
+    }
+
+    public SessionServlet(Gson gson) {
+        this.gson = gson != null ? gson : JsonUtil.getGson();
+    }
+
     @Override
     public void init() throws ServletException {
-        gson = new Gson();
+        gson = JsonUtil.getGson();
     }
 
     @Override

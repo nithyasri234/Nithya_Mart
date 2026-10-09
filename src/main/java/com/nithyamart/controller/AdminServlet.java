@@ -17,11 +17,21 @@ import javax.sql.DataSource;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/api/v1/admin/*")
+import com.nithyamart.util.JsonUtil;
+
+@WebServlet(urlPatterns = {"/api/v1/admin", "/api/v1/admin/*"})
 public class AdminServlet extends HttpServlet {
 
     private AdminDAO adminDAO;
     private Gson gson;
+
+    public AdminServlet() {
+    }
+
+    public AdminServlet(AdminDAO adminDAO, Gson gson) {
+        this.adminDAO = adminDAO;
+        this.gson = gson != null ? gson : JsonUtil.getGson();
+    }
 
     @Override
     public void init() throws ServletException {
@@ -37,7 +47,7 @@ public class AdminServlet extends HttpServlet {
         }
 
         adminDAO = new AdminDAO(dataSource);
-        gson = new Gson();
+        gson = JsonUtil.getGson();
     }
 
     @Override

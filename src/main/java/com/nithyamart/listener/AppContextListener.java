@@ -20,9 +20,27 @@ public class AppContextListener implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce) {
 
         try {
+            String jdbcUrl = System.getenv("JDBC_URL");
+            if (jdbcUrl == null || jdbcUrl.isBlank()) {
+                jdbcUrl = System.getProperty("jdbc.url", "jdbc:h2:file:./data/nithyamart");
+            }
+
+            if (jdbcUrl.startsWith("jdbc:h2:file:")) {
+                String filePath = jdbcUrl.substring("jdbc:h2:file:".length());
+                int semicolonIdx = filePath.indexOf(';');
+                if (semicolonIdx != -1) {
+                    filePath = filePath.substring(0, semicolonIdx);
+                }
+                java.io.File dbFile = new java.io.File(filePath);
+                java.io.File parentDir = dbFile.getParentFile();
+                if (parentDir != null && !parentDir.exists()) {
+                    parentDir.mkdirs();
+                }
+            }
+
             HikariConfig config = new HikariConfig();
 
-            config.setJdbcUrl("jdbc:h2:file:./data/nithyamart");
+            config.setJdbcUrl(jdbcUrl);
             config.setUsername("sa");
             config.setPassword("");
             config.setDriverClassName("org.h2.Driver");

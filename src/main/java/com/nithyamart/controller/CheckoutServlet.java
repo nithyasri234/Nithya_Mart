@@ -17,15 +17,26 @@ import javax.sql.DataSource;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.sql.Connection;
+import com.nithyamart.util.JsonUtil;
 import java.util.List;
 
-@WebServlet("/api/v1/checkout")
+@WebServlet(urlPatterns = {"/api/v1/checkout", "/api/v1/checkout/*"})
 public class CheckoutServlet extends HttpServlet {
 
     private CartDAO cartDAO;
     private ProductDAO productDAO;
     private OrderDAO orderDAO;
     private Gson gson;
+
+    public CheckoutServlet() {
+    }
+
+    public CheckoutServlet(CartDAO cartDAO, ProductDAO productDAO, OrderDAO orderDAO, Gson gson) {
+        this.cartDAO = cartDAO;
+        this.productDAO = productDAO;
+        this.orderDAO = orderDAO;
+        this.gson = gson != null ? gson : JsonUtil.getGson();
+    }
 
     @Override
     public void init() throws ServletException {
@@ -43,7 +54,7 @@ public class CheckoutServlet extends HttpServlet {
         cartDAO = new CartDAO(dataSource);
         productDAO = new ProductDAO(dataSource);
         orderDAO = new OrderDAO(dataSource);
-        gson = new Gson();
+        gson = JsonUtil.getGson();
     }
 
     @Override

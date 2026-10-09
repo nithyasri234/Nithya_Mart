@@ -6,6 +6,8 @@ import com.nithyamart.dao.ProductDAO;
 import com.nithyamart.model.Product;
 import com.nithyamart.service.ProductService;
 
+import com.nithyamart.util.JsonUtil;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,11 +21,19 @@ import java.util.List;
 import java.util.Optional;
 import java.math.BigDecimal;
 
-@WebServlet("/api/v1/products/*")
+@WebServlet(urlPatterns = {"/api/v1/products", "/api/v1/products/*"})
 public class ProductServlet extends HttpServlet {
 
     private ProductService productService;
     private Gson gson;
+
+    public ProductServlet() {
+    }
+
+    public ProductServlet(ProductService productService, Gson gson) {
+        this.productService = productService;
+        this.gson = gson != null ? gson : JsonUtil.getGson();
+    }
 
     @Override
     public void init() throws ServletException {
@@ -44,7 +54,7 @@ public class ProductServlet extends HttpServlet {
         productService =
                 new ProductService(productDAO);
 
-        gson = new Gson();
+        gson = JsonUtil.getGson();
     }
 
     // =========================
@@ -128,20 +138,18 @@ public class ProductServlet extends HttpServlet {
             );
 
         
-        }  catch (Exception e) {
-    getServletContext().log(
-        "GET /api/v1/products failed", e
-    );
+        } catch (Exception e) {
+            getServletContext().log("GET /api/v1/products failed: " + e.getMessage(), e);
 
-    response.setStatus(
-        HttpServletResponse.SC_INTERNAL_SERVER_ERROR
-    );
-    response.setContentType("application/json");
-    response.setCharacterEncoding("UTF-8");
-    response.getWriter().write(
-        "{\"message\":\"Unable to load products.\"}"
-    );
-}
+            if (!response.isCommitted()) {
+                response.reset();
+                response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                response.setContentType("application/json;charset=UTF-8");
+                response.getWriter().write(
+                        "{\"message\":\"Unable to load products.\"}"
+                );
+            }
+        }
     }
 
     // =========================
@@ -440,11 +448,13 @@ public class ProductServlet extends HttpServlet {
             return null;
         }
 
-        String idText =
-                path.substring(1);
+        String idText = path.startsWith("/") ? path.substring(1) : path;
+        if (idText.endsWith("/")) {
+            idText = idText.substring(0, idText.length() - 1);
+        }
 
         try {
-            return Long.parseLong(idText);
+            return Long.parseLong(idText.trim());
 
         } catch (NumberFormatException e) {
             return null;

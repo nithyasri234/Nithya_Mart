@@ -162,8 +162,8 @@ public class ProductDAO {
         }
 
         if (category != null && !category.isBlank()) {
-            sql.append(" AND category = ?");
-            parameters.add(category);
+            sql.append(" AND LOWER(category) = LOWER(?)");
+            parameters.add(category.trim());
         }
 
         sql.append(" ORDER BY created_at DESC");
