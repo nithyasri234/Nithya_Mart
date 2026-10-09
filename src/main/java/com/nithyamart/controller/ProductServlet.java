@@ -58,7 +58,9 @@ public class ProductServlet extends HttpServlet {
         response.setContentType(
                 "application/json;charset=UTF-8"
         );
-
+        getServletContext().log(
+    "PRODUCT API HIT - doGet called"
+);
         try {
 
             String path =
@@ -125,17 +127,23 @@ public class ProductServlet extends HttpServlet {
                     product.get()
             );
 
+        
         } catch (Exception e) {
     getServletContext().log(
         "GET /api/v1/products failed", e
     );
 
-    response.setStatus(500);
-    response.setContentType("application/json");
-    response.setCharacterEncoding("UTF-8");
-    response.getWriter().write(
-        "{\"message\":\"Unable to load products.\"}"
-    );
+    if (!response.isCommitted()) {
+        response.reset();
+        response.setStatus(
+            HttpServletResponse.SC_INTERNAL_SERVER_ERROR
+        );
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        response.getWriter().write(
+            "{\"message\":\"Unable to load products.\"}"
+        );
+    }
 }
     }
 
