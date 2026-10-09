@@ -137,6 +137,12 @@ public class ProductDAO {
 
     public List<Product> search(String keyword, String category)
             throws SQLException {
+        return search(keyword, category, null, null, null);
+    }
+
+    public List<Product> search(String keyword, String category, String sortBy,
+                                BigDecimal minPrice, BigDecimal maxPrice)
+            throws SQLException {
 
         StringBuilder sql = new StringBuilder("""
                 SELECT id, seller_id, name, description, price,
@@ -166,7 +172,25 @@ public class ProductDAO {
             parameters.add(category.trim());
         }
 
-        sql.append(" ORDER BY created_at DESC");
+        if (minPrice != null && minPrice.compareTo(BigDecimal.ZERO) >= 0) {
+            sql.append(" AND price >= ?");
+            parameters.add(minPrice);
+        }
+
+        if (maxPrice != null && maxPrice.compareTo(BigDecimal.ZERO) >= 0) {
+            sql.append(" AND price <= ?");
+            parameters.add(maxPrice);
+        }
+
+        if ("price_asc".equalsIgnoreCase(sortBy) || "price_low_high".equalsIgnoreCase(sortBy)) {
+            sql.append(" ORDER BY price ASC, id ASC");
+        } else if ("price_desc".equalsIgnoreCase(sortBy) || "price_high_low".equalsIgnoreCase(sortBy)) {
+            sql.append(" ORDER BY price DESC, id DESC");
+        } else if ("name_asc".equalsIgnoreCase(sortBy)) {
+            sql.append(" ORDER BY LOWER(name) ASC, id ASC");
+        } else {
+            sql.append(" ORDER BY created_at DESC, id DESC");
+        }
 
         List<Product> products = new ArrayList<>();
 

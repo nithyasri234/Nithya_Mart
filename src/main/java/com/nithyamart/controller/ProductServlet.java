@@ -89,10 +89,25 @@ public class ProductServlet extends HttpServlet {
                 String category =
                         request.getParameter("category");
 
+                String sortBy =
+                        request.getParameter("sortBy");
+                if (sortBy == null || sortBy.isBlank()) {
+                    sortBy = request.getParameter("sort");
+                }
+
+                BigDecimal minPrice =
+                        parseBigDecimal(request.getParameter("minPrice"));
+
+                BigDecimal maxPrice =
+                        parseBigDecimal(request.getParameter("maxPrice"));
+
                 List<Product> products =
                         productService.search(
                                 keyword,
-                                category
+                                category,
+                                sortBy,
+                                minPrice,
+                                maxPrice
                         );
 
                 writeJson(
@@ -456,6 +471,17 @@ public class ProductServlet extends HttpServlet {
         try {
             return Long.parseLong(idText.trim());
 
+        } catch (NumberFormatException e) {
+            return null;
+        }
+    }
+
+    private BigDecimal parseBigDecimal(String value) {
+        if (value == null || value.isBlank()) {
+            return null;
+        }
+        try {
+            return new BigDecimal(value.trim());
         } catch (NumberFormatException e) {
             return null;
         }

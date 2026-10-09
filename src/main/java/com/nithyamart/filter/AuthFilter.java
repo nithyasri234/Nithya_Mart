@@ -17,7 +17,11 @@ import java.io.IOException;
         "/api/v1/checkout",
         "/api/v1/checkout/*",
         "/api/v1/admin",
-        "/api/v1/admin/*"
+        "/api/v1/admin/*",
+        "/api/v1/wishlist",
+        "/api/v1/wishlist/*",
+        "/api/v1/addresses",
+        "/api/v1/addresses/*"
 })
 public class AuthFilter implements Filter {
 

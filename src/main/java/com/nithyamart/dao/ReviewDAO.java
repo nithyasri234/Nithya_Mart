@@ -136,6 +136,34 @@ public class ReviewDAO {
         }
     }
 
+    public double getAverageRating(Long productId) throws SQLException {
+        String sql = "SELECT COALESCE(AVG(CAST(rating AS DOUBLE)), 0.0) FROM reviews WHERE product_id = ?";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setLong(1, productId);
+            try (ResultSet rs = statement.executeQuery()) {
+                if (rs.next()) {
+                    return Math.round(rs.getDouble(1) * 10.0) / 10.0;
+                }
+            }
+        }
+        return 0.0;
+    }
+
+    public int getReviewCount(Long productId) throws SQLException {
+        String sql = "SELECT COUNT(*) FROM reviews WHERE product_id = ?";
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setLong(1, productId);
+            try (ResultSet rs = statement.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1);
+                }
+            }
+        }
+        return 0;
+    }
+
     private Review mapReview(ResultSet resultSet)
             throws SQLException {
 

@@ -47,6 +47,16 @@ public class ProductService {
         return productDAO.search(keyword, category);
     }
 
+    public List<Product> search(String keyword,
+                                String category,
+                                String sortBy,
+                                BigDecimal minPrice,
+                                BigDecimal maxPrice)
+            throws SQLException {
+
+        return productDAO.search(keyword, category, sortBy, minPrice, maxPrice);
+    }
+
     public List<Product> findBySellerId(Long sellerId)
             throws SQLException {
 
