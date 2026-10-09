@@ -3,6 +3,7 @@ package com.nithyamart.dao;
 import com.nithyamart.model.Product;
 import java.math.BigDecimal;
 import javax.sql.DataSource;
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
