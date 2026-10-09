@@ -8,6 +8,7 @@ import java.util.List;
 public class OrderSummary {
 
     private Long orderId;
+    private String orderNumber;
     private Long buyerId;
     private String buyerName;
     private BigDecimal totalAmount;
@@ -42,6 +43,17 @@ public class OrderSummary {
 
     public void setOrderId(Long orderId) {
         this.orderId = orderId;
+    }
+
+    public String getOrderNumber() {
+        if (orderNumber != null && !orderNumber.isBlank()) {
+            return orderNumber;
+        }
+        return orderId != null ? String.format("NM-%06d", orderId) : "NM-000000";
+    }
+
+    public void setOrderNumber(String orderNumber) {
+        this.orderNumber = orderNumber;
     }
 
     public Long getBuyerId() {

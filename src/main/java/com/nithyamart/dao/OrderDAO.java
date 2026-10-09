@@ -27,7 +27,7 @@ public class OrderDAO {
                             Long buyerId,
                             BigDecimal totalAmount)
             throws SQLException {
-        return createOrder(connection, buyerId, totalAmount, "COD", "PENDING", "PLACED", null, BigDecimal.ZERO, null);
+        return createOrder(connection, buyerId, totalAmount, "COD", "PENDING", "PLACED", null, BigDecimal.ZERO, null, null);
     }
 
     public Long createOrder(Connection connection,
@@ -40,12 +40,33 @@ public class OrderDAO {
                             BigDecimal discountAmount,
                             String couponCode)
             throws SQLException {
+        return createOrder(connection, buyerId, totalAmount, paymentMethod, paymentStatus, orderStatus, deliveryAddress, discountAmount, couponCode, null);
+    }
+
+    public Long createOrder(Connection connection,
+                            Long buyerId,
+                            BigDecimal totalAmount,
+                            String paymentMethod,
+                            String paymentStatus,
+                            String orderStatus,
+                            String deliveryAddress,
+                            BigDecimal discountAmount,
+                            String couponCode,
+                            String orderNumber)
+            throws SQLException {
+
+        if (orderNumber == null || orderNumber.isBlank()) {
+            java.time.LocalDate today = java.time.LocalDate.now();
+            String datePart = String.format("%04d%02d%02d", today.getYear(), today.getMonthValue(), today.getDayOfMonth());
+            int randSuffix = (int) (1000 + Math.random() * 9000);
+            orderNumber = "NM-" + datePart + "-" + randSuffix;
+        }
 
         String sql = """
                 INSERT INTO orders
-                    (buyer_id, total_amount, payment_method, payment_status, order_status, delivery_address, discount_amount, coupon_code)
+                    (buyer_id, total_amount, payment_method, payment_status, order_status, delivery_address, discount_amount, coupon_code, order_number)
                 VALUES
-                    (?, ?, ?, ?, ?, ?, ?, ?)
+                    (?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """;
 
         try (PreparedStatement statement =
@@ -61,6 +82,7 @@ public class OrderDAO {
             statement.setString(6, deliveryAddress != null ? deliveryAddress : "Standard Delivery Address");
             statement.setBigDecimal(7, discountAmount != null ? discountAmount : BigDecimal.ZERO);
             statement.setString(8, couponCode);
+            statement.setString(9, orderNumber);
 
             statement.executeUpdate();
 
@@ -80,12 +102,23 @@ public class OrderDAO {
                              int quantity,
                              BigDecimal unitPrice)
             throws SQLException {
+        addOrderItem(connection, orderId, productId, quantity, unitPrice, null, null);
+    }
+
+    public void addOrderItem(Connection connection,
+                             Long orderId,
+                             Long productId,
+                             int quantity,
+                             BigDecimal unitPrice,
+                             String productName,
+                             String imageUrl)
+            throws SQLException {
 
         String sql = """
                 INSERT INTO order_items
-                    (order_id, product_id, quantity, unit_price)
+                    (order_id, product_id, quantity, unit_price, product_name, image_url)
                 VALUES
-                    (?, ?, ?, ?)
+                    (?, ?, ?, ?, ?, ?)
                 """;
 
         try (PreparedStatement statement =
@@ -95,6 +128,8 @@ public class OrderDAO {
             statement.setLong(2, productId);
             statement.setInt(3, quantity);
             statement.setBigDecimal(4, unitPrice);
+            statement.setString(5, productName);
+            statement.setString(6, imageUrl);
 
             statement.executeUpdate();
         }
@@ -106,6 +141,7 @@ public class OrderDAO {
         String sql = """
                 SELECT
                     o.id,
+                    o.order_number,
                     o.buyer_id,
                     u.name AS buyer_name,
                     o.total_amount,
@@ -146,6 +182,7 @@ public class OrderDAO {
         String sql = """
                 SELECT
                     o.id,
+                    o.order_number,
                     o.buyer_id,
                     u.name AS buyer_name,
                     o.total_amount,
@@ -235,6 +272,7 @@ public class OrderDAO {
         String sql = """
                 SELECT
                     o.id,
+                    o.order_number,
                     o.buyer_id,
                     u.name AS buyer_name,
                     o.total_amount,
@@ -292,8 +330,8 @@ public class OrderDAO {
         String sql = """
                 SELECT
                     oi.product_id,
-                    p.name AS product_name,
-                    p.image_url,
+                    COALESCE(oi.product_name, p.name) AS product_name,
+                    COALESCE(oi.image_url, p.image_url) AS image_url,
                     oi.quantity,
                     oi.unit_price
                 FROM order_items oi
@@ -337,6 +375,7 @@ public class OrderDAO {
         );
 
         try {
+            order.setOrderNumber(resultSet.getString("order_number"));
             order.setPaymentMethod(resultSet.getString("payment_method"));
             order.setPaymentStatus(resultSet.getString("payment_status"));
             order.setOrderStatus(resultSet.getString("order_status"));

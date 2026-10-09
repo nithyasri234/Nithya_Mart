@@ -159,11 +159,13 @@ public class ProductDAO {
                     AND (
                         LOWER(name) LIKE ?
                         OR LOWER(description) LIKE ?
+                        OR LOWER(category) LIKE ?
                     )
                     """);
 
-            String searchValue = "%" + keyword.toLowerCase() + "%";
+            String searchValue = "%" + keyword.toLowerCase().trim() + "%";
 
+            parameters.add(searchValue);
             parameters.add(searchValue);
             parameters.add(searchValue);
         }

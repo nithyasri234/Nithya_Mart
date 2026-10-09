@@ -23,7 +23,7 @@ SELECT
     1499.00,
     25,
     'Electronics',
-    'https://placehold.co/500x400?text=Headphones'
+    'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80'
 FROM users
 WHERE email = 'demo.seller@nithyamart.com'
   AND NOT EXISTS (
@@ -42,7 +42,7 @@ SELECT
     2499.00,
     20,
     'Electronics',
-    'https://placehold.co/500x400?text=Smart+Watch'
+    'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80'
 FROM users
 WHERE email = 'demo.seller@nithyamart.com'
   AND NOT EXISTS (
@@ -61,7 +61,7 @@ SELECT
     999.00,
     30,
     'Electronics',
-    'https://placehold.co/500x400?text=Laptop+Bag'
+    'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=600&q=80'
 FROM users
 WHERE email = 'demo.seller@nithyamart.com'
   AND NOT EXISTS (
@@ -81,7 +81,7 @@ SELECT
     599.00,
     40,
     'Fashion',
-    'https://placehold.co/500x400?text=T-Shirt'
+    'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=600&q=80'
 FROM users
 WHERE email = 'demo.seller@nithyamart.com'
   AND NOT EXISTS (
@@ -100,7 +100,7 @@ SELECT
     1299.00,
     25,
     'Fashion',
-    'https://placehold.co/500x400?text=Jeans'
+    'https://images.unsplash.com/photo-1542272604-780c96856592?auto=format&fit=crop&w=600&q=80'
 FROM users
 WHERE email = 'demo.seller@nithyamart.com'
   AND NOT EXISTS (
@@ -119,7 +119,7 @@ SELECT
     1799.00,
     18,
     'Fashion',
-    'https://placehold.co/500x400?text=Sneakers'
+    'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80'
 FROM users
 WHERE email = 'demo.seller@nithyamart.com'
   AND NOT EXISTS (
@@ -139,7 +139,7 @@ SELECT
     799.00,
     22,
     'Home',
-    'https://placehold.co/500x400?text=Table+Lamp'
+    'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=600&q=80'
 FROM users
 WHERE email = 'demo.seller@nithyamart.com'
   AND NOT EXISTS (
@@ -158,7 +158,7 @@ SELECT
     699.00,
     35,
     'Home',
-    'https://placehold.co/500x400?text=Cushions'
+    'https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=600&q=80'
 FROM users
 WHERE email = 'demo.seller@nithyamart.com'
   AND NOT EXISTS (
@@ -177,7 +177,7 @@ SELECT
     449.00,
     30,
     'Home',
-    'https://placehold.co/500x400?text=Storage+Box'
+    'https://images.unsplash.com/photo-1591129841117-3adfd313e34f?auto=format&fit=crop&w=600&q=80'
 FROM users
 WHERE email = 'demo.seller@nithyamart.com'
   AND NOT EXISTS (
@@ -197,7 +197,7 @@ SELECT
     399.00,
     20,
     'Books',
-    'https://placehold.co/500x400?text=Mystery+Novel'
+    'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=600&q=80'
 FROM users
 WHERE email = 'demo.seller@nithyamart.com'
   AND NOT EXISTS (
@@ -216,7 +216,7 @@ SELECT
     699.00,
     15,
     'Books',
-    'https://placehold.co/500x400?text=Java+Book'
+    'https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=600&q=80'
 FROM users
 WHERE email = 'demo.seller@nithyamart.com'
   AND NOT EXISTS (
@@ -235,7 +235,7 @@ SELECT
     349.00,
     25,
     'Books',
-    'https://placehold.co/500x400?text=Study+Guide'
+    'https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=600&q=80'
 FROM users
 WHERE email = 'demo.seller@nithyamart.com'
   AND NOT EXISTS (
@@ -255,7 +255,7 @@ SELECT
     299.00,
     35,
     'Beauty',
-    'https://placehold.co/500x400?text=Face+Wash'
+    'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=600&q=80'
 FROM users
 WHERE email = 'demo.seller@nithyamart.com'
   AND NOT EXISTS (
@@ -274,7 +274,7 @@ SELECT
     499.00,
     30,
     'Beauty',
-    'https://placehold.co/500x400?text=Moisturizer'
+    'https://images.unsplash.com/photo-1556228578-8c89e6adf883?auto=format&fit=crop&w=600&q=80'
 FROM users
 WHERE email = 'demo.seller@nithyamart.com'
   AND NOT EXISTS (
@@ -293,7 +293,7 @@ SELECT
     399.00,
     25,
     'Beauty',
-    'https://placehold.co/500x400?text=Shampoo'
+    'https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?auto=format&fit=crop&w=600&q=80'
 FROM users
 WHERE email = 'demo.seller@nithyamart.com'
   AND NOT EXISTS (
@@ -313,7 +313,7 @@ SELECT
     699.00,
     50,
     'Grocery',
-    'https://placehold.co/500x400?text=Rice'
+    'https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=600&q=80'
 FROM users
 WHERE email = 'demo.seller@nithyamart.com'
   AND NOT EXISTS (
@@ -332,7 +332,7 @@ SELECT
     299.00,
     40,
     'Grocery',
-    'https://placehold.co/500x400?text=Coffee'
+    'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=600&q=80'
 FROM users
 WHERE email = 'demo.seller@nithyamart.com'
   AND NOT EXISTS (
@@ -351,7 +351,7 @@ SELECT
     199.00,
     45,
     'Grocery',
-    'https://placehold.co/500x400?text=Cookies'
+    'https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&w=600&q=80'
 FROM users
 WHERE email = 'demo.seller@nithyamart.com'
   AND NOT EXISTS (

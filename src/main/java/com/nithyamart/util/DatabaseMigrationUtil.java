@@ -20,7 +20,8 @@ public final class DatabaseMigrationUtil {
     "V5__reviews_schema.sql",
     "V6__demo_products.sql",
     "V7__ecommerce_enhancements.sql",
-    "V8__ecommerce_flipkart_enhancements.sql"
+    "V8__ecommerce_flipkart_enhancements.sql",
+    "V9__update_product_images_and_schema.sql"
 };
 
     private DatabaseMigrationUtil() {

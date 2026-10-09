@@ -416,6 +416,12 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    function getSvgPlaceholder(text = "Product", category = "NithyaMart") {
+        const cleanText = encodeURIComponent(String(text).substring(0, 24));
+        const cleanCat = encodeURIComponent(String(category).substring(0, 20));
+        return `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"><rect width="400" height="300" fill="%23f8fafc"/><rect x="25" y="20" width="350" height="260" rx="10" fill="%23f1f5f9" stroke="%23e2e8f0" stroke-width="2"/><circle cx="200" cy="115" r="42" fill="%23005082"/><text x="200" y="125" font-family="Arial,sans-serif" font-size="24" font-weight="bold" fill="%23ffffff" text-anchor="middle">NM</text><text x="200" y="190" font-family="Arial,sans-serif" font-size="15" font-weight="bold" fill="%231e293b" text-anchor="middle">${cleanText}</text><text x="200" y="215" font-family="Arial,sans-serif" font-size="12" fill="%2364748b" text-anchor="middle">${cleanCat}</text></svg>`;
+    }
+
     function createProductCard(product) {
 
         const id = product.id;
@@ -440,10 +446,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 ? Number(product.stockQuantity)
                 : Number(product.stock_quantity || 0);
 
+        const fallbackSvg = getSvgPlaceholder(name, category);
         const imageUrl =
-            product.imageUrl ||
-            product.image_url ||
-            "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=600&q=80";
+            (product.imageUrl && product.imageUrl.trim().length > 0)
+                ? product.imageUrl.trim()
+                : fallbackSvg;
 
         const outOfStock = stock <= 0;
 
@@ -457,7 +464,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         src="${escapeHtml(imageUrl)}"
                         alt="${escapeHtml(name)}"
                         loading="lazy"
-                        onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=600&q=80';"
+                        onerror="this.onerror=null; this.src='${fallbackSvg}';"
                     >
 
                 </div>
@@ -496,6 +503,14 @@ document.addEventListener("DOMContentLoaded", () => {
                                 ? "Out of Stock"
                                 : "Add to Cart"}
                         </button>
+
+                        <a
+                            class="home-view-button"
+                            style="background:#fb641b;color:white;"
+                            href="checkout.html?productId=${encodeURIComponent(id)}&quantity=1"
+                        >
+                            Shop Now
+                        </a>
 
                         <a
                             class="home-view-button"
@@ -565,6 +580,9 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             button.textContent = "Added ✓";
+            if (window.refreshGlobalCartCount) {
+                window.refreshGlobalCartCount();
+            }
 
             setTimeout(() => {
 
@@ -600,55 +618,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const keyword =
             searchInput
-                ? searchInput.value.trim().toLowerCase()
+                ? searchInput.value.trim()
                 : "";
 
         const selectedCategory =
             headerCategory
-                ? headerCategory.value
+                ? headerCategory.value.trim()
                 : "";
 
-        const filteredProducts =
-            allProducts.filter(product => {
+        const params = new URLSearchParams();
+        if (keyword) params.set("keyword", keyword);
+        if (selectedCategory) params.set("category", selectedCategory);
 
-                const productName =
-                    String(product.name || "")
-                        .toLowerCase();
-
-                const productDescription =
-                    String(product.description || "")
-                        .toLowerCase();
-
-                const productCategory =
-                    String(product.category || "")
-                        .toLowerCase();
-
-                const matchesKeyword =
-                    keyword === "" ||
-                    productName.includes(keyword) ||
-                    productDescription.includes(keyword) ||
-                    productCategory.includes(keyword);
-
-                const matchesCategory =
-                    selectedCategory === "" ||
-                    normalizeCategory(product.category) ===
-                    normalizeCategory(selectedCategory);
-
-                return matchesKeyword &&
-                    matchesCategory;
-            });
-
-        renderAllCategories(filteredProducts);
-
-        const productsSection =
-            document.getElementById("products");
-
-        if (productsSection) {
-
-            productsSection.scrollIntoView({
-                behavior: "smooth"
-            });
-        }
+        window.location.href = "category.html?" + params.toString();
     }
 
     function clearAllFilters() {

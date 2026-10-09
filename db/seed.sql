@@ -51,7 +51,7 @@ SELECT
     14999.00,
     20,
     'Electronics',
-    'https://placehold.co/500x400?text=Samsung+Galaxy'
+    'https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80'
 WHERE NOT EXISTS (
     SELECT 1 FROM products
     WHERE name = 'Samsung Galaxy M15'
@@ -66,7 +66,7 @@ SELECT
     54999.00,
     12,
     'Electronics',
-    'https://placehold.co/500x400?text=HP+Laptop'
+    'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?auto=format&fit=crop&w=600&q=80'
 WHERE NOT EXISTS (
     SELECT 1 FROM products
     WHERE name = 'HP Laptop 15'
@@ -81,7 +81,7 @@ SELECT
     1999.00,
     35,
     'Electronics',
-    'https://placehold.co/500x400?text=Headphones'
+    'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80'
 WHERE NOT EXISTS (
     SELECT 1 FROM products
     WHERE name = 'Boat Wireless Headphones'
@@ -96,7 +96,7 @@ SELECT
     2999.00,
     25,
     'Electronics',
-    'https://placehold.co/500x400?text=Smart+Watch'
+    'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80'
 WHERE NOT EXISTS (
     SELECT 1 FROM products
     WHERE name = 'Noise Smart Watch'
@@ -111,7 +111,7 @@ SELECT
     32999.00,
     8,
     'Electronics',
-    'https://placehold.co/500x400?text=Sony+TV'
+    'https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?auto=format&fit=crop&w=600&q=80'
 WHERE NOT EXISTS (
     SELECT 1 FROM products
     WHERE name = 'Sony LED Smart TV'
@@ -131,7 +131,7 @@ SELECT
     899.00,
     40,
     'Fashion',
-    'https://placehold.co/500x400?text=Cotton+Shirt'
+    'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=600&q=80'
 WHERE NOT EXISTS (
     SELECT 1 FROM products
     WHERE name = 'Men Cotton Shirt'
@@ -146,7 +146,7 @@ SELECT
     799.00,
     30,
     'Fashion',
-    'https://placehold.co/500x400?text=Kurti'
+    'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=600&q=80'
 WHERE NOT EXISTS (
     SELECT 1 FROM products
     WHERE name = 'Women Casual Kurti'
@@ -161,7 +161,7 @@ SELECT
     1299.00,
     25,
     'Fashion',
-    'https://placehold.co/500x400?text=Jeans'
+    'https://images.unsplash.com/photo-1542272604-780c96856592?auto=format&fit=crop&w=600&q=80'
 WHERE NOT EXISTS (
     SELECT 1 FROM products
     WHERE name = 'Denim Jeans'
@@ -181,7 +181,7 @@ SELECT
     3499.00,
     15,
     'Home',
-    'https://placehold.co/500x400?text=Study+Table'
+    'https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?auto=format&fit=crop&w=600&q=80'
 WHERE NOT EXISTS (
     SELECT 1 FROM products
     WHERE name = 'Study Table'
@@ -196,7 +196,7 @@ SELECT
     699.00,
     30,
     'Home',
-    'https://placehold.co/500x400?text=Table+Lamp'
+    'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=600&q=80'
 WHERE NOT EXISTS (
     SELECT 1 FROM products
     WHERE name = 'LED Table Lamp'
@@ -211,7 +211,7 @@ SELECT
     2499.00,
     18,
     'Home',
-    'https://placehold.co/500x400?text=Mixer+Grinder'
+    'https://images.unsplash.com/photo-1570222094114-d054a817e56b?auto=format&fit=crop&w=600&q=80'
 WHERE NOT EXISTS (
     SELECT 1 FROM products
     WHERE name = 'Kitchen Mixer Grinder'
@@ -231,7 +231,7 @@ SELECT
     499.00,
     30,
     'Books',
-    'https://placehold.co/500x400?text=Atomic+Habits'
+    'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=600&q=80'
 WHERE NOT EXISTS (
     SELECT 1 FROM products
     WHERE name = 'Atomic Habits'
@@ -246,7 +246,7 @@ SELECT
     699.00,
     20,
     'Books',
-    'https://placehold.co/500x400?text=Java+Book'
+    'https://images.unsplash.com/photo-1532012197267-da84d127e765?auto=format&fit=crop&w=600&q=80'
 WHERE NOT EXISTS (
     SELECT 1 FROM products
     WHERE name = 'Java Programming Guide'
@@ -266,7 +266,7 @@ SELECT
     299.00,
     50,
     'Beauty',
-    'https://placehold.co/500x400?text=Face+Wash'
+    'https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=600&q=80'
 WHERE NOT EXISTS (
     SELECT 1 FROM products
     WHERE name = 'Face Wash'
@@ -281,7 +281,7 @@ SELECT
     399.00,
     45,
     'Beauty',
-    'https://placehold.co/500x400?text=Body+Lotion'
+    'https://images.unsplash.com/photo-1556228578-8c89e6adf883?auto=format&fit=crop&w=600&q=80'
 WHERE NOT EXISTS (
     SELECT 1 FROM products
     WHERE name = 'Body Lotion'
@@ -301,7 +301,7 @@ SELECT
     499.00,
     50,
     'Grocery',
-    'https://placehold.co/500x400?text=Rice+5kg'
+    'https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&w=600&q=80'
 WHERE NOT EXISTS (
     SELECT 1 FROM products
     WHERE name = 'Premium Rice 5kg'
@@ -316,7 +316,7 @@ SELECT
     179.00,
     60,
     'Grocery',
-    'https://placehold.co/500x400?text=Cooking+Oil'
+    'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&w=600&q=80'
 WHERE NOT EXISTS (
     SELECT 1 FROM products
     WHERE name = 'Sunflower Cooking Oil'
