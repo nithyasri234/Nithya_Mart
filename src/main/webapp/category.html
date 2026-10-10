@@ -584,7 +584,7 @@
 
     <!-- Scripts -->
     <script src="js/session.js"></script>
-    <script src="js/chatbot.js"></script>
+    
     <script>
         function getSvgPlaceholder(text = "Product", category = "NithyaMart") {
             const cleanText = encodeURIComponent(String(text).substring(0, 24));
@@ -849,5 +849,11 @@
             }
         });
     </script>
+    
+<div id="chatbot-widget">
+    <button id="chatbot-toggle" type="button">💬</button>
+</div>
+
+<script src="js/chatbot.js"></script>
 </body>
 </html>
