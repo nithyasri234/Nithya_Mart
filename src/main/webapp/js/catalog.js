@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
             price: 1499,
             stockQuantity: 20,
             category: "Electronics",
-            imageUrl: "images/wireless-headphones.jpg"
+            imageUrl: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80"
         },
         {
             id: "demo-electronics-2",
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
             price: 2299,
             stockQuantity: 15,
             category: "Electronics",
-            imageUrl: "images/smart-watch.jpg"
+            imageUrl: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80"
         },
         {
             id: "demo-electronics-3",
@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
             price: 899,
             stockQuantity: 25,
             category: "Electronics",
-            imageUrl: "images/wireless-keyboard.jpg"
+            imageUrl: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=600&q=80"
         },
         {
             id: "demo-electronics-4",
@@ -400,16 +400,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 card
             );
         });
-        
-container.querySelectorAll(".home-product-image").forEach(img => {
-    img.addEventListener("error", () => {
-        if (img.dataset.fallbackApplied) return;
-
-        img.dataset.fallbackApplied = "true";
-        img.src = getSvgPlaceholder(img.alt, "NithyaMart");
-    });
-});
-
 
         const buttons =
             container.querySelectorAll(".home-add-cart-button");
@@ -426,21 +416,11 @@ container.querySelectorAll(".home-product-image").forEach(img => {
         });
     }
 
-    
-function getSvgPlaceholder(text = "Product", category = "NithyaMart") {
-    const svg = `
-    <svg xmlns="http://www.w3.org/2000/svg" width="400" height="300">
-        <rect width="400" height="300" fill="#f1f5f9"/>
-        <text x="200" y="150" text-anchor="middle"
-              font-family="Arial" font-size="20" fill="#005082">
-            NithyaMart
-        </text>
-    </svg>`;
-
-    return "data:image/svg+xml;charset=UTF-8," +
-        encodeURIComponent(svg);
-}
-
+    function getSvgPlaceholder(text = "Product", category = "NithyaMart") {
+        const cleanText = encodeURIComponent(String(text).substring(0, 24));
+        const cleanCat = encodeURIComponent(String(category).substring(0, 20));
+        return `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300" viewBox="0 0 400 300"><rect width="400" height="300" fill="%23f8fafc"/><rect x="25" y="20" width="350" height="260" rx="10" fill="%23f1f5f9" stroke="%23e2e8f0" stroke-width="2"/><circle cx="200" cy="115" r="42" fill="%23005082"/><text x="200" y="125" font-family="Arial,sans-serif" font-size="24" font-weight="bold" fill="%23ffffff" text-anchor="middle">NM</text><text x="200" y="190" font-family="Arial,sans-serif" font-size="15" font-weight="bold" fill="%231e293b" text-anchor="middle">${cleanText}</text><text x="200" y="215" font-family="Arial,sans-serif" font-size="12" fill="%2364748b" text-anchor="middle">${cleanCat}</text></svg>`;
+    }
 
     function createProductCard(product) {
 
