@@ -1,17 +1,13 @@
 
-/* Floating chatbot button */
-
 #chatbot-widget {
-    position: fixed !important;
-    right: 20px !important;
-    bottom: 20px !important;
-    z-index: 999999 !important;
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 999999;
+    font-family: Arial, sans-serif;
 }
 
 #chatbot-toggle {
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
     width: 60px;
     height: 60px;
     border: none;
@@ -20,4 +16,96 @@
     color: white;
     font-size: 28px;
     cursor: pointer;
+    box-shadow: 0 4px 15px #0003;
 }
+
+#chatbot-window {
+    position: absolute;
+    right: 0;
+    bottom: 75px;
+    width: 330px;
+    height: 420px;
+    max-width: calc(100vw - 32px);
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 5px 25px #0003;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+#chatbot-window.chatbot-hidden {
+    display: none;
+}
+
+.chatbot-header {
+    background: #6c4cff;
+    color: white;
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+}
+
+#chatbot-close {
+    border: none;
+    background: transparent;
+    color: white;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+#chatbot-messages {
+    flex: 1;
+    padding: 12px;
+    overflow-y: auto;
+    background: #faf9ff;
+}
+
+.bot-message,
+.user-message {
+    padding: 10px 12px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    max-width: 85%;
+    overflow-wrap: anywhere;
+    font-size: 14px;
+}
+
+.bot-message {
+    background: #eee9ff;
+    color: #222;
+}
+
+.user-message {
+    background: #6c4cff;
+    color: white;
+    margin-left: auto;
+}
+
+#chatbot-form {
+    display: flex;
+    gap: 8px;
+    padding: 10px;
+    border-top: 1px solid #eee;
+}
+
+#chatbot-input {
+    min-width: 0;
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    outline-color: #6c4cff;
+}
+
+#chatbot-form button {
+    border: none;
+    border-radius: 8px;
+    background: #6c4cff;
+    color: white;
+    padding: 0 14px;
+    cursor: pointer;
+}
+
