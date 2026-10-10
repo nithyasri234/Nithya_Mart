@@ -1,5 +1,6 @@
 
 console.log("CHATBOT JS LOADED");
+
 document.addEventListener("DOMContentLoaded", function () {
     const toggle = document.getElementById("chatbot-toggle");
     const chatWindow = document.getElementById("chatbot-window");
@@ -8,7 +9,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const input = document.getElementById("chatbot-input");
     const messages = document.getElementById("chatbot-messages");
 
-    if (!toggle || !chatWindow || !closeButton || !form) {
+    if (!toggle || !chatWindow || !closeButton ||
+        !form || !input || !messages) {
         console.error("Chatbot HTML elements are missing.");
         return;
     }
@@ -27,18 +29,21 @@ document.addEventListener("DOMContentLoaded", function () {
         const question = input.value.trim();
         if (!question) return;
 
-        const userMessage = document.createElement("div");
-        userMessage.className = "user-message";
-        userMessage.textContent = question;
-        messages.appendChild(userMessage);
+        addMessage(question, "user-message");
 
-        const botMessage = document.createElement("div");
-        botMessage.className = "bot-message";
-        botMessage.textContent =
-            "Thanks for your question! AI integration is the next step.";
-        messages.appendChild(botMessage);
+        addMessage(
+            "I'm currently in demo mode. AI integration is not connected yet.",
+            "bot-message"
+        );
 
         input.value = "";
-        messages.scrollTop = messages.scrollHeight;
     });
+
+    function addMessage(text, className) {
+        const message = document.createElement("div");
+        message.className = className;
+        message.textContent = text;
+        messages.appendChild(message);
+        messages.scrollTop = messages.scrollHeight;
+    }
 });
