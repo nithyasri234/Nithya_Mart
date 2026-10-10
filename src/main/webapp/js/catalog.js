@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
             price: 1499,
             stockQuantity: 20,
             category: "Electronics",
-            imageUrl: "https://pin.it/5QYJkSCOO"
+            imageUrl: ""
         },
         {
             id: "demo-electronics-2",
