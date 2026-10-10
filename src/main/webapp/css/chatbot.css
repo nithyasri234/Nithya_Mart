@@ -142,16 +142,22 @@
     cursor: not-allowed;
 }
 
-@media (max-width: 480px) {
-    #chatbot-window {
-        right: 12px;
-        bottom: 84px;
-        width: calc(100vw - 24px);
-        height: min(460px, calc(100vh - 110px));
-    }
 
-    #chatbot-toggle {
-        right: 16px;
-        bottom: 16px;
-    }
+#chatbot-widget {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 99999;
+}
+
+#chatbot-toggle {
+    width: 60px;
+    height: 60px;
+    border: none;
+    border-radius: 50%;
+    background-color: #6c4cff;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
 }
