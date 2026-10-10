@@ -31,11 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
             price: 1499,
             stockQuantity: 20,
             category: "Electronics",
-<<<<<<< HEAD
             imageUrl: "images/wireless-headphones.jpg"
-=======
-            imageUrl: ""
->>>>>>> bfe9846a44e136b69c691406cf759ee47f662b4e
         },
         {
             id: "demo-electronics-2",
