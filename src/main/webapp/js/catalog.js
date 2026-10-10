@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
             price: 1499,
             stockQuantity: 20,
             category: "Electronics",
-            imageUrl: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80"
+            imageUrl: "images/wireless-headphones.jpg"
         },
         {
             id: "demo-electronics-2",
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
             price: 2299,
             stockQuantity: 15,
             category: "Electronics",
-            imageUrl: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80"
+            imageUrl: "images/smart-watch.jpg"
         },
         {
             id: "demo-electronics-3",
@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
             price: 899,
             stockQuantity: 25,
             category: "Electronics",
-            imageUrl: "https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=600&q=80"
+            imageUrl: "images/wireless-keyboard.jpg"
         },
         {
             id: "demo-electronics-4",
