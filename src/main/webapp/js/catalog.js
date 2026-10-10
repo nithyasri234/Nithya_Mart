@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
             price: 1499,
             stockQuantity: 20,
             category: "Electronics",
-            imageUrl: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80"
+            imageUrl: "images/wireless headphones.jpg"
         },
         {
             id: "demo-electronics-2",
