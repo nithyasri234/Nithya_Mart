@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Products - NithyaMart</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/chatbot.css">
+    <link rel="stylesheet" href="./css/chatbot.css">
     <style>
         .category-page-container {
             width: 94%;
@@ -526,71 +526,7 @@
     </main>
      
 <!-- Floating chatbot button -->
-<button id="chatbot-toggle"
-        type="button"
-        aria-label="Open AI shopping assistant"
-        aria-expanded="false">
-    💬
-</button>
 
-<!-- Chat window -->
-<section id="chatbot-window"
-         role="dialog"
-         aria-label="NithyaMart AI shopping assistant"
-         aria-hidden="true">
-
-    <div class="chatbot-header">
-        <div>
-            <h3>NithyaMart Assistant</h3>
-            <p>Your AI shopping companion</p>
-        </div>
-
-        <button id="chatbot-close"
-                type="button"
-                aria-label="Close chat">
-            &times;
-        </button>
-    </div>
-
-    <div id="chatbot-messages"
-         aria-live="polite">
-        <div class="chatbot-message bot">
-            Hi! 👋 Welcome to NithyaMart.
-            What are you looking for today?
-        </div>
-    </div>
-    
-<div id="chatbot-widget">
-    <div id="chatbot-window" class="chatbot-hidden">
-        <div class="chatbot-header">
-            <span>NithyaMart AI Assistant</span>
-            <button id="chatbot-close" type="button">×</button>
-        </div>
-
-        <div id="chatbot-messages">
-            <div class="bot-message">
-                Hi! 👋 Welcome to NithyaMart.
-                How can I help you shop today?
-            </div>
-        </div>
-
-        <form id="chatbot-form">
-            <input
-                type="text"
-                id="chatbot-input"
-                placeholder="Ask about products..."
-                autocomplete="off"
-                required
-            >
-            <button type="submit">➤</button>
-        </form>
-    </div>
-
-    <button id="chatbot-toggle" type="button">💬</button>
-</div>
-
-<script src="js/chatbot.js"></script>
-</body>
 
 
     <form id="chatbot-form">
@@ -884,6 +820,95 @@
     </script>
     
 <div id="chatbot-widget">
+    <button id="chatbot-toggle" type="button">💬</button>
+</div>
+<button id="chatbot-toggle"
+        type="button"
+        aria-label="Open AI shopping assistant"
+        aria-expanded="false">
+    💬
+</button>
+
+<!-- Chat window -->
+<section id="chatbot-window"
+         role="dialog"
+         aria-label="NithyaMart AI shopping assistant"
+         aria-hidden="true">
+
+    <div class="chatbot-header">
+        <div>
+            <h3>NithyaMart Assistant</h3>
+            <p>Your AI shopping companion</p>
+        </div>
+
+        <button id="chatbot-close"
+                type="button"
+                aria-label="Close chat">
+            &times;
+        </button>
+    </div>
+
+    <div id="chatbot-messages"
+         aria-live="polite">
+        <div class="chatbot-message bot">
+            Hi! 👋 Welcome to NithyaMart.
+            What are you looking for today?
+        </div>
+    </div>
+    
+<div id="chatbot-widget">
+    <div id="chatbot-window" class="chatbot-hidden">
+        <div class="chatbot-header">
+            <span>NithyaMart AI Assistant</span>
+            <button id="chatbot-close" type="button">×</button>
+        </div>
+
+        <div id="chatbot-messages">
+            <div class="bot-message">
+                Hi! 👋 Welcome to NithyaMart.
+                How can I help you shop today?
+            </div>
+        </div>
+
+        <form id="chatbot-form">
+            <input
+                type="text"
+                id="chatbot-input"
+                placeholder="Ask about products..."
+                autocomplete="off"
+                required
+            >
+            <button type="submit">➤</button>
+        </form>
+    </div>
+
+    <button id="chatbot-toggle" type="button">💬</button>
+</div>
+
+
+
+<div id="chatbot-widget">
+    <div id="chatbot-window" class="chatbot-hidden">
+        <div class="chatbot-header">
+            <span>NithyaMart AI Assistant</span>
+            <button id="chatbot-close" type="button">×</button>
+        </div>
+
+        <div id="chatbot-messages">
+            <div class="bot-message">
+                Hi! Welcome to NithyaMart. How can I help you?
+            </div>
+        </div>
+
+        <form id="chatbot-form">
+            <input id="chatbot-input"
+                   type="text"
+                   placeholder="Ask about products..."
+                   required>
+            <button type="submit">➤</button>
+        </form>
+    </div>
+
     <button id="chatbot-toggle" type="button">💬</button>
 </div>
 

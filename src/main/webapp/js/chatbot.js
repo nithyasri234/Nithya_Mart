@@ -1,4 +1,5 @@
 
+console.log("CHATBOT JS LOADED");
 document.addEventListener("DOMContentLoaded", function () {
     const toggle = document.getElementById("chatbot-toggle");
     const chatWindow = document.getElementById("chatbot-window");
